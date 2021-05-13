@@ -1,40 +1,8 @@
 <template>
   
     
-  <!-- App.vue -->
 
-<v-app>
-
-
-
-    
-  <v-navigation-drawer app width="70">
-    <minisidenav/>
-  </v-navigation-drawer>
-
-  <v-app-bar app>
-    <!-- -->
-  </v-app-bar>
-
-  <!-- Sizes your content based upon application components -->
-  <v-main >
-  
     <Nuxt />
-     </v-main>
-
-  <v-footer app>
-    <!-- -->
-  </v-footer>
-  
-            <v-overlay
-      :opacity="1"
-      :value="overlay"
-    >
-      <v-progress-circular indeterminate size="64">
-        Loading...
-      </v-progress-circular>
-    </v-overlay>
-</v-app>
     
  <!-- <v-img :src="require('~/assets/115783931601b5c.jpg')" /> -->
   
@@ -95,14 +63,11 @@ html {
 import minisidenav from '../components/minisidenav.vue';
 export default {
   components: { minisidenav },
-data(){
-return {overlay:true}
-},
+
   mounted() {
-    
-    this.overlay=false;
+    var token = this.$cookies.get("token");
 
-
+    this.$store.dispatch("authentication/settoken", token);
   },
   computed: {
     isLoggedIn: function() {

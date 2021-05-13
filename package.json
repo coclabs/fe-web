@@ -17,14 +17,18 @@
     "cookie-universal-nuxt": "^2.1.4",
     "highlightjs": "^9.16.2",
     "jquery": "^3.5.1",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.4",
     "nuxt-highlightjs": "^1.0.1",
     "popper.js": "^1.16.1",
-    "sass-loader": "10",
     "vue-highlightable-input": "^1.0.9",
     "vuejs-ace-editor": "^1.0.1"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.11.3"
+    "@nuxtjs/vuetify": "^1.11.3",
+    "fibers": "^5.0.0",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1"
   }
 }

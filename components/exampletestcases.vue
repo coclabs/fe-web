@@ -111,6 +111,4 @@ this.answer=editor.getValue();
         }
     
         
-        
-    
 </script>
