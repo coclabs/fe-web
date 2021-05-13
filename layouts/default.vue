@@ -2,7 +2,17 @@
   
     
 
+  <v-app>
     <Nuxt />
+       <v-overlay
+      :opacity="1"
+      :value="overlay"
+    >
+      <v-progress-circular indeterminate size="64">
+        Loading...
+      </v-progress-circular>
+    </v-overlay>
+</v-app>
     
  <!-- <v-img :src="require('~/assets/115783931601b5c.jpg')" /> -->
   
