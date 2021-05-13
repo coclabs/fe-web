@@ -1,4 +1,3 @@
-
 <template>
 <div>
        
@@ -68,9 +67,6 @@ this.answer=editor.getValue();
 
 
         }
-    
-        
-        
     
         
         

@@ -1,164 +1,202 @@
 <template>
-  <v-app >
 
-    <v-card
-      class="d-flex mb-6"
-    
-      
-      tile
-    >
+  <div>
       <v-card
-        
+        style="background-color:rgb(38,39,41);color:rgb(239,239,239)"
         class="pa-2"
         outlined
         tile
       >
-       <minisidenav/>
+         
+      <h3>Add Question</h3>
       </v-card>
-      
-      <v-card
-        
-        class="pa-2"
-        outlined
-        tile
-      >
+ <v-card height="500" >
+
+
+    
+   
+    <v-row no-gutters style="height:500px;" >
+      <v-col
+      style="height:500px;"
+       >
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+        >
+        <!-- 1.1 -->
          <template>
      
 
  <div>
  <h1>Create Question With Test</h1>
-    <v-form @submit.prevent="submit">
+  
       <h3>Add Question</h3>
+    Question Description (MarkDown Allowed)
 
-      <v-text-field
+      <v-textarea class="textfield"
         v-model="question.questiondescription"
-        color="purple darken-2"
-        label="questiondescription"
-        
+        color="white white-2"
+        background-color="grey lighten-2"
+    extension-height=8
         required
-        
-      ></v-text-field>
-
+        rows=6
+        no-resize=true
+        oninput="if(Number(this.rows) == 8) this.rows = 8;"
+      ></v-textarea>
+Question Topic
       <v-text-field
         v-model="question.questiontopic"
-        color="purple darken-2"
-        label="questiontopic"
+        color="white white-2"
+        class="textfield"
+         background-color="grey lighten-2"
         required
       ></v-text-field>
-
+Question Difficulty
       <v-text-field
         v-model="question.questiondifficulty"
-        color="purple darken-2"
-        label="questiondifficulty"
+        color="white white-2"
+         background-color="grey lighten-2"
+    class="textfield"
         required
       ></v-text-field>
 
+ </div>
+         </template>
+
+
+        </v-card>
+      </v-col>
+      <v-col >
+        <v-card
+          class="pa-2"
+          outlined
+          tile
+      height="500px"
+          
+        >
+        <h1>  Preview</h1>
+        <h3>Question Description</h3>
+        <div style>
+          <div v-html="$md.render(question.questiondescription)" style="maxheigth:200px"></div>
+     
+        </div>
+        </v-card>
+      </v-col>
+      
+    
+    </v-row>
+
+   
+      <v-card
+        style="background-color:rgb(38,39,41);color:rgb(239,239,239)"
+        class="pa-2"
+        outlined
+        tile
+      >
+         
       <h3>Add Test</h3>
-
-      <!-- testsolution:str
-    testcases:str
-    exampleTestCases:str
-    testlanquage:str
-    testframework:str -->
-      <v-textarea
-        v-model="test.testsolution"
-        label="testsolution"
-        maxlength="3000"
-        full-width
-        single-line
-      ></v-textarea>
-
-      <v-textarea 
-        v-model="test.testcases"
-        label="testcases"
-        maxlength="3000"
-        full-width
-        single-line
-      ></v-textarea>
-
-      <v-textarea
-        v-model="test.exampletestcases"
-        label="exampletestcase"
-        
-        maxlength="3000"
-        full-width
-        single-line
-      ></v-textarea>
-
-      <v-text-field
-        v-model="test.testlanquage"
-        color="pink darken-2"
-        label="testlanquage"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="test.testframework"
-        color="pink darken-2"
-        label="testframework"
-        required
-      ></v-text-field>
-
-      <div>
-        <v-btn type="submit">Create</v-btn>
-      </div>
-    </v-form>
-    </div>
-     </template>
       </v-card>
+
+
+
+  <v-row no-gutters style="height:500px;">
+      <v-col style="height:500px;">
+    
+
+ 
+        <v-card>
+<v-tabs   v-model="tab">
+<v-tab >TestSolution</v-tab>
+ 
+<v-tab>ExampleTestCases</v-tab>
+<v-tab>TestCase</v-tab>
+<v-tab>InitSolution</v-tab>
+
+
+ <v-tab-item > <testssolution v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
+    <v-tab-item> <exampletestcases v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
+    <v-tab-item><test-cases v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
+    <v-tab-item><initsolution v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
+
+
+       <v-btn @click="spanVisible=false">Validate TestCase</v-btn>
+</v-tabs>
+
+  </v-card>
+
+
+
+ <v-btn :disabled="spanVisible" @click="submit">Create Question With Test</v-btn> <div v-if="spanVisible">U Need To Validate Test First!!</div>
+
+
+
+        <br><br>
+       
+       <v-card style="color:white;background-color:black" height="350px">
+   
+     <h1 style="padding:50px">Validate Test Result</h1>
+    <div v-if="!spanVisible" style="padding:25px"><h2>ExampleTestCases </h2>
+     <h3 style="color:green">AssertEqual(sum(4,8),12))  (Pass)</h3>
+      <h2>RealTestCases </h2>
+      <h3 style="color:green">Test1  (Pass) </h3>
+validate pass</div>
+
+
+  </v-card>
+     
+      </v-col>
+ 
+ 
+    
+    </v-row>
+     
+  
     </v-card>
-     <v-card >
+     <v-row>
+
+       
+     </v-row>
+    
+ 
+</div>
+    
+
+
 
 
     
-   <v-container class="grey lighten-5">
-    <v-row no-gutters>
-      <v-col>
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          First, but unordered
-        </v-card>
-      </v-col>
-      <v-col order="12">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          Second, but last
-        </v-card>
-      </v-col>
-      <v-col order="1">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          Third, but first
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
-
    
-      </v-card>
-  </v-app>
+    
+  
+  
+     
+  
+
+ 
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-export default {
-  computed: mapGetters({
-    authStatus: "authentication/authStatus"
-  }),
-  data() {
-    return {
-      question: {
-        questiondescription: "",
+
+
+import minisidenav from '../../components/minisidenav.vue'
+
+
+import TestCases from '../../components/TestCases.vue';
+import Testssolution from '../../components/testssolution.vue';
+import Exampletestcases from '../../components/exampletestcases.vue';
+import Initsolution from '../../components/initsolution.vue';
+
+
+
+    export default {
+      components: { minisidenav,   TestCases,  Testssolution, Exampletestcases, Initsolution,},
+        data(){
+return {activetab: 1,question: {
+        questiondescription: "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
         questiontopic: "",
-        questiondifficulty: ""
+        questiondifficulty: "",
+        questioninit:""
       },
       test: {
         testsolution: "",
@@ -167,18 +205,97 @@ export default {
         testframework: "",
         testlanquage: ""
       }
-    };
-  },
-  methods: {
+    ,spanVisible: true,
+      tab: null,
+        
+        };
+        },overlay: true
+        ,
+        
+             
+        
+         mounted(){
+ 
+        },
+        methods: {
     submit: function() {
+      if(this.question.questiontopic==""||this.question.questiondifficulty==""){
+        alert("please Fill All Data!")
+      }
+      else{
       let data = [this.question, this.test];
       this.$store
         .dispatch("question/createquestionwithtest", data)
         .then(resp => this.$router.push("/question/showallquestion"))
         .catch(err => console.log(err));
-    }
+      }
+    },
+     
+            updateTestSolution (testsolution) {
+      this.test.testsolution=testsolution
+            }
+      //  console.log(this.test.testsolution) // someValue
+     
+,updateTestCase(testcase){
+  this.test.testcases=testcase
+  // console.log(this.test.testcases)
+}
+,updateExampleTestCase(exampletest){
+  this.test.exampletestcases=exampletest
+  // console.log(this.test.exampletestcases)
+}
+    ,updateInitSolution(initSolution){
+  this.question.initsolution=initSolution
+// console.log(this.question.initsolution)
+}
   }
-};
+         
+
+          
+
+
+
+        }
+    
+        
 </script>
 
 
+
+<style>
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+</style>

@@ -63,10 +63,12 @@ html {
 import minisidenav from '../components/minisidenav.vue';
 export default {
   components: { minisidenav },
-
+data(){
+return {overlay:true}
+},
   mounted() {
     var token = this.$cookies.get("token");
-
+   this.overlay=false;
     this.$store.dispatch("authentication/settoken", token);
   },
   computed: {
