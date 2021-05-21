@@ -1,8 +1,7 @@
 <template>
   
     
-
-  <v-app>
+<v-app>
     <Nuxt />
        <v-overlay
       :opacity="1"
@@ -13,7 +12,6 @@
       </v-progress-circular>
     </v-overlay>
 </v-app>
-    
  <!-- <v-img :src="require('~/assets/115783931601b5c.jpg')" /> -->
   
 </template>

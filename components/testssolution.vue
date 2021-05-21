@@ -1,22 +1,61 @@
 <template>
 <div>
-       
+
      <div id="description" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);" > </div>
 <textarea name="description"   style="display:none;" />
-
 
 </div>
 </template> 
 
 <script>
+
 import $ from 'jquery'
     export default {
-     
+ props: {
+   someData: Object
+ },
         data(){
-return {answer:''}
+return {answer:'',code:'',first:0
+
+,
+
+}
         },
+    
+        
+         watch:{
+      someData(newVal){
+        
+
+const editor = ace.edit('description');
+const textarea = $('textarea[name="description"]');
+
+editor.getSession().on("change", function () {
+    textarea.val(editor.getSession().getValue());
+});
+;
+
+editor.setOptions({
+                theme: 'ace/theme/monokai',
+                mode: 'ace/mode/python',
+                printMargin: false,
+                vScrollBarAlwaysVisible: true,
+                scrollPastEnd: 1,
+                fontSize: 25,
+            });
+             editor.setValue(
+this.someData.tests[0].testsolution, -1);
+this.answer=editor.getValue();
+  
+      }
+  },
+        
+        
+
         methods:{
+           
             check(){
+                
              this.answer=$('textarea[name="description"]').val()
             
             },
@@ -26,8 +65,10 @@ return {answer:''}
 
         },
          mounted(){
-var editor = ace.edit('description');
-var textarea = $('textarea[name="description"]');
+          
+ const editor = ace.edit('description');
+const textarea = $('textarea[name="description"]');
+
 editor.getSession().on("change", function () {
     textarea.val(editor.getSession().getValue());
 });
@@ -41,28 +82,52 @@ editor.getSession().on("change", function () {
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
                 fontSize: 25,
-                
             });
-            editor.setValue(
-'public static void sum(){ \n \n};', -1);
+             editor.setValue(
+"", -1);
 this.answer=editor.getValue();
+
+        },
+        
+         created(){
+             
 
 
 
 // aceEditor.setTheme("ace/theme/clouds");
 
 
-
-
-        }
-         ,created(){
              setInterval(() => {
                  this.check()
 	this.ChangeTestSolution()
+   if(this.first==0&&this.someData!=null){
+             const editor = ace.edit('description');
+const textarea = $('textarea[name="description"]');
+
+editor.getSession().on("change", function () {
+    textarea.val(editor.getSession().getValue());
+});
+;
+
+editor.setOptions({
+                theme: 'ace/theme/monokai',
+                mode: 'ace/mode/python',
+                printMargin: false,
+                vScrollBarAlwaysVisible: true,
+                scrollPastEnd: 1,
+                fontSize: 25,
+            });
+             editor.setValue(
+this.someData.tests[0].testsolution, -1);
+this.code=editor.getValue();
+  this.first+=1
+           }
 	}, 1000)
          }
 
+          ,
           
+
 
 
 
