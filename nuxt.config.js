@@ -64,6 +64,7 @@ export default {
   ],
   sentry: {
     dsn: 'https://5174625547fc4c69a3b49892fb893f25@o525207.ingest.sentry.io/5778797',
+    environment: 'develop',
     tracesSampleRate: 1.0,
     vueOptions: {
       tracing: true,
