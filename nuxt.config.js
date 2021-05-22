@@ -15,8 +15,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  
- 
+
+
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', body: true },
 
@@ -44,7 +44,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
 
-  
+
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -65,20 +65,21 @@ export default {
   ,
   css: [
     // Load a Node.js module directly (here it's a Sass file)
-    
+
     // CSS file in the project
     '@/assets/css/main.css',
     // SCSS file in the project
-    
+
   ],
 
-  
+
 
   axios: {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  telemetry: false
 ,
 }
 
