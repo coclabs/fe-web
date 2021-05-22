@@ -60,9 +60,21 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
-  ]
-  ,
+    '@nuxtjs/sentry', '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
+  ],
+  sentry: {
+    dsn: 'https://682ca2c70ddd40b08dbd5cf8ba8c25c8@o708708.ingest.sentry.io/5778748',
+    tracesSampleRate: 1.0,
+    vueOptions: {
+      tracing: true,
+      tracingOptions: {
+        hooks: [ 'mount', 'update' ],
+        timeout: 2000,
+        trackComponents: true
+      }
+    },
+    browserOptions: {}
+  },
   css: [
     // Load a Node.js module directly (here it's a Sass file)
 
