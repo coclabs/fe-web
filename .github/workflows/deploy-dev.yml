@@ -27,4 +27,5 @@ jobs:
             git clone https://github.com/coclabs/fe-web.git     &&
             cd fe-web                                           &&
             git pull                                            &&
+            yarn install                                        &&
             systemctl start coc-web.service
