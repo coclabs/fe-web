@@ -63,7 +63,7 @@ export default {
     '@nuxtjs/sentry', '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
   ],
   sentry: {
-    dsn: 'https://682ca2c70ddd40b08dbd5cf8ba8c25c8@o708708.ingest.sentry.io/5778748',
+    dsn: 'https://5174625547fc4c69a3b49892fb893f25@o525207.ingest.sentry.io/5778797',
     tracesSampleRate: 1.0,
     vueOptions: {
       tracing: true,
