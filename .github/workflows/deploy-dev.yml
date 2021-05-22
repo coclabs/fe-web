@@ -1,0 +1,30 @@
+name: Deploy-Dev
+on:
+  push:
+    branches:
+      - develop
+#  pull_request:
+#    branches:
+#      - develop
+#    types: [closed]
+jobs:
+  inject-source:
+#    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment:
+      name: Develop
+    steps:
+      - name: execute commands via ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEV_MACHINE }}
+          username: ${{ secrets.DEV_USER }}
+          password: ${{ secrets.DEV_PASSWD }}
+          port: ${{ secrets.PORT }}
+          script: systemctl stop coc-web.service                &&
+            cd /srv                                             &&
+            rm -rf fe-web                                       &&
+            git clone https://github.com/coclabs/fe-web.git     &&
+            cd fe-web                                           &&
+            git pull                                            &&
+            systemctl start coc-web.service
