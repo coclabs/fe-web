@@ -60,6 +60,14 @@ Question Difficulty
     class="textfield"
         required
       ></v-text-field>
+      Question Lanquage
+      <v-text-field
+  
+        color="white white-2"
+         background-color="grey lighten-2"
+    class="textfield"
+        required
+      ></v-text-field>
 
  </div>
          </template>
@@ -223,30 +231,33 @@ return {activetab: 1,question: {
         alert("please Fill All Data!")
       }
       else{
-      let data = [this.question, this.test];
+      let data = [this.question, this.test,this.question.questioninit];
       this.$store
         .dispatch("question/createquestionwithtest", data)
         .then(resp => this.$router.push("/question/showallquestion"))
         .catch(err => console.log(err));
+        
       }
     },
      
             updateTestSolution (testsolution) {
       this.test.testsolution=testsolution
+         
             }
-      //  console.log(this.test.testsolution) // someValue
+    
      
 ,updateTestCase(testcase){
   this.test.testcases=testcase
-  // console.log(this.test.testcases)
+  
+  
 }
 ,updateExampleTestCase(exampletest){
   this.test.exampletestcases=exampletest
-  // console.log(this.test.exampletestcases)
+  
 }
     ,updateInitSolution(initSolution){
-  this.question.initsolution=initSolution
-// console.log(this.question.initsolution)
+  this.question.questioninit=initSolution
+
 }
   }
          

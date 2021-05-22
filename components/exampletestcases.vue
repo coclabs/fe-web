@@ -3,7 +3,6 @@
 
      <div id="description3" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);" > </div>
 <textarea name="description3"   style="display:none;" />
-{{code}}
 
 </div>
 </template> 
@@ -12,19 +11,21 @@
 
 import $ from 'jquery'
     export default {
-     props: ['someData'],
+ props: {
+   someData: Object
+ },
         data(){
-return {answer:'',code:"ss"
+return {answer:'',code:'',first:0
 
 ,
 
 }
         },
-        watch:{
-         
-        someData: function(newVal) { 
-         
-this.code=this.someData
+    
+        
+         watch:{
+      someData(newVal){
+        
 
 const editor = ace.edit('description3');
 const textarea = $('textarea[name="description3"]');
@@ -34,8 +35,7 @@ editor.getSession().on("change", function () {
 });
 ;
 
-
-  editor.setOptions({
+editor.setOptions({
                 theme: 'ace/theme/monokai',
                 mode: 'ace/mode/python',
                 printMargin: false,
@@ -44,12 +44,11 @@ editor.getSession().on("change", function () {
                 fontSize: 25,
             });
              editor.setValue(
-this.code, -1);
+this.someData.tests[0].exampletestcases, -1);
 this.answer=editor.getValue();
-
-        }
-        }
-        ,
+  
+      }
+  },
         
         
 
@@ -66,6 +65,7 @@ this.answer=editor.getValue();
 
         },
          mounted(){
+          
  const editor = ace.edit('description3');
 const textarea = $('textarea[name="description3"]');
 
@@ -84,11 +84,12 @@ editor.getSession().on("change", function () {
                 fontSize: 25,
             });
              editor.setValue(
-this.code, -1);
+"", -1);
 this.answer=editor.getValue();
 
-        }
-         ,created(){
+        },
+        
+         created(){
              
 
 
@@ -99,6 +100,28 @@ this.answer=editor.getValue();
              setInterval(() => {
                  this.check()
 	this.ChangeExampleTestCase()
+   if(this.first==0&&this.someData!=null){
+             const editor = ace.edit('description3');
+const textarea = $('textarea[name="description3"]');
+
+editor.getSession().on("change", function () {
+    textarea.val(editor.getSession().getValue());
+});
+;
+
+editor.setOptions({
+                theme: 'ace/theme/monokai',
+                mode: 'ace/mode/python',
+                printMargin: false,
+                vScrollBarAlwaysVisible: true,
+                scrollPastEnd: 1,
+                fontSize: 25,
+            });
+             editor.setValue(
+this.someData.tests[0].exampletestcases, -1);
+this.code=editor.getValue();
+  this.first+=1
+           }
 	}, 1000)
          }
 

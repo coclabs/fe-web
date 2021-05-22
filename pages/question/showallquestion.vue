@@ -1,7 +1,9 @@
 <template>
 <v-app>
   <h1>Question</h1>
-   <v-card>
+ 
+   <v-card >
+     
     <v-card-title>
    <v-text-field
         v-model="search"
@@ -19,7 +21,8 @@
     item-key="questionid"
     show-select
      :search="search"
-    class="elevation-1"
+:elevation="hover ? 24 : 6"
+          
      hide-default-footer
     show-expand 
   >
@@ -27,10 +30,11 @@
        <v-toolbar
         flat
       >
+      
 
  <v-toolbar-title>Manage</v-toolbar-title>
    <v-divider
-          class="mx-4"
+          class="mx-10"
           inset
           vertical
         ></v-divider>
@@ -41,15 +45,18 @@
           max-width="1000px"
         >
           <template v-slot:activator="{ on, attrs }">
+           
             <v-btn
               color="primary"
               dark
               class="mb-2"
               v-bind="attrs"
               v-on="on"
+              @click="editedIndex=-1"
             >
               New Question
             </v-btn>
+              
           </template>
           <v-card >
             <v-card-title>
@@ -125,8 +132,8 @@
 <v-tab>InitSolution</v-tab>
 
 
- <v-tab-item > <testssolution :someData="question.questiondescription"  v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
-    <v-tab-item> <exampletestcases :someData="question.questiondescription" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
+ <v-tab-item > <testssolution :someData="question"  v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
+    <v-tab-item> <exampletestcases :someData="question" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
     <v-tab-item><test-cases :someData="question" v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
     <v-tab-item><initsolution :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
 
@@ -204,14 +211,17 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
+      NoData
     </template>
   </v-data-table>
+   <v-btn
+              color="secondary"
+              dark
+              class="mb-3"
+              @click="multipledelete"
+            >
+              Multiple Delete
+            </v-btn>
 <v-pagination
               v-model="page"
               class="my-4"
@@ -226,9 +236,12 @@
 
 <script>
 export default {
+  props: {
+   someData: String
+},
   computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Question' : 'Edit Item'
+        return this.editedIndex == -1 ? 'New Question' : 'Edit Question'
       }},
     data(){
 return{
@@ -262,7 +275,7 @@ questions:[
 {questiontopic:'asdasdasd',questiondescription:'asd',questiondifficulty:'b',questiondifficulty:'c',questionid:'7'},
 {questiontopic:'asdasdasd',questiondescription:'asd',questiondifficulty:'b',questiondifficulty:'c',questionid:'8'}
 ]
-,questionpage:0
+,questionpage:0,questioninit:''
 ,page:1, search: '',
         headers: [
           {
@@ -270,9 +283,9 @@ questions:[
             align: 'start',
             
             value: 'questiontopic',
-          },{ text: 'questiondescription', value: 'questiondescription' },
+          },
           { text: 'questiondifficulty', value: 'questiondifficulty'},
-          {text:'questionid' ,value:'questionid'},
+       
           {text: 'Actions', value: 'actions', sortable: false } 
             
           
@@ -296,7 +309,7 @@ questions:[
     
 
   async fetch() {
-    console.log(this.page)
+
     const questions = await this.$axios.$get('http://127.0.0.1:8000/showtenquestions/1')
     const questionpage= await this.$axios.$get('http://127.0.0.1:8000/questionpage/')
     this.questions = questions
@@ -307,10 +320,33 @@ questions:[
      this.overlay = false
   }
 ,methods:{
+  multipledelete(){
+
+if(this.selected[0]==null){
+  alert("please select item to delete")
+}else{
+var result = confirm("Are you sure to delete these "+this.selected.length + " questions");
+            if (result == true) {
+                this.$store
+        .dispatch("question/multipledeletequestion", this.selected).then((resp)=>
+        this.$nuxt.refresh()
+        )
+            } else {
+                
+            }
+
+
+
+}
+  },
+
+
     editItem (item) {
         this.editedIndex = this.questions.indexOf(item)
-        this.question = Object.assign({}, item)
+
+        this.question = Object.assign({}, item) 
         this.dialog = true
+       
       },
 
    fetchnextpage: function () {
@@ -336,14 +372,15 @@ questions:[
   console.log(this.test.exampletestcases)
 }
     ,updateInitSolution(initSolution){
-  this.question.questioninit=initSolution
+  this.questioninit=initSolution
  
+
 
 }
 ,close () {
         this.dialog = false
         this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
+         
           this.editedIndex = -1
         })
       }
@@ -374,7 +411,7 @@ questions:[
       },
       save () {
         if (this.editedIndex > -1) {
-          let data = [this.question,this.test];
+          let data = [this.question,this.test,this.questioninit];
           this.$store
         .dispatch("question/updatequestion", data).then((resp)=>
         this.fetchnextpage())
@@ -383,23 +420,58 @@ questions:[
           this.close();
         } else {
          //add new question
-if(this.question.questiontopic==""||this.question.questiondifficulty==""){
+
+
+  if(this.question.questiontopic==""||this.question.questiondifficulty==""){
         alert("please Fill All Data!")
       }
       else{
-        
-      let data = [this.question, this.test,this.initsol];
+        if(this.questionpage==0){
+let data = [this.question, this.test,this.questioninit];
+
       this.$store
         .dispatch("question/createquestionwithtest", data).then((resp)=>
-           this.$nuxt.refresh()
+        this.fetchnextpage()
+      
+        )
+       this.questionpage=1;
+       this.page=1;
+
+       
+        this.close();
+        
+        }else{
+          
+if(this.questions[9]!=null&&this.page==this.questionpage){
+   let data = [this.question, this.test,this.questioninit];
+
+      this.$store
+        .dispatch("question/createquestionwithtest", data).then((resp)=>
+         this.$nuxt.refresh
+        ).then(this.questionpage+=1).then(this.page=this.questionpage)
+        .then((resp) =>   this.fetchnextpage())
+     console.log(this.questionpage)
+        this.close();
+}else{
+
+  
+   let data = [this.question, this.test,this.questioninit];
+
+      this.$store
+        .dispatch("question/createquestionwithtest", data).then((resp)=>
+         this.$nuxt.refresh
         ).then(this.page=this.questionpage)
         .then((resp) =>   this.fetchnextpage())
-     
+     console.log(this.questionpage)
         this.close();
-       
+}
+        }
+        }
+
+     
         
 
-      }
+    
 
         }
         

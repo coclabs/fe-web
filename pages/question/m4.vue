@@ -158,11 +158,28 @@
 <div class="pa-2 font-weight-bold"> Question Difficulty</div>
       <v-text-field
        
+       
+
+       
         color="white white-2"
          background-color="grey lighten-2"
     class="textfield pa-2"
         required
       ></v-text-field>
+
+
+<div class="pa-2 font-weight-bold"> Question Lan</div>
+      <v-text-field
+       
+       
+
+       
+        color="white white-2"
+         background-color="grey lighten-2"
+    class="textfield pa-2"
+        required
+      ></v-text-field>
+
 <v-col></v-col>
  
 

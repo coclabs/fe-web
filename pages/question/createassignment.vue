@@ -71,9 +71,8 @@ style="width:500px"
       
 Max Score
 <v-slider
-      v-model="assignment.MaxScore"
-      :color="black"
-      :label="MaxScore"
+      v-model="assignment.maxpossiblescore"
+     
        thumb-label="always"
        style="width:500px"
     ></v-slider>
@@ -243,6 +242,7 @@ import Initsolution from '../../components/initsolution.vue';
       components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,},
         data(){
 return {
+  dialog:false,
   search:'',
    headers: [
           {
