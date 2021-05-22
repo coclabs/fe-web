@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.DEV_USER }}
           password: ${{ secrets.DEV_PASSWD }}
           port: ${{ secrets.PORT }}
-          script: systemctl stop coc-web.service                &&
+          script: systemctl stop coc-web.service                ;
             cd /srv                                             &&
             rm -rf fe-web                                       &&
             git clone https://github.com/coclabs/fe-web.git     &&
@@ -30,3 +30,11 @@ jobs:
             git pull                                            &&
             yarn install                                        &&
             systemctl start coc-web.service
+      - name: notify discord
+      uses: sarisia/actions-status-discord@v1.8.5
+      if: always()
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        title: Deploy dev fe-web
+        description: Development codebase deploy via ssh source injection
+        username: GitHub Actions
