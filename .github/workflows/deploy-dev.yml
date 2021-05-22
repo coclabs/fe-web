@@ -35,6 +35,6 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy dev fe-web
+          title: deploy dev fe-web
           description: Development codebase deploy via ssh source injection
           username: GitHub Actions
