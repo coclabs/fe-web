@@ -26,7 +26,7 @@
            style="background-color:black"
         >
 
-       <h2 style="color:white">Test Result</h2>
+       
      
         </v-card>
       </v-col>
@@ -77,7 +77,7 @@ return{questions:[
 async fetch() {
  
   // this.question= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyquestionid/'+this.$route.params.questionid)
-   this.questions= await this.$axios.$get('https://api.pdm-dev.me/getquestionbyassignmentid/'+this.$route.params.assignmentid)
+   this.questions= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyassignmentid/'+this.$route.params.assignmentid)
   
 this.question=this.questions[this.questionindex]
 },
