@@ -30,7 +30,7 @@
       <v-divider class="mx-2 my-2"></v-divider>
       
 
-      <v-list   flat>
+      <v-list   >
         <v-list-item-group
         v-model="selectedItem"
           color="amber lighten-1"
@@ -50,6 +50,7 @@
         </v-list-item>
         </v-list-item-group>
       </v-list>
+      
     </v-navigation-drawer>
        
        
@@ -114,9 +115,9 @@
            </v-app-bar>
             
                
-           <v-main class="mainpage md-auto " style="background: #EDE7F6 " >
+           <v-main class="mainpage md-auto "  >
            
-              
+             
                <v-container class="pa-6 md-auto"
                 >
                    
@@ -125,9 +126,10 @@
       <v-row >
       <v-col>
       <v-card
-          class="pa-2  rounded-xl  "
+          class=" me1 pa-2  rounded-xl   "
           elevation
-          style="border-bottom: 1px solid rgba(0,0,0,.12)!important "
+          style=" background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); "
+          
         >
         <!-- 1.1 -->
        
@@ -137,7 +139,7 @@
       <h3 class="pa-2">Add Question</h3>
    <div class="pa-2 font-weight-bold"> Question Description (MarkDown Allowed)</div>
 
-      <v-textarea class="textfield pa-2 purple--text"
+      <v-textarea class="me2 textfield pa-2 purple--text"
         v-model="question.questiondescription"
         filled
           name="input-7-4"
@@ -149,37 +151,16 @@
       ></v-textarea>
 <div class="pa-2 font-weight-bold"> Question Topic</div>
       <v-text-field
-        
-        color="white white-2"
-        class="textfield pa-2"
-         background-color="grey lighten-2"
+      class="pa-2 "
+            filled
         required
       ></v-text-field>
 <div class="pa-2 font-weight-bold"> Question Difficulty</div>
       <v-text-field
-       
-       
-
-       
-        color="white white-2"
-         background-color="grey lighten-2"
-    class="textfield pa-2"
+       class="pa-2 "
+            filled
         required
       ></v-text-field>
-
-
-<div class="pa-2 font-weight-bold"> Question Lan</div>
-      <v-text-field
-       
-       
-
-       
-        color="white white-2"
-         background-color="grey lighten-2"
-    class="textfield pa-2"
-        required
-      ></v-text-field>
-
 <v-col></v-col>
  
 
@@ -193,20 +174,56 @@
         
         <v-card 
           class="pa-2 rounded-xl"
-           style="border-bottom: 1px solid rgba(0,0,0,.12)!important"
+          height="698"
+          style=" background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); "
           elevation="1"
-          
-
-          
         >
        
         <h1 class="pa-2">  Preview</h1>
         <h3 class="pa-2">Question Description</h3>
+          
+          
+  <v-responsive
+    class="overflow-y-auto"
+    max-height="400"
+  >
+    <div class="pa-6 text-center">
+      <v-card-text class="me3" v-html="$md.render(question.questiondescription)" style="maxheigth:200px; "></v-card-text>
+    </div>
+
+    <v-responsive
+      height="200vh"
+      class="text-center pa-2"
+    >
+      <v-responsive min-height="50vh"></v-responsive>
+      <div class="text-center body-2 mb-12">
        
-       
-          <v-card-text v-html="$md.render(question.questiondescription)" style="maxheigth:200px; "></v-card-text>
-     
-       
+      </div>
+
+      <v-lazy
+        v-model="isActive"
+        :options="{
+          threshold: .5
+        }"
+        min-height="200"
+        transition="fade-transition"
+      >
+        <v-card
+          class="mx-auto"
+          max-width="336"
+        >
+          <v-card-title>Card title</v-card-title>
+
+          <v-card-text>
+            Phasellus magna. Quisque rutrum. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Aliquam lobortis. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna.
+
+            In turpis. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In turpis. Pellentesque dapibus hendrerit tortor. Ut varius tincidunt libero.
+          </v-card-text>
+        </v-card>
+      </v-lazy>
+    </v-responsive>
+  </v-responsive>
+
         </v-card>
         </v-col>
 </v-row>
@@ -226,12 +243,12 @@
 <v-tab class="font-weight-bold">ExampleTestCases</v-tab>
 <v-tab class="font-weight-bold">TestCase</v-tab>
 <v-tab class="font-weight-bold">InitSolution</v-tab>
-<testsolution></testsolution>
 
- <v-tab-item > <testssolution ></testssolution> </v-tab-item>
-    <v-tab-item> <exampletestcases ></exampletestcases> </v-tab-item>
-    <v-tab-item><test-cases ></test-cases></v-tab-item>
-    <v-tab-item><initsolution ></initsolution></v-tab-item>
+
+<v-tab-item > <testssolution v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
+    <v-tab-item> <exampletestcases v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
+    <v-tab-item><test-cases v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
+    <v-tab-item><initsolution v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
 
 
        <v-btn @click="spanVisible=false" elevation="2"
@@ -239,7 +256,7 @@
 </v-tabs>
 
   
-  <div class="pa-2"><v-btn :disabled="spanVisible" elevation="2"
+  <div class="pa-2"><v-btn :disabled="spanVisible" @click="submit" elevation="2"
   outlined color="pink">Add Question and Test</v-btn>
   </div> 
   <div v-if="spanVisible">U Need To Validate Test First!!</div>
@@ -253,11 +270,12 @@
           tile 
 >
    
-     <h1 class="pa-2 ">Validate Test Result</h1>
-     <h2 class="pa-2 ">ExampleTestCases </h2>
-     <h3 class="pa-2 " style="color:green">AssertEqual(sum(4,8),12))  (Pass)</h3>
-      <h2 class="pa-2 ">RealTestCases </h2>
-      <h3 class="pa-2 " style="color:green">Test1  (Pass) </h3>
+   <h1 style="padding:50px">Validate Test Result</h1>
+    <div v-if="!spanVisible" style="padding:25px"><h2>ExampleTestCases </h2>
+     <h3 style="color:green">AssertEqual(sum(4,8),12))  (Pass)</h3>
+      <h2>RealTestCases </h2>
+      <h3 style="color:green">Test1  (Pass) </h3>
+validate pass</div>
 
 
 
@@ -279,7 +297,14 @@
 </template>
 
 <script>
+import minisidenav from '../../components/minisidenav.vue'
+
+import TestCases from '../../components/TestCases.vue';
+import Testssolution from '../../components/testssolution.vue';
+import Exampletestcases from '../../components/exampletestcases.vue';
+import Initsolution from '../../components/initsolution.vue';
   export default {
+     components: { minisidenav,   TestCases,  Testssolution, Exampletestcases, Initsolution,},
     props: {
       attrs: {
         type: Object,
@@ -292,33 +317,70 @@
         questiondescription: "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
         questiontopic: "",
         questiondifficulty: "",
-        initsolution:""
+        questioninit:""
       },
+      test: {
+        testsolution: "",
+        testcases: "",
+        exampletestcases: "",
+        testframework: "",
+        testlanquage: ""
+      }
+      ,spanVisible: true,
+      tab: null,
+        drawer: true,
+        selectedItem: 0,
+        items: [
+          { title: 'Home', icon: 'mdi-home-city' },
+          { title: 'My Account', icon: 'mdi-account',route:'/question/Meen' },
+          { title: 'Users', icon: 'mdi-account-group-outline',route:'/question/Team' },
+          { title: 'Team', icon: 'mdi-account',route:'/question/Meen'},
+        ],
+        mini: true,
+        isActive: false,
+        };
+        },overlay: true
+        ,
+        
       mounted(){
- this.overlay=false;
+ 
         },
-          methods: {
-               submit: function() {
+           methods: {
+    submit: function() {
+      if(this.question.questiontopic==""||this.question.questiondifficulty==""){
+        alert("please Fill All Data!")
+      }
+      else{
       let data = [this.question, this.test];
       this.$store
         .dispatch("question/createquestionwithtest", data)
         .then(resp => this.$router.push("/question/showallquestion"))
         .catch(err => console.log(err));
+      }
     },
-          },
-        drawer: true,
-        selectedItem: 1,
-        items: [
-          { title: 'Home', icon: 'mdi-home-city' },
-          { title: 'My Account', icon: 'mdi-account' },
-          { title: 'Users', icon: 'mdi-account-group-outline',route:'/question/Team' },
-          { title: 'Team', icon: 'mdi-account',route:'/question/Meen'},
-        ],
-        mini: true,
+     
+            updateTestSolution (testsolution) {
+      this.test.testsolution=testsolution
+            }
+      //  console.log(this.test.testsolution) // someValue
+     
+,updateTestCase(testcase){
+  this.test.testcases=testcase
+  // console.log(this.test.testcases)
+}
+,updateExampleTestCase(exampletest){
+  this.test.exampletestcases=exampletest
+  // console.log(this.test.exampletestcases)
+}
+    ,updateInitSolution(initSolution){
+  this.question.initsolution=initSolution
+// console.log(this.question.initsolution)
+}
+  }
+        
       }
       
-    },
-  }
+   
 </script>
 
 <style>
@@ -326,7 +388,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Prompt:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
 
-.mainpage {
+
+.me2{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.me3{
   font-family: 'Prompt', sans-serif;
   
   font-Size: 20;
