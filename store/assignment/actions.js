@@ -19,7 +19,7 @@ var questionid  = new Array();
 console.log(assignment)
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/createassignmentquestion',data:{
+     axios({url: 'http://127.0.0.1:8000/createassignmentquestion',data:{
        'assignmentname':assignment.assignmentname,
        'assignmentdescription':assignment.assignmentdescription,
        'maxpossiblescore':assignment.maxpossiblescore,
@@ -92,7 +92,7 @@ console.log(assignment)
   async fetchnextpage({commit},page){
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/showtenassignmentpost/', data:{page}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/showtenassignmentpost/', data:{page}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -112,7 +112,7 @@ console.log(assignment)
     return new Promise((resolve, reject) => {
 
 
-     axios({url: 'https://api.pdm-dev.me/deleteoneassignment/', data:{assignmentid}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/deleteoneassignment/', data:{assignmentid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -138,7 +138,7 @@ console.log(assignment)
     
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/multipledeleteassignment/', data:{assignmentid}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/multipledeleteassignment/', data:{assignmentid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -161,7 +161,7 @@ console.log(assignment)
 
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/findquestionbyassignmentid/', data:{assignmentid}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/findquestionbyassignmentid/', data:{assignmentid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -181,7 +181,7 @@ console.log(assignment)
   console.log(assignment.assignmentname)
       return new Promise((resolve, reject) => {
   
-       axios({url: 'https://api.pdm-dev.me/updateassignment',data:{
+       axios({url: 'http://127.0.0.1:8000/updateassignment',data:{
         'assignmentname':assignment.assignmentname,
        'assignmentdescription':assignment.assignmentdescription,
        'maxpossiblescore':assignment.maxpossiblescore,
@@ -217,7 +217,7 @@ console.log(assignment)
       
           return new Promise((resolve, reject) => {
       
-           axios({url: 'https://api.pdm-dev.me/updateassignmentquestion',data:{
+           axios({url: 'http://127.0.0.1:8000/updateassignmentquestion',data:{
             'assignmentid':assignmentid,
            'questionid':questionid,
          

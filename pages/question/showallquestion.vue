@@ -310,8 +310,8 @@ questions:[
 
   async fetch() {
 
-    const questions = await this.$axios.$get('https://api.pdm-dev.me/showtenquestions/1')
-    const questionpage= await this.$axios.$get('https://api.pdm-dev.me/questionpage/')
+    const questions = await this.$axios.$get('http://127.0.0.1:8000/showtenquestions/1')
+    const questionpage= await this.$axios.$get('http://127.0.0.1:8000/questionpage/')
     this.questions = questions
     this.questionpage=questionpage
    
