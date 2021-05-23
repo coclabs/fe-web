@@ -15,8 +15,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  
- 
+
+
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', body: true },
 
@@ -44,7 +44,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
 
-  
+
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -60,25 +60,39 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
-  ]
-  ,
+    '@nuxtjs/sentry', '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
+  ],
+  sentry: {
+    dsn: 'https://5174625547fc4c69a3b49892fb893f25@o525207.ingest.sentry.io/5778797',
+    environment: 'develop',
+    tracesSampleRate: 1.0,
+    vueOptions: {
+      tracing: true,
+      tracingOptions: {
+        hooks: [ 'mount', 'update' ],
+        timeout: 2000,
+        trackComponents: true
+      }
+    },
+    browserOptions: {}
+  },
   css: [
     // Load a Node.js module directly (here it's a Sass file)
-    
+
     // CSS file in the project
     '@/assets/css/main.css',
     // SCSS file in the project
-    
+
   ],
 
-  
+
 
   axios: {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  telemetry: false
 ,
 }
 
