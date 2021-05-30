@@ -1,6 +1,14 @@
 <template>
 <v-app>
+<<<<<<< Updated upstream
   <h1>Question</h1>
+=======
+
+  <Navbarv1/>
+  <v-main  style="background-color: #EDE7F6;">
+    <v-container class="pa-6 md-auto">
+  <h2>Question</h2>
+>>>>>>> Stashed changes
  
    <v-card >
      
@@ -132,10 +140,17 @@
 <v-tab>InitSolution</v-tab>
 
 
+<<<<<<< Updated upstream
  <v-tab-item > <testssolution :someData="question"  v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
     <v-tab-item> <exampletestcases :someData="question" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
     <v-tab-item><test-cases :someData="question" v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
     <v-tab-item><initsolution :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
+=======
+<v-tab-item > <testssolution :someData="question" v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
+    <v-tab-item> <exampletestcases :someData="question" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
+    <v-tab-item><test-cases  :someData="question" v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
+    <v-tab-item><initsolution  :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
+>>>>>>> Stashed changes
 
 
        <v-btn @click="spanVisible=false">Validate TestCase</v-btn>
@@ -236,6 +251,10 @@
 
 <script>
 export default {
+<<<<<<< Updated upstream
+=======
+  components: { Navbarv1 },
+>>>>>>> Stashed changes
   props: {
    someData: String
 },
@@ -245,7 +264,11 @@ export default {
       }},
     data(){
 return{
+<<<<<<< Updated upstream
   
+=======
+  isActive:false,
+>>>>>>> Stashed changes
   search:'',
   dialogDelete: false,
   question: {
@@ -359,17 +382,17 @@ var result = confirm("Are you sure to delete these "+this.selected.length + " qu
       },
    updateTestSolution (testsolution) {
       this.test.testsolution=testsolution
-        console.log(this.test.testsolution) // someValue
+     // someValue
             }
      
      
 ,updateTestCase(testcase){
   this.test.testcases=testcase
-  console.log(this.test.testcases)
+
 }
 ,updateExampleTestCase(exampletest){
   this.test.exampletestcases=exampletest
-  console.log(this.test.exampletestcases)
+
 }
     ,updateInitSolution(initSolution){
   this.questioninit=initSolution
@@ -382,13 +405,16 @@ var result = confirm("Are you sure to delete these "+this.selected.length + " qu
         this.$nextTick(() => {
          
           this.editedIndex = -1
+       
+       
         })
+      
       }
       ,deleteItem (item) {
         this.editedIndex = this.questions.indexOf(item)
         this.editedQuestion = Object.assign({}, item)
         this.dialogDelete = true
-        console.log(this.editedQuestion)
+      
       },
       closeDelete () {
         this.dialogDelete = false
@@ -447,10 +473,10 @@ if(this.questions[9]!=null&&this.page==this.questionpage){
 
       this.$store
         .dispatch("question/createquestionwithtest", data).then((resp)=>
-         this.$nuxt.refresh
+         this.$nuxt.refresh()
         ).then(this.questionpage+=1).then(this.page=this.questionpage)
         .then((resp) =>   this.fetchnextpage())
-     console.log(this.questionpage)
+    
         this.close();
 }else{
 
@@ -459,10 +485,10 @@ if(this.questions[9]!=null&&this.page==this.questionpage){
 
       this.$store
         .dispatch("question/createquestionwithtest", data).then((resp)=>
-         this.$nuxt.refresh
+         this.$nuxt.refresh()
         ).then(this.page=this.questionpage)
         .then((resp) =>   this.fetchnextpage())
-     console.log(this.questionpage)
+    
         this.close();
 }
         }

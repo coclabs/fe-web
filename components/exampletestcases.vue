@@ -1,8 +1,8 @@
 <template>
 <div>
 
-     <div id="description3" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);" > </div>
-<textarea name="description3"   style="display:none;" />
+     <div id="description3" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);"    > </div>
+<textarea name="description3"   style="display:none;"  />
 
 </div>
 </template> 
@@ -15,7 +15,7 @@ import $ from 'jquery'
    someData: Object
  },
         data(){
-return {answer:'',code:'',first:0
+return {answer:'',code:'',first:0,editor:{}
 
 ,
 
@@ -55,7 +55,8 @@ this.answer=editor.getValue();
         methods:{
            
             check(){
-                
+                  
+
              this.answer=$('textarea[name="description3"]').val()
             
             },
@@ -72,6 +73,8 @@ const textarea = $('textarea[name="description3"]');
 editor.getSession().on("change", function () {
     textarea.val(editor.getSession().getValue());
 });
+this.editor=editor;
+ 
 ;
 
 
@@ -84,14 +87,13 @@ editor.getSession().on("change", function () {
                 fontSize: 25,
             });
              editor.setValue(
-"", -1);
+"assert_equal(actual=hello(0), expected='F', pass_score=0)", -1);
 this.answer=editor.getValue();
 
         },
         
          created(){
              
-
 
 
 // aceEditor.setTheme("ace/theme/clouds");
@@ -121,8 +123,9 @@ editor.setOptions({
 this.someData.tests[0].exampletestcases, -1);
 this.code=editor.getValue();
   this.first+=1
+  
            }
-	}, 1000)
+	}, 100)
          }
 
           ,

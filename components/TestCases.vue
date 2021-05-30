@@ -44,7 +44,7 @@ editor.setOptions({
                 fontSize: 25,
             });
              editor.setValue(
-this.someData.tests[0].testcases, -1);
+newVal.tests[0].testcases, -1);
 this.answer=editor.getValue();
   
       }
@@ -53,7 +53,7 @@ this.answer=editor.getValue();
         
 
         methods:{
-           
+         
             check(){
                 
              this.answer=$('textarea[name="description2"]').val()
@@ -84,7 +84,7 @@ editor.getSession().on("change", function () {
                 fontSize: 25,
             });
              editor.setValue(
-"", -1);
+"assert_equal(actual=hello(100), expected='A', pass_score=5) \nassert_equal(actual=hello(80), expected='B', pass_score=5)", -1);
 this.answer=editor.getValue();
 
         },
@@ -100,7 +100,7 @@ this.answer=editor.getValue();
              setInterval(() => {
                  this.check()
 	this.ChangeTestCase()
-   if(this.first==0 &&this.someData!=null){
+   if(this.first==0&&this.someData!=null){
              const editor = ace.edit('description2');
 const textarea = $('textarea[name="description2"]');
 
@@ -121,8 +121,22 @@ editor.setOptions({
 this.someData.tests[0].testcases, -1);
 this.code=editor.getValue();
   this.first+=1
+
+  
            }
-	}, 1000)
+
+
+
+
+
+
+
+
+
+
+
+
+	}, 100)
          }
 
           ,

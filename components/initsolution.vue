@@ -3,7 +3,7 @@
 
      <div id="description4" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);" > </div>
 <textarea name="description4"   style="display:none;" />
-    
+
 </div>
 </template> 
 
@@ -84,7 +84,7 @@ editor.getSession().on("change", function () {
                 fontSize: 25,
             });
              editor.setValue(
-"", -1);
+"def hello(avg): \n   #Write Your Code And Test Here", -1);
 this.answer=editor.getValue();
 
         },
@@ -121,8 +121,9 @@ editor.setOptions({
 this.someData.questioninit, -1);
 this.code=editor.getValue();
   this.first+=1
+  
            }
-	}, 1000)
+	}, 100)
          }
 
           ,

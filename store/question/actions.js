@@ -160,7 +160,32 @@ if (test.testsolution==""){
           reject(err)
         })
       })  
-    }
+    },   async validatetestcase({commit},data){
+    
+      var code={
+       language:"python",version:"3.9.2",value:data[0]
+      }
+      var context={
+         test:data[1],scoring:"any_pass",mode:"submit"
+      }
+
+              return new Promise((resolve, reject) => {
+          
+               axios({url: 'http://127.0.0.1:8000/gogo',data:{
+               code,context
+             
+               }, method: 'POST'})     
+                .then(resp => {
+                  console.log(resp)
+                  resolve(resp)
+                })
+                .catch(err => {
+             
+              
+                  reject(err)
+                })
+              })  
+            } 
 
 }
   

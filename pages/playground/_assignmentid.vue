@@ -1,7 +1,14 @@
 <template>
   <v-app>
+<<<<<<< Updated upstream
 
  <v-container class="grey lighten-5" style="height:600px">
+=======
+   <Navbarv1/>
+<v-main style="background-color: #EDE7F6;">
+
+ <v-container   style="height:600px;width:2500pxbackground-color: #EDE7F6;" v-if="question!=null">
+>>>>>>> Stashed changes
     <v-row no-gutters>
       <v-col>
         <v-card
@@ -9,12 +16,21 @@
           outlined
           tile
           height="600px"
+<<<<<<< Updated upstream
+=======
+      
+>>>>>>> Stashed changes
         >
 
     <h1>Question{{questionindex+1}} </h1>
         
+<<<<<<< Updated upstream
           <h3 > <div   v-html="$md.render(question[0].questiondescription)" ></div></h3>
          
+=======
+          <h3 > <div  v-html="$md.render(question.Question.questiondescription)" ></div></h3>
+     
+>>>>>>> Stashed changes
         </v-card>
       </v-col>
       <v-col order="12">
@@ -26,8 +42,28 @@
            style="background-color:black"
         >
 
+<<<<<<< Updated upstream
        <h2 style="color:white">Test Result</h2>
+=======
+       <h2 style="color:white">Test Result
+
+
      
+       </h2>
+>>>>>>> Stashed changes
+     
+<h3 style="color:orange">  Example Test Cases</h3>
+<ul>
+ <li v-for="item in validateresultexampletest.successes" :key="item.index">
+   <h3 style="color:green"> {{ item.case }}  Pass</h3>
+  </li>
+</ul>
+  <ul >
+  <li v-for="item in validateresultexampletest.failures" :key="item.index">
+   <h3 style="color:red"> {{ item.case }}  Fail<br> Reason: <br> {{item.reason}}</h3></li></ul>
+
+ <div style="color:red" v-if="validateresultexampletest.code==500">Error :{{validateresultexampletest.reason}}</div>
+
         </v-card>
       </v-col>
       <v-col order="1">
@@ -36,10 +72,18 @@
           outlined
           tile
            height="600px"
+<<<<<<< Updated upstream
         >
            <div id="description3" style="height: 550px; width: 100%; border: solid 1px rgba(0,0,0,.3);" >   </div>
 <textarea name="description3"   style="display:none;" />
  <v-btn style="margin-left:200px">Run</v-btn>
+=======
+           width="600px"
+        >
+           <div id="description3" style="height: 550px; width: 100%; border: solid 1px rgba(0,0,0,.3);"  > </div>
+<textarea name="description3"   style="display:none;" />
+ <v-btn style="margin-left:400px" @click="validateexampletest">Run</v-btn>
+>>>>>>> Stashed changes
   <v-btn >Submit</v-btn>
         </v-card>
       </v-col>
@@ -56,14 +100,37 @@
     </v-btn>
   </v-bottom-navigation>
   </v-container>
+<<<<<<< Updated upstream
+=======
+  <v-container v-if="question==null">
+<h1 style="color:red">NO Question Please Add Question To Assignment</h1>
+    <div id="description3" style="height: 550px; width: 100%; border: solid 1px rgba(0,0,0,.3);"  > </div>
+<textarea name="description3"   style="display:none;" />
+  </v-container>
+</v-main>
+>>>>>>> Stashed changes
   </v-app>
 </template>
 
 <script>
 import $ from 'jquery'
+import Navbarv1 from '../../components/Navbarv1.vue'
 export default {
+<<<<<<< Updated upstream
     data(){
 return{questions:[
+=======
+  components: { Navbarv1 },
+    data(){
+return{
+  numberquestion:0,
+  validateresultexampletest:{code:0},
+  ace:{},
+  first:0,
+  check:false,defaultquestion:{questiondescription:"No Question! Please Add Question To This Assignment"},
+
+questions:[
+>>>>>>> Stashed changes
 //mock
  [ { "questiondifficulty": "asd", "questiontopic": "asd", "questionid": 320, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16 " }, { "testframework": "", "exampletestcases": "asd", "testsolution": "asdasd", "question_id": 320, "testlanquage": "", "testcases": "asd", "testid": 322 } ], [ { "questiondifficulty": "asd", "questiontopic": "asd", "questionid": 333, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n #### Inputn #### Result 16 " }, { "testframework": "", "exampletestcases": "asd", "testsolution": "asd", "question_id": 333, "testlanquage": "", "testcases": "asd", "testid": 335 } ], [ { "questiondifficulty": "dasd", "questiontopic": "asd", "questionid": 335, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n  " }, { "testframework": "", "exampletestcases": "sad", "testsolution": "adas", "question_id": 335, "testlanquage": "", "testcases": "asd", "testid": 337 } ] 
 
@@ -79,16 +146,43 @@ async fetch() {
   // this.question= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyquestionid/'+this.$route.params.questionid)
    this.questions= await this.$axios.$get('https://api.pdm-dev.me/getquestionbyassignmentid/'+this.$route.params.assignmentid)
   
+
+
+
 this.question=this.questions[this.questionindex]
+
 },
 
 
 methods:{
+
   fetchnext(){
 this.question=this.questions[this.questionindex]
-console.log(this.questions)
+
+
+this.ace.setValue(
+this.question.Question.questioninit, -1);
+
+
+
+
   
-},back(){
+},validateexampletest(){
+
+  let data=[$('textarea[name="description3"]').val(),this.question.Test.exampletestcases]
+
+  this.$store
+        .dispatch("question/validatetestcase", data)
+        .then(resp=>(
+        
+          this.validateresultexampletest=JSON.parse(resp.data
+          
+          
+          )))
+       
+}
+
+,back(){
  
 
    this.questionindex-=1;
@@ -102,7 +196,9 @@ console.log(this.questions)
    this.fetchnext()
    
   //  this.$route.params.questionid=335
-  }
+  },
+  
+      
 }, mounted(){
           
  const editor = ace.edit('description3');
@@ -122,12 +218,17 @@ editor.getSession().on("change", function () {
                 scrollPastEnd: 1,
                 fontSize: 25,
             });
-             editor.setValue(
-"", -1);
-this.answer=editor.getValue();
+this.ace=editor;
 
-        },
+        },updated(){
+          if(this.numberquestion==0){
+this.fetchnext()
+this.numberquestion++;
 }
+        }
+    
+}
+
 </script>
 
 <style>

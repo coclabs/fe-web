@@ -2,7 +2,16 @@
 <v-app>
   <h1>Assignment.</h1>
 
+<<<<<<< Updated upstream
    <v-card>
+=======
+  <Navbarv1/>
+  <v-main style="background-color: #EDE7F6;">
+    <v-container class="pa-6 md-auto">
+  <h2>Assignment</h2>
+
+
+>>>>>>> Stashed changes
     <v-card-title>
    <v-text-field
         v-model="search"
@@ -630,8 +639,13 @@ InVisibleAt
 
 <script>
 export default {
+<<<<<<< Updated upstream
+=======
+  components: { Navbarv1 },
+>>>>>>> Stashed changes
     data(){
 return{
+    isActive:false,
   dialogadddelquestion:false,
   dialogDelete:false,
   tab:'',
@@ -963,6 +977,7 @@ close () {
 
 }
 </script>
+
 
 <style>
 

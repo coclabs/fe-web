@@ -116,11 +116,19 @@ InVisibleAt
         </v-card>
       </v-col>
      
+<<<<<<< Updated upstream
 <v-col style="height:1000px;">
     <v-card
           class="pa-10"
           outlined
           tile
+=======
+<v-col cols="12"
+        md="6" >
+    <v-card 
+          class="pa-6"
+        
+>>>>>>> Stashed changes
           
         >
         <div>
@@ -146,6 +154,10 @@ InVisibleAt
     class="elevation-1"
      hide-default-footer
     show-expand 
+<<<<<<< Updated upstream
+=======
+   
+>>>>>>> Stashed changes
   >
     <template v-slot:top>
        <v-toolbar
@@ -228,8 +240,7 @@ InVisibleAt
 
 
 import minisidenav from '../../components/minisidenav.vue'
-
-
+import Navbarv1 from '../../components/Navbarv1.vue'
 import TestCases from '../../components/TestCases.vue';
 import Testssolution from '../../components/testssolution.vue';
 import Exampletestcases from '../../components/exampletestcases.vue';
@@ -239,9 +250,17 @@ import Initsolution from '../../components/initsolution.vue';
 
 
     export default {
+<<<<<<< Updated upstream
       components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,},
         data(){
 return {
+=======
+    components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
+        data(){
+return {
+
+  isActive:false,
+>>>>>>> Stashed changes
   dialog:false,
   search:'',
    headers: [
@@ -354,7 +373,6 @@ this.assignment.avaliableat.length>0&&this.assignment.disableat.length>0){
     
         
 </script>
-
 
 
 <style>
