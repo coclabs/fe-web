@@ -1,24 +1,21 @@
 <template>
 <v-app>
-<<<<<<< Updated upstream
-  <h1>Question</h1>
-=======
 
   <Navbarv1/>
   <v-main  style="background-color: #EDE7F6;">
     <v-container class="pa-6 md-auto">
   <h2>Question</h2>
->>>>>>> Stashed changes
  
-   <v-card >
+  
      
-    <v-card-title>
+    <v-card-title >
    <v-text-field
+   background-color="white"
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
-       
+        color="black"
+        outlined
       ></v-text-field>
     </v-card-title>
   <v-data-table
@@ -29,10 +26,11 @@
     item-key="questionid"
     show-select
      :search="search"
-:elevation="hover ? 24 : 6"
-          
+          :elevation="hover ? 24 : 6"
+          style="border: 2px solid #212121; "
      hide-default-footer
     show-expand 
+   class="app-card"
   >
     <template v-slot:top>
        <v-toolbar
@@ -49,13 +47,14 @@
         <v-spacer></v-spacer>
 
         <v-dialog
+        
           v-model="dialog"
           max-width="1000px"
         >
           <template v-slot:activator="{ on, attrs }">
            
             <v-btn
-              color="primary"
+              color="#7776AC"
               dark
               class="mb-2"
               v-bind="attrs"
@@ -66,7 +65,7 @@
             </v-btn>
               
           </template>
-          <v-card >
+          <v-card    >
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
@@ -74,8 +73,11 @@
             <v-card-text>
               <v-container >
                 <v-row>
-                                    
-<v-tabs   v-model="tab2">
+                    <v-col cols="12"> 
+                      <v-card class="pa-2 font-weight-bold rounded-xl"
+      style="border: 2px solid #212121; "
+      >               
+<v-tabs   v-model="tab2" color="#576dc6">
 <v-tab >Question Description </v-tab>
      <v-tab>Preview</v-tab>
 <v-tab>Question Topic</v-tab>
@@ -90,28 +92,64 @@
 
 
  <v-tab-item > 
-    <v-textarea class="textfield"
+   <div class=" me3 textfield font-weight-light">
+    <v-textarea 
+    filled
         v-model="question.questiondescription"
-        color="white white-2"
-        background-color="grey lighten-2"
     extension-height=8
+     name="input-7-4"
         required
         rows=6
         no-resize=true
         oninput="if(Number(this.rows) == 8) this.rows = 8;"
       ></v-textarea>
+      </div>
      </v-tab-item>
      
 
 
-    <v-tab-item> <div v-html="$md.render(question.questiondescription)" style="maxheigth:200px"></div></v-tab-item>
+    <v-tab-item> 
+    <v-responsive
+    class="overflow-y-auto"
+    max-height="200"
+  >
+    <div class=" me3 pa-6 text-left">
+      <v-card-text v-html="$md.render(question.questiondescription)" style="maxheigth:200px"> </v-card-text>
+    </div>
+
+    <v-responsive
+      height="200vh"
+      class="text-center pa-2"
+    >
+      <v-responsive min-height="50vh"></v-responsive>
+      <div class="text-center body-2 mb-12">
+       
+      </div>
+
+      <v-lazy
+        v-model="isActive"
+        :options="{
+          threshold: .5
+        }"
+        min-height="200"
+        transition="fade-transition"
+      >
+        <v-card
+          class="mx-auto"
+          max-width="336"
+        >
+          
+        </v-card>
+      </v-lazy>
+    </v-responsive>
+  </v-responsive>
+    </v-tab-item>
     
     <v-tab-item>
         <v-text-field
         v-model="question.questiontopic"
-        color="white white-2"
         class="textfield"
-         background-color="grey lighten-2"
+         filled
         required
       ></v-text-field>
         </v-tab-item>
@@ -119,8 +157,7 @@
 
       <v-text-field
         v-model="question.questiondifficulty"
-        color="white white-2"
-         background-color="grey lighten-2"
+       filled
     class="textfield"
         required
       ></v-text-field>
@@ -129,34 +166,41 @@
     <v-tab-item></v-tab-item>
 
 </v-tabs>
-                </v-row>
-                <v-row>
+  </v-card>
+                </v-col>
+                <v-col cols="12">
                   
-<v-tabs   v-model="tab">
-<v-tab >TestSolution</v-tab>
+<v-card class="pa-2 font-weight-bold rounded-xl"
+      style="border: 2px solid #212121; "
+      >
+          
+              
+    
+<v-tabs color="#576dc6" v-model="tab">
+<v-tab class="font-weight-bold " >TestSolution</v-tab>
  
-<v-tab>ExampleTestCases</v-tab>
-<v-tab>TestCase</v-tab>
-<v-tab>InitSolution</v-tab>
+<v-tab class="font-weight-bold">ExampleTestCases</v-tab>
+<v-tab class="font-weight-bold">TestCase</v-tab>
+<v-tab class="font-weight-bold">InitSolution</v-tab>
 
 
-<<<<<<< Updated upstream
- <v-tab-item > <testssolution :someData="question"  v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
-    <v-tab-item> <exampletestcases :someData="question" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
-    <v-tab-item><test-cases :someData="question" v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
-    <v-tab-item><initsolution :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
-=======
 <v-tab-item > <testssolution :someData="question" v-on:ChangeTestSolution="updateTestSolution($event)"></testssolution> </v-tab-item>
     <v-tab-item> <exampletestcases :someData="question" v-on:ChangeExampleTestCase="updateExampleTestCase($event)"></exampletestcases> </v-tab-item>
     <v-tab-item><test-cases  :someData="question" v-on:ChangeTestCase="updateTestCase($event)"></test-cases></v-tab-item>
     <v-tab-item><initsolution  :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
->>>>>>> Stashed changes
 
 
-       <v-btn @click="spanVisible=false">Validate TestCase</v-btn>
+       <v-btn @click="spanVisible=false" elevation="2"
+  outlined color="#576dc6">Validate TestCase</v-btn>
 </v-tabs>
 
   
+  
+  <div class="pa-2" v-if="spanVisible">U Need To Validate Test First!!</div>
+
+  
+  </v-card>
+</v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -164,14 +208,14 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="save"
               >
@@ -202,7 +246,8 @@
 
      
     </template>
-    <template v-slot:expanded-item="{ headers, item }">
+    <template v-slot:expanded-item="{ headers, item }" 
+    >
       <td :colspan="headers.length">
        TestSolution : {{item.tests}} 
        
@@ -229,8 +274,9 @@
       NoData
     </template>
   </v-data-table>
+  <v-col></v-col>
    <v-btn
-              color="secondary"
+              color="#7776AC"
               dark
               class="mb-3"
               @click="multipledelete"
@@ -242,19 +288,19 @@
               class="my-4"
               :length="questionpage"
               @input="fetchnextpage"
+              color="#576dc6"
             ></v-pagination>
 
-            </v-card>
-        
+            
+            </v-container>
+        </v-main>
   </v-app>
 </template>
 
 <script>
+import Navbarv1 from '../../components/Navbarv1.vue'
 export default {
-<<<<<<< Updated upstream
-=======
   components: { Navbarv1 },
->>>>>>> Stashed changes
   props: {
    someData: String
 },
@@ -264,11 +310,7 @@ export default {
       }},
     data(){
 return{
-<<<<<<< Updated upstream
-  
-=======
   isActive:false,
->>>>>>> Stashed changes
   search:'',
   dialogDelete: false,
   question: {
@@ -507,5 +549,32 @@ if(this.questions[9]!=null&&this.page==this.questionpage){
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Prompt:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
+
+
+.me2{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.me3{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.app-card {
+ display: flex;
+ flex-direction: column;
+ 
+ font-size: 16px;
+ background-color: rgb(146 151 179 / 13%);
+ border-radius: 14px;
+ border: 1px solid rgba(16 18 27 / 40%);
+ padding: 20px;
+ cursor: pointer;
+ transition: 0.3s ease;
+}
+
 
 </style>

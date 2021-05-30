@@ -1,30 +1,35 @@
 <template>
-
-  <div>
-     
- <v-card  >
+<v-app>
+  
+     <Navbarv1/>
+     <v-main  style="background-color: #EDE7F6;">
+       <v-container class="pa-6 md-auto"
+       >
+          <v-card-text >
+           
+                <v-row>
+         <v-card   style="border: 2px solid #212121; ">
 
 
     
    
     <v-row no-gutters >
       <v-col
-      style="height:1000px;"
-       cols="6"
-        md="4"
+      
+       
        >
         <v-card
-          class="pa-10"
+          class="pa-6"
           outlined
           tile
-          
+          height="837"
         >
         <!-- 1.1 -->
          <template >
      
 
  <div >
- <h1>Create Assignment </h1>
+ <h2>Create Assignment </h2>
   
 
 <br>
@@ -35,38 +40,78 @@
 <v-text-field
 style="width:500px"
         v-model="assignment.assignmentname"
-        color="white white-2"
+        filled
         class="textfield"
-         background-color="grey lighten-2"
         required
       ></v-text-field>
-      
-<v-tabs   v-model="tab" color="red" >
+       <v-card class="pa-2 font-weight-bold rounded-xl"
+      style="border: 1px solid #212121; "
+      >     
+<v-tabs   v-model="tab" color="#576dc6" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
 
 
- <v-tab-item > <v-textarea class="textfield"
-      style="width:500px"
-        v-model="assignment.assignmentdescription"
-        color="white white-2"
-        background-color="grey lighten-2"
+ <v-tab-item > 
+   <div class=" me3 textfield font-weight-light">
+   <v-textarea class="textfield"
+       v-model="assignment.assignmentdescription"
+        filled
+        name="input-7-4"
     extension-height=8
         required
         rows=6
         no-resize=true
         oninput="if(Number(this.rows) == 8) this.rows = 8;"
-      ></v-textarea> </v-tab-item>
-    <v-tab-item> <div v-html="$md.render(assignment.assignmentdescription)" style="maxheigth:200px"></div></v-tab-item>
+      ></v-textarea>
+   </div>
+       </v-tab-item>
+    <v-tab-item >
+     <v-responsive
+    class="overflow-y-auto"
+    max-height="200"
+  >
+    <div class=" me3 pa-6 text-left">
+      <v-card-text v-html="$md.render(assignment.assignmentdescription)" style="width:300px"> </v-card-text>
+    </div>
+
+    <v-responsive
+      height="200vh"
+      class="text-center pa-2"
+    >
+      <v-responsive min-height="50vh"></v-responsive>
+      <div class="text-center body-2 mb-12">
+       
+      </div>
+
+      <v-lazy
+        v-model="isActive"
+        :options="{
+          threshold: .5
+        }"
+        min-height="200"
+        transition="fade-transition"
+      >
+        <v-card
+          class="mx-auto"
+          max-width="336"
+        >
+          
+        </v-card>
+      </v-lazy>
+    </v-responsive>
+  </v-responsive>
+</v-tab-item >
+    
     
 
       
 </v-tabs>
+       </v-card>
 
 
-
-
+<v-col></v-col>
 
       
 Max Score
@@ -75,6 +120,8 @@ Max Score
      
        thumb-label="always"
        style="width:500px"
+       color="#576dc6"
+
     ></v-slider>
 
 VisibleAt   
@@ -106,8 +153,8 @@ InVisibleAt
 
 
 
-<br><br><br>
-      <v-btn @click="submit">Create Assignment</v-btn>
+<br><br>
+      <v-btn color="#7776AC"  dark @click="submit">Create Assignment</v-btn>
    
  </div>
          </template>
@@ -116,31 +163,24 @@ InVisibleAt
         </v-card>
       </v-col>
      
-<<<<<<< Updated upstream
-<v-col style="height:1000px;">
-    <v-card
-          class="pa-10"
-          outlined
-          tile
-=======
 <v-col cols="12"
         md="6" >
     <v-card 
           class="pa-6"
         
->>>>>>> Stashed changes
           
         >
         <div>
-          <h1>Add Question For Your Assignment</h1>
+          <h2>Add Question For Your Assignment</h2>
 
   <v-card-title>
    <v-text-field
+       background-color="white"
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
-       
+        color="black"
+        outlined
       ></v-text-field>
     </v-card-title>
          <v-data-table
@@ -151,13 +191,10 @@ InVisibleAt
     item-key="questionid"
     show-select
      :search="search"
-    class="elevation-1"
+    style="border: 1px solid #212121; "
      hide-default-footer
     show-expand 
-<<<<<<< Updated upstream
-=======
    
->>>>>>> Stashed changes
   >
     <template v-slot:top>
        <v-toolbar
@@ -219,7 +256,7 @@ InVisibleAt
     
     
  
-</div>
+
     
 
 
@@ -233,6 +270,14 @@ InVisibleAt
      
   
 
+ 
+</v-row>
+
+    </v-card-text>
+       </v-container>
+     </v-main>
+  
+</v-app>
  
 </template>
 
@@ -250,17 +295,11 @@ import Initsolution from '../../components/initsolution.vue';
 
 
     export default {
-<<<<<<< Updated upstream
-      components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,},
-        data(){
-return {
-=======
     components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
         data(){
 return {
 
   isActive:false,
->>>>>>> Stashed changes
   dialog:false,
   search:'',
    headers: [
@@ -376,6 +415,10 @@ this.assignment.avaliableat.length>0&&this.assignment.disableat.length>0){
 
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Prompt:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
+
+
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
@@ -410,5 +453,28 @@ this.assignment.avaliableat.length>0&&this.assignment.disableat.length>0){
   border: 1px solid #ccc;
   border-top: none;
 }
+.me2{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.me3{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.app-card {
+ display: flex;
+ flex-direction: column;
+ 
+ font-size: 16px;
+ background-color: rgb(146 151 179 / 13%);
+ border-radius: 14px;
+ border: 1px solid rgba(16 18 27 / 40%);
+ padding: 20px;
+ cursor: pointer;
+ transition: 0.3s ease;
+}
+
 
 </style>

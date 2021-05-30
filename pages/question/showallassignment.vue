@@ -1,27 +1,23 @@
 <template>
 <v-app>
-  <h1>Assignment.</h1>
 
-<<<<<<< Updated upstream
-   <v-card>
-=======
   <Navbarv1/>
   <v-main style="background-color: #EDE7F6;">
     <v-container class="pa-6 md-auto">
   <h2>Assignment</h2>
 
 
->>>>>>> Stashed changes
     <v-card-title>
    <v-text-field
+       background-color="white"
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
-       
+        color="black"
+        outlined
       ></v-text-field>
     </v-card-title>
-  <v-data-table dark
+  <v-data-table 
     v-model="selected"
     :headers="headers"
     :items="assignments"
@@ -29,9 +25,10 @@
     item-key="assignmentid"
     show-select
      :search="search"
-    class="elevation-1"
+    style="border: 2px solid #212121; "
      hide-default-footer
     show-expand 
+    class="app-card"
   >
     <template v-slot:top>
        <v-toolbar
@@ -60,7 +57,7 @@
           <template v-slot:activator="{ on, attrs }">
            
             <v-btn
-              color="primary"
+              color="#7776AC"
               dark
               class="mb-2"
               v-bind="attrs"
@@ -86,7 +83,7 @@
     
  <v-row no-gutters >
       
-        <v-card
+        <v-card style="border: 1px solid #212121; "
           class="pa-10"
           outlined
           tile
@@ -98,49 +95,90 @@
 
  <div >
 
-  
+  <h2>Create Assignment </h2>
 
 <br>
 
-  
-    Assignment Name 
+   Assignment Name 
+   
     
 <v-text-field
 style="width:500px"
         v-model="assignment.assignmentname"
-        color="white white-2"
+        filled
         class="textfield"
-         background-color="grey lighten-2"
         required
       ></v-text-field>
+       <v-card class="pa-2 font-weight-bold rounded-xl"
+      style="border: 2px solid #212121; "
+      >               
       
-<v-tabs   v-model="tab" color="red" >
+<v-tabs   v-model="tab" color="#576dc6" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
 
 
- <v-tab-item > <v-textarea class="textfield"
-      style="width:500px"
+ <v-tab-item > 
+   <div class=" me3 textfield font-weight-light">
+   <v-textarea 
+      
         v-model="assignment.assignmentdescription"
-        color="white white-2"
-        background-color="grey lighten-2"
+        filled
+        name="input-7-4"
     extension-height=8
         required
         rows=6
         no-resize=true
         oninput="if(Number(this.rows) == 8) this.rows = 8;"
-      ></v-textarea> </v-tab-item>
-    <v-tab-item> <div v-html="$md.render(assignment.assignmentdescription)" style="maxheigth:200px"></div></v-tab-item>
+      ></v-textarea> 
+   </div>
+      </v-tab-item>
     
+<v-tab-item >
+     <v-responsive
+    class="overflow-y-auto"
+    max-height="200"
+  >
+    <div class=" me3 pa-6 text-left">
+      <v-card-text v-html="$md.render(assignment.assignmentdescription)" style="width:400px"> </v-card-text>
+    </div>
 
+    <v-responsive
+      height="200vh"
+      class="text-center pa-2"
+    >
+      <v-responsive min-height="50vh"></v-responsive>
+      <div class="text-center body-2 mb-12">
+       
+      </div>
+
+      <v-lazy
+        v-model="isActive"
+        :options="{
+          threshold: .5
+        }"
+        min-height="200"
+        transition="fade-transition"
+      >
+        <v-card
+          class="mx-auto"
+          max-width="336"
+        >
+          
+        </v-card>
+      </v-lazy>
+    </v-responsive>
+  </v-responsive>
+</v-tab-item >
+    
       
 </v-tabs>
 
+</v-card>
 
 
-
-
+<v-col></v-col>
       
 Max Score
 <v-slider
@@ -148,6 +186,7 @@ Max Score
       
        thumb-label="always"
        style="width:500px"
+       color="#576dc6"
     ></v-slider>
 
 VisibleAt   
@@ -189,22 +228,23 @@ InVisibleAt
    
      
 <v-col >
-    <v-card
+    <v-card style="border: 1px solid #212121; "
           class="pa-10"
           outlined
           tile
           
         >
         <div>
-          <h1>Add Question For Your Assignment</h1>
+          <h2>Add Question For Your Assignment</h2>
 
-  <v-card-title>
+   <v-card-title >
    <v-text-field
+   background-color="white"
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
-       
+        color="black"
+        outlined
       ></v-text-field>
     </v-card-title>
          <v-data-table
@@ -216,7 +256,8 @@ InVisibleAt
     item-key="questionid"
     show-select
      :search="search"
-    class="elevation-1"
+    class="app-card"
+    style="border: 2px solid #212121; "
      hide-default-footer
     show-expand 
   >
@@ -257,6 +298,7 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchquestionnextpage"
+              color="#576dc6"
             ></v-pagination>
   
         </div>
@@ -285,14 +327,14 @@ InVisibleAt
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="save"
               >
@@ -323,13 +365,13 @@ InVisibleAt
           class="pa-10"
           outlined
           tile
-          
+           style="border: 1px solid #212121; "
         >
      
          <template >
      
 
- <div style="margin-left:65px">
+ <div style="margin-left:65px ">
 
   
 
@@ -341,48 +383,84 @@ InVisibleAt
 <v-text-field
 style="width:500px"
         v-model="assignment.assignmentname"
-        color="white white-2"
+        filled
         class="textfield"
-         background-color="grey lighten-2"
         required
       ></v-text-field>
+      <v-card class="pa-2 font-weight-bold rounded-xl"
+      style="border: 2px solid #212121; width:500px;"
+      >    
       
-<v-tabs   v-model="tab" color="red" >
+<v-tabs   v-model="tab" color="#576dc6" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
 
 
- <v-tab-item > <v-textarea class="textfield"
+ <v-tab-item > <v-textarea class=" me3 textfield font-weight-light"
       style="width:500px"
         v-model="assignment.assignmentdescription"
-        color="white white-2"
-        background-color="grey lighten-2"
+        filled
     extension-height=8
         required
         rows=6
         no-resize=true
         oninput="if(Number(this.rows) == 8) this.rows = 8;"
       ></v-textarea> </v-tab-item>
-    <v-tab-item> <div v-html="$md.render(assignment.assignmentdescription)" style="maxheigth:200px"></div></v-tab-item>
     
+    <v-tab-item >
+     <v-responsive
+    class="overflow-y-auto"
+    max-height="200"
+  >
+    <div class=" me3 pa-6 text-left ">
+      <v-card-text v-html="$md.render(assignment.assignmentdescription)" style="width:400px"> </v-card-text>
+    </div>
+
+    <v-responsive
+      height="200vh"
+      class="text-center pa-2"
+    >
+      <v-responsive min-height="50vh"></v-responsive>
+      <div class="text-center body-2 mb-12">
+       
+      </div>
+
+      <v-lazy
+        v-model="isActive"
+        :options="{
+          threshold: .5
+        }"
+        min-height="200"
+        transition="fade-transition"
+      >
+        <v-card
+          class="mx-auto"
+          max-width="336"
+        >
+          
+        </v-card>
+      </v-lazy>
+    </v-responsive>
+  </v-responsive>
+</v-tab-item >
 
       
 </v-tabs>
 
+      </v-card>
 
-
-
+<v-col></v-col>
 
       
 Max Score
 <v-slider
       v-model="assignment.maxpossiblescore"
-      
+      color="#576dc6"
        thumb-label="always"
        style="width:500px"
     ></v-slider>
-
+    
 VisibleAt   
 <br>
 <input type="datetime-local" id="meeting-time"
@@ -424,14 +502,14 @@ InVisibleAt
               <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="closeEdit"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="blue darken-1"
+               color="#576dc6"
                 text
                 @click="save"
               >
@@ -561,14 +639,14 @@ InVisibleAt
               <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="#576dc6"
                 text
                 @click="closeadddel"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="blue darken-1"
+               color="#576dc6"
                 text
                 @click="saveadddel"
               >
@@ -618,8 +696,9 @@ InVisibleAt
 
   
   </v-data-table>
+  <v-col></v-col>
      <v-btn
-              color="secondary"
+              color="#7776AC"
               dark
               class="mb-3"
               @click="multipledelete"
@@ -632,17 +711,16 @@ InVisibleAt
               :length="assignmentpage"
               @input="fetchassignmentnextpage"
             ></v-pagination>
-            </v-card>
             
+            </v-container>
+         </v-main>   
   </v-app>
 </template>
 
 <script>
+import Navbarv1 from '../../components/Navbarv1.vue'
 export default {
-<<<<<<< Updated upstream
-=======
   components: { Navbarv1 },
->>>>>>> Stashed changes
     data(){
 return{
     isActive:false,
@@ -980,5 +1058,32 @@ close () {
 
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Prompt:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
+
+
+.me2{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.me3{
+  font-family: 'Prompt', sans-serif;
+  
+  font-Size: 20;
+}
+.app-card {
+ display: flex;
+ flex-direction: column;
+ 
+ font-size: 16px;
+ background-color: rgb(146 151 179 / 13%);
+ border-radius: 14px;
+ border: 1px solid rgba(16 18 27 / 40%);
+ padding: 20px;
+ cursor: pointer;
+ transition: 0.3s ease;
+}
+
 
 </style>
