@@ -38,8 +38,8 @@ export default {
   ,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  // css: [
+  // ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -91,14 +91,17 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    devMiddleware: {
-      headers: {
-        'Cache-Control': 'no-store',
-        Vary: '*'
-      }
-    }
+    // devMiddleware: {
+    //   headers: {
+    //     'Cache-Control': 'no-store',
+    //     Vary: '*'
+    //   }
+    // },
+    // extend(config) {
+    //       const hmrIndex = config.plugins.findIndex(p => p.constructor.name === 'HotModuleReplacementPlugin')
+    //       config.plugins.splice(hmrIndex, 1)
+    //   }
   },
-  telemetry: false
-,
+  telemetry: false,
 }
 
