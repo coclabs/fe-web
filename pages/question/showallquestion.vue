@@ -190,13 +190,60 @@
     <v-tab-item><initsolution  :someData="question" v-on:ChangeInitSolution="updateInitSolution($event)"></initsolution></v-tab-item>
 
 
-       <v-btn @click="spanVisible=false" elevation="2"
+       <v-btn @click="validatetestcase" elevation="2"
   outlined color="#576dc6">Validate TestCase</v-btn>
 </v-tabs>
 
-  
-  
-  <div class="pa-2" v-if="spanVisible">U Need To Validate Test First!!</div>
+  <br><br><br>
+    <v-card  class="pa-2 rounded-xl mx-auto" style="color:white;background-color:black"  outlined
+          tile 
+>
+   
+   <h1 style="padding:30px">Validate Test Result</h1>
+   
+   <div style="color:red" v-if="validateresultrealtest.code==500">{{validateresultrealtest.reason}}</div>
+
+    <div style="padding:25px">
+      <h2 >1.RealTestCases </h2>
+      Success[<br>
+   <ul >
+  <li v-for="item in validateresultrealtest.successes" :key="item.index">
+   <h3 style="color:green"> {{ item.case }} , Score: {{item.score}}</h3>
+  </li>
+</ul>
+      
+      ]
+      <br>
+      Fail[<br>
+        <ul >
+  <li v-for="item in validateresultrealtest.failures" :key="item.index">
+   <h3 style="color:red"> {{ item.case }} <br> Reason: <br> {{item.reason}}</h3></li></ul>
+      ]
+      <h2>2.ExampleTestCases </h2>
+    
+       Success[<br>
+     <ul >
+  <li v-for="item in validateresultexampletest.successes" :key="item.index">
+   <h3 style="color:green"> {{ item.case }} , Score: {{item.score}}</h3>
+  </li>
+</ul>
+          
+      ]
+      <br>
+      Fail[<br>
+      <ul >
+  <li v-for="item in validateresultexampletest.failures" :key="item.index">
+   <h3 style="color:red"> {{ item.case }} <br> Reason: <br> {{item.reason}}</h3></li></ul>
+      ]
+     <!-- <h3 style="color:green">AssertEqual(sum(4,8),12))  (Pass)</h3>
+
+      <h3 style="color:green">Test1  (Pass) </h3> -->
+</div>
+
+
+
+
+  </v-card>
 
   
   </v-card>
@@ -217,6 +264,7 @@
               <v-btn
                 color="#576dc6"
                 text
+                :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''"
                 @click="save"
               >
                 Save
@@ -310,6 +358,13 @@ export default {
       }},
     data(){
 return{
+   valid:false,
+  validateresultrealtest:{
+   errors:[],failures:[],successes:[],total:0,code:0
+  },
+  validateresultexampletest:{
+   errors:[],failures:[],successes:[],total:0,code:0
+  },
   isActive:false,
   search:'',
   dialogDelete: false,
@@ -423,17 +478,23 @@ var result = confirm("Are you sure to delete these "+this.selected.length + " qu
 
       },
    updateTestSolution (testsolution) {
+     if(testsolution!=this.test.testsolution)this.valid=false;
       this.test.testsolution=testsolution
+     if(this.test.testsolution=="") this.valid=false;
      // someValue
             }
      
      
 ,updateTestCase(testcase){
+       if(testcase!=this.test.testcases)this.valid=false;
   this.test.testcases=testcase
-
+  if(this.test.testcases=="") this.valid=false;
 }
 ,updateExampleTestCase(exampletest){
+         if(exampletest!=this.test.exampletestcases)this.valid=false;
   this.test.exampletestcases=exampletest
+   if(this.test.exampletestcases=="") this.valid=false;
+   
 
 }
     ,updateInitSolution(initSolution){
@@ -441,6 +502,25 @@ var result = confirm("Are you sure to delete these "+this.selected.length + " qu
  
 
 
+},
+validatetestcase(){
+ if(this.test.testcase!=""&&this.test.exampletestcases!="") this.valid=true; 
+  let data=[this.test.testsolution,this.test.testcases]
+   let data2=[this.test.testsolution,this.test.exampletestcases]
+  this.$store
+        .dispatch("question/validatetestcase", data)
+        .then(resp=>(
+        
+          this.validateresultrealtest=JSON.parse(resp.data
+          
+          
+          ))
+        .catch(err => console.log(err)));
+    this.$store
+        .dispatch("question/validatetestcase", data2)
+        .then(resp=>(this.validateresultexampletest=JSON.parse(resp.data))
+        .catch(err => console.log(err)));    
+       
 }
 ,close () {
         this.dialog = false
