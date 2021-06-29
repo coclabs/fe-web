@@ -16,8 +16,13 @@
 
     <h1>Question{{questionindex+1}} </h1>
         
+<<<<<<< Updated upstream
           <h3 > <div  v-html="$md.render(question.Question.questiondescription)" ></div></h3>
      
+=======
+
+          <h3 > <div  v-html="$md.render(question[0].questiondescription)" ></div></h3>
+>>>>>>> Stashed changes
         </v-card>
       </v-col>
       <v-col order="12">
@@ -97,16 +102,16 @@ return{
   ace:{},
   first:0,
   check:false,defaultquestion:{questiondescription:"No Question! Please Add Question To This Assignment"},
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 questions:[
 //mock
  [ { "questiondifficulty": "asd", "questiontopic": "asd", "questionid": 320, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16 " }, { "testframework": "", "exampletestcases": "asd", "testsolution": "asdasd", "question_id": 320, "testlanquage": "", "testcases": "asd", "testid": 322 } ], [ { "questiondifficulty": "asd", "questiontopic": "asd", "questionid": 333, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n #### Inputn #### Result 16 " }, { "testframework": "", "exampletestcases": "asd", "testsolution": "asd", "question_id": 333, "testlanquage": "", "testcases": "asd", "testid": 335 } ], [ { "questiondifficulty": "dasd", "questiontopic": "asd", "questionid": 335, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n  " }, { "testframework": "", "exampletestcases": "sad", "testsolution": "adas", "question_id": 335, "testlanquage": "", "testcases": "asd", "testid": 337 } ] 
-
-
 ],value:'recent' ,maxnum:0,questionindex:0,question:
 //mock
 [ { "questiondifficulty": "asd", "questiontopic": "asd", "questionid": 320, "questioninit": "asd", "questiondescription": " ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16 " }, { "testframework": "", "exampletestcases": "asd", "testsolution": "asdasd", "question_id": 320, "testlanquage": "", "testcases": "asd", "testid": 322 } ]
-
 }
     },
 async fetch() {
@@ -120,12 +125,11 @@ async fetch() {
 this.question=this.questions[this.questionindex]
 
 },
-
-
 methods:{
 
   fetchnext(){
 this.question=this.questions[this.questionindex]
+<<<<<<< Updated upstream
 
 
 this.ace.setValue(
@@ -139,6 +143,13 @@ this.question.Question.questioninit, -1);
 
   let data=[$('textarea[name="description3"]').val(),this.question.Test.exampletestcases]
 
+=======
+this.ace.setValue(
+this.question[0].questioninit, -1);
+  
+},validateexampletest(){
+  let data=[$('textarea[name="description3"]').val(),this.question[1].exampletestcases]
+>>>>>>> Stashed changes
   this.$store
         .dispatch("question/validatetestcase", data)
         .then(resp=>(
@@ -149,15 +160,16 @@ this.question.Question.questioninit, -1);
           )))
        
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 ,back(){
  
-
    this.questionindex-=1;
    this.fetchnext()
   
    
-
 },
   next(){
    this.questionindex+=1;
@@ -171,13 +183,10 @@ this.question.Question.questioninit, -1);
           
  const editor = ace.edit('description3');
 const textarea = $('textarea[name="description3"]');
-
 editor.getSession().on("change", function () {
     textarea.val(editor.getSession().getValue());
 });
 ;
-
-
   editor.setOptions({
                 theme: 'ace/theme/monokai',
                 mode: 'ace/mode/python',
@@ -192,6 +201,12 @@ this.ace=editor;
           if(this.numberquestion==0){
 this.fetchnext()
 this.numberquestion++;
+<<<<<<< Updated upstream
+=======
+}
+        }
+    
+>>>>>>> Stashed changes
 }
         }
     
@@ -200,5 +215,8 @@ this.numberquestion++;
 </script>
 
 <style>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 </style>

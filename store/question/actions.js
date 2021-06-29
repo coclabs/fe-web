@@ -171,7 +171,11 @@ if (test.testsolution==""){
 
               return new Promise((resolve, reject) => {
           
+<<<<<<< Updated upstream
                axios({url: 'https://api.pdm-dev.me/gogo',data:{
+=======
+               axios({url: 'http://127.0.0.1:8000/gogo',data:{
+>>>>>>> Stashed changes
                code,context
              
                }, method: 'POST'})     

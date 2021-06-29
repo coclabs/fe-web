@@ -22,7 +22,15 @@ export default {
 ,sttoken(state,token){
 state.token=token
 
-}
+},
+stuser(state,user){
+  state.user=user
+}  
 ,
+stdatetime(state,datetime){
+  state.datetime=datetime
+},finishauthenticated(state,authenticated){
+  state.user=authenticated
+}
 
 }

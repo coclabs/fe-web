@@ -284,7 +284,10 @@ InVisibleAt
 <script>
 
 
+<<<<<<< Updated upstream
 import minisidenav from '../../components/minisidenav.vue'
+=======
+>>>>>>> Stashed changes
 import Navbarv1 from '../../components/Navbarv1.vue'
 import TestCases from '../../components/TestCases.vue';
 import Testssolution from '../../components/testssolution.vue';
@@ -295,7 +298,11 @@ import Initsolution from '../../components/initsolution.vue';
 
 
     export default {
+<<<<<<< Updated upstream
     components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
+=======
+    components: { TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
+>>>>>>> Stashed changes
         data(){
 return {
 

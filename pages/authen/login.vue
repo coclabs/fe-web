@@ -1,9 +1,9 @@
 <template>
  <v-app>
-<Navbarv1/>
+
 <v-main style="background-color: #EDE7F6;">
   <v-container>
- <v-card style="border: 2px solid #212121; " class="rounded-xl mt-2">
+ <v-card style="border: 2px solid #212121; " class="rounded-xl mt-2" height="500"> 
             <v-row>
               <v-col cols="12" sm="4" align="center">
                   <v-avatar size="300" tile>
@@ -20,13 +20,44 @@
                   <v-spacer></v-spacer>
                   <v-icon color="grey lighten-1">fas fa-heart</v-icon>
                 </v-app-bar>
-                <h3 class="grey--text">Welcome</h3>
-                <p class="grey--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis consequuntur dolorum, 
-                      quibusdam eum pariatur, laboriosam quia provident placeat corrupti repellat odio at.
-                       Hic commodi .</p>
-                       
-                       
-                       <v-btn rounded color="warning">start</v-btn>
+                
+<div>
+
+
+<v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="user.username"
+       :rules="[v => !!v || 'Username is required']"
+    
+      label="Username"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="user.password"
+   :rules="[v => !!v || 'Password is required']"
+      label="Password"
+      :type="'password'"
+      required
+    ></v-text-field>
+
+    <v-select
+      v-model="user.role"
+      :items="['Teacher','Student']"
+      :rules="[v => !!v || 'Role is required']"
+      label="Role"
+      required
+    ></v-select>
+<v-btn rounded color="warning" @click="login">login</v-btn>
+  </v-form>
+    
+
+</div>
+                      
                       
               </v-col>
             </v-row>
@@ -58,12 +89,20 @@ var token
  ,
     data(){
       return {
-      
+        user:{
+    username:'',password:''}
       }
     },
 
  methods: {
-    
+    login(){
+  
+         if(this.$refs.form.validate()==true){
+         this.$store.dispatch('authentication/loginteacher', this.user)
+       .then(() => this.$router.push('/'))
+       .catch(err => alert("Invalid Username Or Password!!"))
+         }
+    }
      
   }
  }

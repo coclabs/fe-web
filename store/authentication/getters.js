@@ -1,8 +1,6 @@
 export default {
-    get (state) {
-      return state.user
-    }
-    ,  isLoggedIn(state){
+   
+      isLoggedIn(state){
    
   //  state.token=window.localStorage.getItem("token");
 
@@ -11,5 +9,15 @@ export default {
    ,authStatus(state){
    return state.status
    }
+   ,datetime(state){
+   
+ 
+  
+        return state.datetime
+      }
+
+  , getauthenticated (state) {
+    return state.user
+  }
   }
   

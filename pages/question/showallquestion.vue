@@ -5,9 +5,7 @@
   <v-main  style="background-color: #EDE7F6;">
     <v-container class="pa-6 md-auto">
   <h2>Question</h2>
- 
-  
-     
+
     <v-card-title >
    <v-text-field
    background-color="white"
@@ -347,15 +345,23 @@
 
 <script>
 import Navbarv1 from '../../components/Navbarv1.vue'
+import { mapGetters,mapActions } from 'vuex'
 export default {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   components: { Navbarv1 },
   props: {
    someData: String
 },
-  computed: {
-      formTitle () {
-        return this.editedIndex == -1 ? 'New Question' : 'Edit Question'
-      }},
+  computed: 
+mapGetters({
+   user:'authentication/get',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
+ 
+  }),
+
+      
     data(){
 return{
    valid:false,

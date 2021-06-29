@@ -15,7 +15,11 @@ import $ from 'jquery'
    someData: Object
  },
         data(){
+<<<<<<< Updated upstream
 return {answer:'',code:'',first:0,editor:{}
+=======
+return {answer:'',code:'',first:0,editor:{},someData:null
+>>>>>>> Stashed changes
 
 ,
 

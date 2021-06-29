@@ -1,5 +1,5 @@
 <template>
-<!-- navbarfor teacher -->
+<!-- navbar for student -->
 <div>
      <v-navigation-drawer  app 
     
@@ -12,7 +12,7 @@
       color="purple lighten-4"
       
     >
-     
+      
 
       <v-divider class="mx-2 my-2"></v-divider>
       
@@ -22,24 +22,24 @@
         v-model="selectedItem"
           
       >
-    
-    
-     
+        <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
         <v-list-item
           v-for="item in items"
           :key="item.title"
           link router :to="item.route"
-
-         
         >
           <v-list-item-icon >
-            <v-icon color="red lighten-5">{{ item.icon }}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
-          <v-list-item-content >
-            <v-list-item-title style="color:white;text-decoration:underline"><h4>{{ item.title }}</h4></v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title style="color:red lighten-5">{{ item.title }}</v-list-item-title>
           </v-list-item-content>
-           
         </v-list-item>
         </v-list-item-group>
           <v-btn
@@ -85,19 +85,18 @@
           v-on="on">
         Blog
       </v-btn>
-      
      </template>
       <span>Tooltip</span>
     </v-tooltip>
-    
 </v-toolbar-items>
 
-
+      
 
 
 <v-spacer></v-spacer>
 
-      <span class="font-weight-light">Session Expires:{{datetime}}</span>
+
+Session Expires:{{datetime}}
 <v-toolbar-items class="hidden-sm-and-down ">
 <v-divider vertical></v-divider>
 <v-btn text color="#C6B9FF" @click="logout" > 
@@ -108,11 +107,10 @@
 
            </v-app-bar>
             
-       
+      
    </div>
 </template>
 <script>
-
 import { mapGetters,mapActions } from 'vuex'
 export default {
   components: {  },
@@ -121,9 +119,6 @@ export default {
    user:'authentication/finishauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
  
   }),
-
-
-
 methods:{
  logout(){
    
@@ -138,10 +133,7 @@ methods:{
             drawer: true,
         items: [
           { title: 'Home', icon: 'mdi-home-city',route:'/authen/login' },
-          { title: 'createquestion', icon: 'mdi-plus-box',route:'/question/createquestion' },
-          { title: 'showallquestion', icon: 'mdi-book',route:'/question/showallquestion' },
-          { title: 'createassignment', icon: 'mdi-plus-box',route:'/question/createassignment'},
-          { title: 'showallassignment', icon: 'mdi-book',route:'/question/showallassignment'},
+        
          
         ],
         mini: true,

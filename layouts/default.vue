@@ -2,6 +2,7 @@
   
     
 <v-app>
+ 
     <Nuxt />
        <v-overlay
       :opacity="1"
@@ -68,28 +69,41 @@ html {
 }
 </style>
 <script>
-import minisidenav from '../components/minisidenav.vue';
+import { mapGetters,mapActions } from 'vuex'
 export default {
-  components: { minisidenav },
+  components: {  },
+  
+  computed: mapGetters({
+   user:'authentication/finishauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
+ 
+  }),
 data(){
 return {overlay:true}
 },
   mounted() {
     var token = this.$cookies.get("token");
+     var user = this.$cookies.get("user");
+    var datetime=this.$cookies.get("datetime")
+  
    this.overlay=false;
     this.$store.dispatch("authentication/settoken", token);
+      this.$store.dispatch("authentication/setuser",user);
+         this.$store.dispatch("authentication/setdatetime",datetime);
+
+         var objtoken={token}
+  this.$store
+        .dispatch("authentication/authenbytoken",  objtoken)
+         .then(resp=>(console.log(resp)))
+        .catch(err => console.log(err)); 
   },
-  computed: {
-    isLoggedIn: function() {
-      return this.$store.getters.isLoggedIn;
-    }
-  },
+ 
   methods: {
     logout: function() {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
     }
-  }
+  },
+   
 };
 </script>

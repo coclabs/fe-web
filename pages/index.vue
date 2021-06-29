@@ -1,26 +1,18 @@
 
 <template>
 <v-app>
-  {{user}}
-    {{isLoggedIn}} 
- <h1> Index Page</h1>
-<logoutbtn/>
-
-<v-card
-  elevation="2" style="width:500px"><h1>Hello</h1></v-card>
-</v-app>
-
-<!-- https://www.youtube.com/watch?v=Vd1YwbHrY1Q&list=PLfdtiltiRHWF1jqLcNO_2jWJXj9RuSDvY -->
-
-
+ 
+ </v-app>
 
 </template>
 
 <script>
 import { mapGetters,mapActions } from 'vuex'
+import Navbarv1 from '../components/Navbarv1.vue';
 
 
 export default {
+  components: { Navbarv1 },
 
 
 beforeCreate(){
@@ -31,35 +23,44 @@ var token
     if (!token) {
     
         this.$router.push("authen/login")
+    }
+var role =this.$cookies.get('role')
 
-
+if(role=="Teacher"){
+    this.$router.push("/indexteacher")
+}else{
+    this.$router.push("/indexstudent")
 }
+
+
+
 }
   ,
 data(){
 return {
-    form:{
-        email:'',password:''
-    }
+ 
 }
 },
   computed: mapGetters({
-   user:'authentication/get',isLoggedIn:'authentication/isLoggedIn'
+   user:'authentication/getauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
  
   }),
   methods: {
 ...mapActions({
 signIn:'authentication/signIn'
-}),
-      submit(){
-          
-this.signIn(this.form)
+})
+      
   
-      },gettoken(){
-     alert(window.sessionStorage.getItem("token"))
-      }
   }
-}
+  // this.$store
+  //       .dispatch("question/validatetestcase", data)
+  //       .then(resp=>(
+        
+  //         this.validateresultrealtest=JSON.parse(resp.data
+          
+          
+  //         ))
+  }
 </script>
 
 <style>
