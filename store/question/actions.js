@@ -15,7 +15,7 @@ var questioninit=questiontest[2]
 console.log(question.questioninit +"h")
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/createquestionwithtest',data:{
+     axios({url: 'http://127.0.0.1:8000/createquestionwithtest',data:{
        'questionid':0,
        'questiontopic':question.questiontopic,
        'questiondescription':question.questiondescription,
@@ -46,7 +46,7 @@ console.log(question.questioninit +"h")
   async fetchnextpage({commit},page){
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/showtenquestionspost/', data:{page}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/showtenquestionspost/', data:{page}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -66,7 +66,7 @@ console.log(question.questioninit +"h")
   async deleteonequestion({commit},questionid){
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/deleteonequestion/', data:{questionid}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/deleteonequestion/', data:{questionid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -94,7 +94,7 @@ console.log(question.questioninit +"h")
     
     return new Promise((resolve, reject) => {
 
-     axios({url: 'https://api.pdm-dev.me/multipledeletequestion/', data:{questionid}, method: 'POST', headers: {
+     axios({url: 'http://127.0.0.1:8000/multipledeletequestion/', data:{questionid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
@@ -134,7 +134,7 @@ if (test.testsolution==""){
 }
       return new Promise((resolve, reject) => {
   
-       axios({url: 'https://api.pdm-dev.me/updatequestion',data:{
+       axios({url: 'http://127.0.0.1:8000/updatequestion',data:{
          'questionid':question.questionid,
          'questiontopic':question.questiontopic,
          'questiondescription':question.questiondescription,
@@ -171,11 +171,7 @@ if (test.testsolution==""){
 
               return new Promise((resolve, reject) => {
           
-<<<<<<< Updated upstream
-               axios({url: 'https://api.pdm-dev.me/gogo',data:{
-=======
                axios({url: 'http://127.0.0.1:8000/gogo',data:{
->>>>>>> Stashed changes
                code,context
              
                }, method: 'POST'})     

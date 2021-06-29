@@ -284,10 +284,6 @@ InVisibleAt
 <script>
 
 
-<<<<<<< Updated upstream
-import minisidenav from '../../components/minisidenav.vue'
-=======
->>>>>>> Stashed changes
 import Navbarv1 from '../../components/Navbarv1.vue'
 import TestCases from '../../components/TestCases.vue';
 import Testssolution from '../../components/testssolution.vue';
@@ -298,11 +294,7 @@ import Initsolution from '../../components/initsolution.vue';
 
 
     export default {
-<<<<<<< Updated upstream
-    components: { minisidenav,  TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
-=======
     components: { TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
->>>>>>> Stashed changes
         data(){
 return {
 
@@ -358,8 +350,8 @@ return {
         ,
          async fetch() {
     
-      const questions = await this.$axios.$get('https://api.pdm-dev.me/showtenquestions/1')
-    const questionpage= await this.$axios.$get('https://api.pdm-dev.me/questionpage/')
+      const questions = await this.$axios.$get('http://127.0.0.1:8000/showtenquestions/1')
+    const questionpage= await this.$axios.$get('http://127.0.0.1:8000/questionpage/')
     this.questions = questions
     this.questionpage=questionpage
    

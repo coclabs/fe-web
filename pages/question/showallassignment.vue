@@ -1038,13 +1038,13 @@ close () {
 ,
   async fetch() {
  
-    const assignments = await this.$axios.$get('https://api.pdm-dev.me/showtenassignment/1')
-    const assignmentpage= await this.$axios.$get('https://api.pdm-dev.me/assignmentpage/')
+    const assignments = await this.$axios.$get('http://127.0.0.1:8000/showtenassignment/1')
+    const assignmentpage= await this.$axios.$get('http://127.0.0.1:8000/assignmentpage/')
    this.assignments=assignments
     this.assignmentpage=assignmentpage
 
-    const questions = await this.$axios.$get('https://api.pdm-dev.me/showtenquestions/1')
-    const questionpage= await this.$axios.$get('https://api.pdm-dev.me/questionpage/')
+    const questions = await this.$axios.$get('http://127.0.0.1:8000/showtenquestions/1')
+    const questionpage= await this.$axios.$get('http://127.0.0.1:8000/questionpage/')
     this.questions = questions
     this.questionpage=questionpage
    
