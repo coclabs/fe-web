@@ -41,7 +41,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.questioninit, -1);
@@ -81,7 +81,7 @@ editor.getSession().on("change", function () {
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 "def hello(avg): \n   #Write Your Code And Test Here", -1);
@@ -115,7 +115,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.questioninit, -1);

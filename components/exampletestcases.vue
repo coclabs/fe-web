@@ -1,7 +1,7 @@
 <template>
 <div>
 
-     <div id="description3" style="height: 350px; width: 100%; border: solid 1px rgba(0,0,0,.3);"    > </div>
+     <div id="description3" style="height: 350px ; width: 100%; border: solid 1px rgba(0,0,0,.3);"    > </div>
 <textarea name="description3"   style="display:none;"  />
 
 </div>
@@ -41,7 +41,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.tests[0].exampletestcases, -1);
@@ -84,7 +84,7 @@ this.editor=editor;
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 "assert_equal(actual=hello(0), expected='F', pass_score=0)", -1);
@@ -117,7 +117,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.tests[0].exampletestcases, -1);

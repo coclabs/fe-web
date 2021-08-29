@@ -41,7 +41,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 newVal.tests[0].testcases, -1);
@@ -81,7 +81,7 @@ editor.getSession().on("change", function () {
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 "assert_equal(actual=hello(100), expected='A', pass_score=5) \nassert_equal(actual=hello(80), expected='B', pass_score=5)", -1);
@@ -115,7 +115,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.tests[0].testcases, -1);

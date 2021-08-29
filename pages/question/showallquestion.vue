@@ -2,7 +2,7 @@
 <v-app>
 
   <Navbarv1/>
-  <v-main  style="background-color: #EDE7F6;">
+  <v-main  style="background-color: #efe5fd;">
     <v-container class="pa-6 md-auto">
   <h2>Question</h2>
 
@@ -75,7 +75,7 @@
                       <v-card class="pa-2 font-weight-bold rounded-xl"
       style="border: 2px solid #212121; "
       >               
-<v-tabs   v-model="tab2" color="#576dc6">
+<v-tabs   v-model="tab2" color="#7776AC">
 <v-tab >Question Description </v-tab>
      <v-tab>Preview</v-tab>
 <v-tab>Question Topic</v-tab>
@@ -174,7 +174,7 @@
           
               
     
-<v-tabs color="#576dc6" v-model="tab">
+<v-tabs color="#7776AC" v-model="tab">
 <v-tab class="font-weight-bold " >TestSolution</v-tab>
  
 <v-tab class="font-weight-bold">ExampleTestCases</v-tab>
@@ -189,7 +189,7 @@
 
 
        <v-btn @click="validatetestcase" elevation="2"
-  outlined color="#576dc6">Validate TestCase</v-btn>
+  outlined color="#7776AC">Validate TestCase</v-btn>
 </v-tabs>
 
   <br><br><br>
@@ -253,14 +253,14 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="#576dc6"
+               color="#7776AC"
                 text
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="#576dc6"
+               color="#7776AC"
                 text
                 :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''"
                 @click="save"
@@ -275,8 +275,8 @@
             <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn color="#7776AC" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="#7776AC" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -288,6 +288,7 @@
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
+        color="#7776AC"
       ></v-switch>
 
      
@@ -334,7 +335,7 @@
               class="my-4"
               :length="questionpage"
               @input="fetchnextpage"
-              color="#576dc6"
+              color="#7776AC"
             ></v-pagination>
 
             

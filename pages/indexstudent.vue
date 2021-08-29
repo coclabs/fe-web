@@ -6,11 +6,11 @@
 
 <v-main style="background-color: #EDE7F6;">
   <v-container>
- <v-card style="border: 2px solid #212121; " class="rounded-xl mt-2" height="500"> 
+ <v-card style="border: 2px solid #212121; " class="rounded-xl mt-2" height="300"> 
             <v-row>
               <v-col cols="12" sm="4" align="center">
                   <v-avatar size="300" tile>
-                    <v-img :src="require('~/assets/Untitled_Artwork.png')"  >
+                    <v-img :src="require('~/assets/Learningkidanimate.svg')"  >
      
      </v-img>
                   </v-avatar>
@@ -25,8 +25,11 @@
                 </v-app-bar>
                
                <h1>Welcome Student</h1>
-               {{user}}
-            
+               {{user.username}}
+             <h3 class="grey--text"> <br>
+                 firstname: {{user.firstname}}<br>
+                 lastname: {{user.lastname}}</h3>
+                 <br>
                 
 <div>
 

@@ -2,8 +2,8 @@
 <v-app>
 
   <Navbarv1/>
-  <v-main style="background-color: #EDE7F6;">
-    <v-container class="pa-6 md-auto">
+  <v-main style="background-color: #efe5fd;">
+    <v-container class="pa-6 xs-auto">
   <h2>Assignment</h2>
 
 
@@ -106,6 +106,7 @@
 style="width:500px"
         v-model="assignment.assignmentname"
         filled
+        color="#7776AC"
         class="textfield"
         required
       ></v-text-field>
@@ -113,7 +114,7 @@ style="width:500px"
       style="border: 2px solid #212121; "
       >               
       
-<v-tabs   v-model="tab" color="#576dc6" >
+<v-tabs   v-model="tab" color="#7776AC" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
@@ -124,6 +125,7 @@ style="width:500px"
    <v-textarea 
       
         v-model="assignment.assignmentdescription"
+        color="#7776AC"
         filled
         name="input-7-4"
     extension-height=8
@@ -186,7 +188,7 @@ Max Score
       
        thumb-label="always"
        style="width:500px"
-       color="#576dc6"
+       color="#7776AC"
     ></v-slider>
 
 VisibleAt   
@@ -278,9 +280,9 @@ InVisibleAt
        </v-toolbar>
       <v-switch
         v-model="questionsingleSelect"
-        
-        label="Single select"
+         label="Single select"
         class="pa-3"
+        color="#7776AC"
       ></v-switch>
 
     
@@ -298,7 +300,7 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchquestionnextpage"
-              color="#576dc6"
+              color="#7776AC"
             ></v-pagination>
   
         </div>
@@ -327,14 +329,14 @@ InVisibleAt
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="#576dc6"
+                color="#7776AC"
                 text
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
-                color="#576dc6"
+                color="#7776AC"
                 text
                 @click="save"
               >
@@ -350,7 +352,7 @@ InVisibleAt
           max-width="800px"
         >
         
-          <v-card >
+          <v-card class="rounded">
             <v-card-title>
             <span class="headline" style="margin-left:250px">Edit Assignment Detail</span>
             </v-card-title>
@@ -391,7 +393,7 @@ style="width:500px"
       style="border: 2px solid #212121; width:500px;"
       >    
       
-<v-tabs   v-model="tab" color="#576dc6" >
+<v-tabs   v-model="tab" color="#7776AC" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
@@ -456,7 +458,7 @@ style="width:500px"
 Max Score
 <v-slider
       v-model="assignment.maxpossiblescore"
-      color="#576dc6"
+      color="#7776AC"
        thumb-label="always"
        style="width:500px"
     ></v-slider>
@@ -487,10 +489,6 @@ InVisibleAt
        v-model="assignment.invisibleat" 
       >
 
-
-
-
-
    
  </div>
          </template>
@@ -502,14 +500,14 @@ InVisibleAt
               <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="#576dc6"
+                color="#7776AC"
                 text
                 @click="closeEdit"
               >
                 Cancel
               </v-btn>
               <v-btn
-               color="#576dc6"
+               color="#7776AC"
                 text
                 @click="save"
               >
@@ -525,8 +523,8 @@ InVisibleAt
             <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn color="#7776AC" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="#7776AC" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -537,6 +535,7 @@ InVisibleAt
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
+        color="#7776AC"
       ></v-switch>
 
      
@@ -604,6 +603,7 @@ InVisibleAt
         v-model="questionsingleSelect"
         label="Single select"
         class="pa-3"
+        color="#7776AC"
       ></v-switch>
 
     
@@ -621,6 +621,7 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchquestionnextpage"
+              color="#7776AC"
             ></v-pagination>
   
 
@@ -639,14 +640,14 @@ InVisibleAt
               <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="#576dc6"
+               color="#7776AC"
                 text
                 @click="closeadddel"
               >
                 Cancel
               </v-btn>
               <v-btn
-               color="#576dc6"
+               color="#7776AC"
                 text
                 @click="saveadddel"
               >
@@ -710,6 +711,7 @@ InVisibleAt
               class="my-4"
               :length="assignmentpage"
               @input="fetchassignmentnextpage"
+              color="#7776AC"
             ></v-pagination>
             
             </v-container>

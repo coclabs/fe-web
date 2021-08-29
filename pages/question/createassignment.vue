@@ -2,44 +2,141 @@
 <v-app>
   
      <Navbarv1/>
-     <v-main  style="background-color: #EDE7F6;">
+      <v-navigation-drawer
+      app
+      clipped
+      right
+      width="300"
+    >
+     <v-col
+
+              class="mt-3"
+              cols="12"
+            >
+              <strong>Points</strong>
+            </v-col>
+       <v-col
+        class="d-flex"
+        cols="12"
+        
+      >
+        
+        <v-text-field
+
+       v-model="assignment.maxpossiblescore"
+        color="#7776AC"
+       outlined
+        class="textfield"
+        required
+      ></v-text-field>
+      
+      </v-col>
+       <v-col
+            >
+              <strong>VisibleAt  </strong>
+            </v-col>
+     <v-col
+       
+        cols="12"
+        
+      >
+       <v-text-field
+       type="datetime-local" id="meeting-time"
+       v-model="assignment.visibleat" 
+        color="#7776AC"
+       outlined
+        class="textfield"
+        required
+      >
+      </v-text-field>
+
+     </v-col>
+     <v-col 
+            >
+              <strong>AvaliableAt </strong>
+            </v-col>
+     <v-col
+       cols="12"
+      >
+       <v-text-field
+       type="datetime-local" id="meeting-time"
+      v-model="assignment.avaliableat" 
+        color="#7776AC"
+       outlined
+        class="textfield"
+        required
+      >
+      </v-text-field>
+
+     </v-col>
+      <v-col 
+            >
+              <strong>Disableat</strong>
+            </v-col>
+     <v-col
+       cols="12"
+      >
+       <v-text-field
+       type="datetime-local" id="meeting-time"
+      v-model="assignment.disableat" 
+        color="#7776AC"
+       outlined
+        class="textfield"
+        required
+      >
+      </v-text-field>
+
+     </v-col>
+      <v-col 
+            >
+              <strong>Invisibleat </strong>
+            </v-col>
+     <v-col
+       cols="12"
+      >
+       <v-text-field
+       type="datetime-local" id="meeting-time"
+        v-model="assignment.invisibleat" 
+        color="#7776AC"
+       outlined
+        class="textfield"
+        required
+      >
+      </v-text-field>
+
+     </v-col>
+
+    </v-navigation-drawer>
+     <v-main  style="background-color: #efe5fd;">
        <v-container class="pa-6 md-auto"
        >
-          <v-card-text >
+    <h2 class="meen pa-2 "> Create Assignment</h2>
+          <v-card-text  >
            
                 <v-row>
-         <v-card   style="border: 2px solid #212121; ">
-
-
-    
-   
-    <v-row no-gutters >
+    <v-row  >
       <v-col
-      
-       
        >
         <v-card
-          class="pa-6"
+          class="me1 pa-6  rounded-xl "
           outlined
           tile
-          height="837"
+           style="border: 2px solid #212121;   "
+
         >
         <!-- 1.1 -->
+        
          <template >
      
 
  <div >
- <h2>Create Assignment </h2>
-  
-
-<br>
-
-      <h3>Add Assignment</h3>
+       <h2>Add Assignment</h2>
     Assignment Name 
     
 <v-text-field
-style="width:500px"
+
         v-model="assignment.assignmentname"
+        color="#7776AC"
         filled
         class="textfield"
         required
@@ -47,7 +144,7 @@ style="width:500px"
        <v-card class="pa-2 font-weight-bold rounded-xl"
       style="border: 1px solid #212121; "
       >     
-<v-tabs   v-model="tab" color="#576dc6" >
+<v-tabs   v-model="tab" color="#7776AC" >
 <v-tab >Assignment Descirption</v-tab>
  
 <v-tab>Preview</v-tab>
@@ -57,6 +154,7 @@ style="width:500px"
    <div class=" me3 textfield font-weight-light">
    <v-textarea class="textfield"
        v-model="assignment.assignmentdescription"
+       color="#7776AC"
         filled
         name="input-7-4"
     extension-height=8
@@ -112,50 +210,6 @@ style="width:500px"
 
 
 <v-col></v-col>
-
-      
-Max Score
-<v-slider
-      v-model="assignment.maxpossiblescore"
-     
-       thumb-label="always"
-       style="width:500px"
-       color="#576dc6"
-
-    ></v-slider>
-
-VisibleAt   
-<br>
-<input type="datetime-local" id="meeting-time"
-       v-model="assignment.visibleat" 
-      >
-<br>
-AvaliableAt 
-<br>
-<input type="datetime-local" id="meeting-time"
-       v-model="assignment.avaliableat" 
-      >
-<br>
-
-DisibleAt  
-<br>
-<input type="datetime-local" id="meeting-time"
-       v-model="assignment.disableat" 
-      >
-
-<br>
-InVisibleAt
-<br>
-<input type="datetime-local" id="meeting-time"
-       v-model="assignment.invisibleat" 
-      >
-
-
-
-
-<br><br>
-      <v-btn color="#7776AC"  dark @click="submit">Create Assignment</v-btn>
-   
  </div>
          </template>
 
@@ -164,11 +218,12 @@ InVisibleAt
       </v-col>
      
 <v-col cols="12"
-        md="6" >
+        >
     <v-card 
-          class="pa-6"
-        
-          
+         class="me1 pa-6  rounded-xl "
+          outlined
+          tile
+           style="border: 2px solid #212121;   "
         >
         <div>
           <h2>Add Question For Your Assignment</h2>
@@ -183,6 +238,7 @@ InVisibleAt
         outlined
       ></v-text-field>
     </v-card-title>
+    
          <v-data-table
     v-model="selected"
     :headers="headers"
@@ -219,6 +275,7 @@ InVisibleAt
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
+        color="#7776AC"
       ></v-switch>
 
     
@@ -230,6 +287,7 @@ InVisibleAt
 
   
   </v-data-table>
+  
 
   
 <v-pagination
@@ -237,40 +295,18 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchnextpage"
+              color="#7776AC"
             ></v-pagination>
-  
+            <v-row class="d-flex justify-end ma-2">
+            <v-btn color="#7776AC"  dark @click="submit">Create Assignment</v-btn>
+            </v-row>
         </div>
     </v-card>
 </v-col>
 
 
     </v-row>
-
    
-
-
-
- 
-  
-    </v-card>
-    
-    
- 
-
-    
-
-
-
-
-    
-   
-    
-  
-  
-     
-  
-
- 
 </v-row>
 
     </v-card-text>
@@ -297,6 +333,7 @@ import Initsolution from '../../components/initsolution.vue';
     components: { TestCases,  Testssolution, Exampletestcases, Initsolution,Navbarv1,},
         data(){
 return {
+    isIntersecting: false,
 
   isActive:false,
   dialog:false,
@@ -389,7 +426,12 @@ this.assignment.avaliableat.length>0&&this.assignment.disableat.length>0){
         .catch(err => console.log(err));
 }
      
-    }
+    },
+    onIntersect (entries, observer) {
+        // More information about these options
+        // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+        this.isIntersecting = entries[0].isIntersecting
+      },
     
       
       

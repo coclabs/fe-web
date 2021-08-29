@@ -4,7 +4,7 @@
    <Navbarv1/>
             
                
-           <v-main  style="background-color: #EDE7F6;" >
+           <v-main  style="background-color: #efe5fd;" >
            
              
                <v-container class="pa-6 md-auto " style="background-color: #EDE7F6;"
@@ -21,14 +21,13 @@
           
         >
         <!-- 1.1 -->
-       
-         
  <h2 class="pa-2 ">Create Question With Test</h2>
   
       <h3 class="pa-2">Add Question</h3>
    <div class="pa-2 font-weight-bold"> Question Description (MarkDown Allowed)</div>
 
-      <v-textarea class="me2 textfield pa-2 purple--text "
+      <v-textarea class="me2 textfield pa-2  "
+      color="#7776AC"
         v-model="question.questiondescription"
         filled
           name="input-7-4"
@@ -41,6 +40,7 @@
 <div class="pa-2 font-weight-bold"> Question Topic</div>
       <v-text-field v-model="question.questiontopic"
       class="pa-2 "
+       color="#7776AC"
             filled
         required
       ></v-text-field>
@@ -49,10 +49,13 @@
        v-model="question.questiondifficulty"
    filled
     class="textfield"
+     color="#7776AC"
         required
       ></v-text-field>
 <div class="pa-2 font-weight-bold"> Question Lanquage</div>
       <v-combobox
+      color="#7776AC"
+      item-color="#7776AC"
     v-model="chips"
     :items="items"
     chips
@@ -88,7 +91,7 @@
         
         <v-card 
           class="app-card  pa-2 rounded-xl"
-          height="800"
+          height="790"
        style="border: 2px solid #212121; "
           elevation="1"
         >
@@ -146,7 +149,7 @@
           
               
     
-<v-tabs color="#576dc6" v-model="tab">
+<v-tabs color="#7776AC" v-model="tab">
 <v-tab class="font-weight-bold " >TestSolution</v-tab>
  
 <v-tab class="font-weight-bold">ExampleTestCases</v-tab>
@@ -161,7 +164,7 @@
 
 
        <v-btn @click="validatetestcase" elevation="2"
-  outlined color="#576dc6" >Validate TestCase</v-btn>
+  outlined color="#7776AC">Validate TestCase</v-btn>
 </v-tabs>
 
   
@@ -170,7 +173,7 @@
 
   
   </v-card>
-  <div class="pa-2"><v-btn color="#7776AC" dark :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''" @click="submit">Create Question With Test</v-btn> <div v-if="spanVisible">U Need To  Test First!!</div>
+  <div class="pa-2"><v-btn color="#7776AC" dark :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''" @click="submit">Create Question With Test</v-btn> <div v-if="spanVisible"></div>
 
   </div> 
 

@@ -9,7 +9,8 @@
       clipped
       fixed
       style="border-bottom: 1px solid rgba(0,0,0,.12)!important"
-      color="purple lighten-4"
+      color="white"
+      class="hidden-sm-and-down "
       
     >
      
@@ -17,10 +18,11 @@
       <v-divider class="mx-2 my-2"></v-divider>
       
 
-      <v-list   >
+      <v-list  shaped nav
+        dense>
         <v-list-item-group
         v-model="selectedItem"
-          
+          color="deep-purple accent-1"
       >
     
     
@@ -33,11 +35,11 @@
          
         >
           <v-list-item-icon >
-            <v-icon color="red lighten-5">{{ item.icon }}</v-icon>
+            <v-icon >{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content >
-            <v-list-item-title style="color:white;text-decoration:underline"><h4>{{ item.title }}</h4></v-list-item-title>
+            <v-list-item-title >{{ item.title }}</v-list-item-title>
           </v-list-item-content>
            
         </v-list-item>
@@ -53,17 +55,13 @@
     </v-navigation-drawer>
         <v-app-bar 
     clipped-left
+     clipped-right
    app
-   
-      
+   flat
       fixed 
-      color="white"
+      color="deep-purple accent-1"
       >
-     
-           
-           
-              
-<v-toolbar-title class="text-uppercase grey--text"  >
+<v-toolbar-title class="text-uppercase black--text"  >
    
     <span class="font-weight-light">Call Of</span>
     <span>Code</span></v-toolbar-title>
@@ -73,28 +71,20 @@
       inset
     ></v-divider>
     <v-toolbar-items>
-     <v-btn  text 
-     >
-        News
-      </v-btn> 
-
-      <v-divider vertical inset></v-divider>
+     
 <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
       <v-btn text   v-bind="attrs"
-          v-on="on">
-        Blog
+          v-on="on"
+          href="/course/classroomteacher">
+        Course
       </v-btn>
       
      </template>
-      <span>Tooltip</span>
+      <span>course</span>
     </v-tooltip>
     
 </v-toolbar-items>
-
-
-
-
 <v-spacer></v-spacer>
 
       <span class="font-weight-light">Session Expires:{{datetime}}</span>
@@ -137,11 +127,12 @@ methods:{
         return{
             drawer: true,
         items: [
-          { title: 'Home', icon: 'mdi-home-city',route:'/authen/login' },
-          { title: 'createquestion', icon: 'mdi-plus-box',route:'/question/createquestion' },
-          { title: 'showallquestion', icon: 'mdi-book',route:'/question/showallquestion' },
-          { title: 'createassignment', icon: 'mdi-plus-box',route:'/question/createassignment'},
-          { title: 'showallassignment', icon: 'mdi-book',route:'/question/showallassignment'},
+          { title: 'Course', icon: 'mdi-book-outline',route:'/course/coursepageteacher' },
+          { title: 'createquestion', icon: 'mdi-plus-box-outline',route:'/question/createquestion' },
+          { title: 'showallquestion', icon: 'mdi-file-question-outline',route:'/question/showallquestion' },
+          { title: 'createassignment', icon: 'mdi-content-paste',route:'/question/createassignment'},
+          { title: 'showallassignment', icon: 'mdi-book-outline',route:'/question/showallassignment'},
+          { title: 'invite students', icon: 'mdi-plus-outline',route:'/course/teacherselectstudent'},
          
         ],
         mini: true,

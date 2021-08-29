@@ -41,7 +41,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.tests[0].testsolution, -1);
@@ -81,7 +81,7 @@ editor.getSession().on("change", function () {
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 "def hello(avg): \n if avg>=91 and avg<=100 :return 'A'  \n elif avg>=80 and avg<=90 :return 'B' \n else: return 'F'", -1);
@@ -115,7 +115,7 @@ editor.setOptions({
                 printMargin: false,
                 vScrollBarAlwaysVisible: true,
                 scrollPastEnd: 1,
-                fontSize: 25,
+                fontSize: 20,
             });
              editor.setValue(
 this.someData.tests[0].testsolution, -1);
