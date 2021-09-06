@@ -83,6 +83,17 @@
      </template>
       <span>course</span>
     </v-tooltip>
+     <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+<v-btn  text   v-bind="attrs"
+          v-on="on"
+          href="/indexteacher"
+     >
+        Dashboard
+      </v-btn> 
+      </template>
+      <span>Dashboard</span>
+    </v-tooltip>
     
 </v-toolbar-items>
 <v-spacer></v-spacer>
@@ -127,7 +138,7 @@ methods:{
         return{
             drawer: true,
         items: [
-          { title: 'Course', icon: 'mdi-book-outline',route:'/course/coursepageteacher' },
+          { title: 'Courseroom', icon: 'mdi-book-outline',route:'/course/coursepageteacher' },
           { title: 'createquestion', icon: 'mdi-plus-box-outline',route:'/question/createquestion' },
           { title: 'showallquestion', icon: 'mdi-file-question-outline',route:'/question/showallquestion' },
           { title: 'createassignment', icon: 'mdi-content-paste',route:'/question/createassignment'},

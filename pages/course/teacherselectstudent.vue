@@ -22,7 +22,7 @@
      <template v-slot:activator="{ on, attrs }"
      class="mx-16 px-16 text-right  ">
         <v-btn
-          color="purple"
+          color="deep-purple accent-1"
           dark
           v-bind="attrs"
           v-on="on"
@@ -36,9 +36,11 @@
       
         <v-card class="rounded-lg"
   >
+  
   <v-card-title class="text-h6 ">
          Invite students
         </v-card-title>
+       
        <v-row
         align="center"
         justify="start"
@@ -145,7 +147,7 @@
       <v-btn
         :disabled="!selected.length"
         :loading="loading"
-        color="#7776AC"
+        color="deep-purple accent-1"
         text
          @click="next"
         

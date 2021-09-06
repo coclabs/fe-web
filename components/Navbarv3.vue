@@ -71,11 +71,6 @@
       inset
     ></v-divider>
     <v-toolbar-items>
-     <v-btn  text 
-     >
-        News
-      </v-btn> 
-
       
     
 </v-toolbar-items>
@@ -121,8 +116,8 @@ methods:{
         return{
             drawer: true,
         items: [
-          { title: 'Home', icon: 'mdi-home-city',route:'/indexteacher' },
-          { title: 'Course', icon: 'mdi-book',route:'/course/classroomteacher' },
+          { title: 'Dashboard', icon: 'mdi-home-city',route:'/indexteacher' },
+         
          
          
         ],

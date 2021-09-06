@@ -52,7 +52,7 @@
           <template v-slot:activator="{ on, attrs }">
            
             <v-btn
-              color="#7776AC"
+              color="deep-purple accent-1"
               dark
               class="mb-2"
               v-bind="attrs"
@@ -93,6 +93,7 @@
    <div class=" me3 textfield font-weight-light">
     <v-textarea 
     filled
+    color="#7776AC"
         v-model="question.questiondescription"
     extension-height=8
      name="input-7-4"
@@ -253,14 +254,14 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-               color="#7776AC"
+               color="amber darken-1"
                 text
                 @click="close"
               >
                 Cancel
               </v-btn>
               <v-btn
-               color="#7776AC"
+               color="deep-purple accent-1" 
                 text
                 :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''"
                 @click="save"
@@ -275,8 +276,8 @@
             <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="#7776AC" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="#7776AC" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn color="amber darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="deep-purple accent-1" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -288,7 +289,7 @@
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
-        color="#7776AC"
+        color="deep-purple accent-1"
       ></v-switch>
 
      
@@ -318,15 +319,21 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      NoData
+    <v-avatar size="200" tile>
+                    <v-img :src="require('~/assets/nodata.svg')"  >
+     
+     </v-img>
+                  </v-avatar>
     </template>
   </v-data-table>
   <v-col></v-col>
    <v-btn
-              color="#7776AC"
+              color="amber darken-1"
               dark
               class="mb-3"
               @click="multipledelete"
+            
+              
             >
               Multiple Delete
             </v-btn>
@@ -335,7 +342,7 @@
               class="my-4"
               :length="questionpage"
               @input="fetchnextpage"
-              color="#7776AC"
+              color="deep-purple accent-1" 
             ></v-pagination>
 
             

@@ -1,78 +1,9 @@
 <template>
 <v-app>
-<Navbarv3/>
+<Navbarv4/>
 <v-main  style="background-color: #efe5fd;">
       <v-container>
         <v-row class="d-flex justify-end ma-2">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      max-width="500"
-    >
-      <template v-slot:activator="{ on, attrs }">
-       <v-btn
-     
-          color="amber darken-1"
-          dark
-          v-bind="attrs"
-          v-on="on"
-           class="rounded-xl"
-            
-        >
-           <v-icon  v-if="fab">
-            mdi-close
-          </v-icon>
-          <v-icon left v-else>
-            mdi-account-multiple-plus
-          </v-icon>
-          create course
-        </v-btn>
-      </template>
-      <v-card class="rounded-lg">
-        <v-card-title class="text-h5 ">
-         Create Course
-        </v-card-title>
-
-        <v-col
-          cols="12"
-        >
-         <v-text-field
-           color="#7776AC"
-             label="Course Code"
-            filled
-          ></v-text-field>
-          <v-text-field
-           color="#7776AC"
-             label="Course Name"
-            filled
-          ></v-text-field>
-          <v-text-field
-           color="#7776AC"
-             label="Course Description"
-            filled
-          ></v-text-field>
-        </v-col>
-
-        <v-card-text></v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="amber darken-1"
-            text
-            @click="dialog = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="deep-purple accent-1"
-            text
-            @click="dialog = false"
-          >
-            Create
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-row>
         <v-col  md="4"
         offset-md="8">
@@ -100,21 +31,19 @@
        
          
           <v-card
-    class="mx-4 rounded-lg"
+    class="mx-auto rounded-lg"
     max-width="400"
     :elevation="hover ? 5 : 2"
               :class="{ 'on-hover': hover } "
-               
+              
   >
-  
     <v-img
     
-    class="white--text deep-purple lighten-3 align-end "
+    class="white--text deep-purple lighten-3 align-end"
       height="200px"
-       :src="item.src"  
-       
+       :src="item.src"   
     >
-    <v-col class="text-right mb-16 pb-8 pr-0">
+      <v-col class="text-right mb-16 pb-8 pr-0">
     <v-menu
             bottom
             offset-x
@@ -139,13 +68,13 @@
             </v-list>
     </v-menu>
      </v-col>
-    <nuxt-link to="/course/coursepageteacher" class="text-decoration-none white--text"  >
+      <nuxt-link to="" class="text-decoration-none white--text"  >
      <v-card-title v-text="item.coursename"></v-card-title>
     </nuxt-link>
     </v-img>
-  
+ 
      <v-card-subtitle class="pb-0">
-       
+    
     </v-card-subtitle>
 
     <v-card-text class="text--primary" >
@@ -168,6 +97,7 @@
         </v-row>
       </v-container>
     </v-main>
+    
 
 
 </v-app>
@@ -175,10 +105,9 @@
 
 
 <script>
-import Navbarv3 from '../../components/Navbarv3.vue'
+import Navbarv4 from '../../components/Navbarv4.vue'
 export default {
   data: () => ({ drawer: null ,
-   dialog: false,
    
   items: [
         {
@@ -208,7 +137,7 @@ export default {
         
          
       ],
-      create: [
+     create: [
         { title: 'Delete' },
         
       ],
@@ -216,7 +145,7 @@ export default {
   search: '',
   
   }),
-    components: { Navbarv3 },
+    components: { Navbarv4 },
     computed: {
       keywords () {
         if (!this.search) return []

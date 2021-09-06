@@ -8,18 +8,19 @@
   
       <v-row wrap class=" my-2 mx-2">
        
-         <v-col  md="8" sm="6"  lg="8" class="px-8 ">
+         <v-col  md="8" sm="6"  lg="8" class="px-16 ">
           <v-card
           max-height="250"
+         
            color="amber lighten-1"
             class=" pa-2 rounded-xl hidden-sm-and-down"
           >
            <v-list-item three-line>
       <v-list-item-content  class="ms-8 hidden-sm-and-down ">
-         <v-list-item-title class="text-h4 mb-1">
+         <v-list-item-title class=" text-h4 text-center">
           Welcome Teacher 
         </v-list-item-title>
-        <v-list-item-subtitle class="text-h6">
+        <v-list-item-subtitle class="text-h6 text-center">
                  firstname: {{user.firstname}}
                  lastname: {{user.lastname}}
                  </v-list-item-subtitle>
@@ -38,7 +39,7 @@
           </v-card>
          </v-col>
 
-         <v-col cols="12" md="4">
+         <v-col cols="12" md="4"  >
       
        
       <v-card
@@ -76,47 +77,85 @@
     </v-card-actions>
   </v-card>
       </v-col>
-        <v-col cols="12"
-      class="px-8 text-left  "
-    >
-    <v-btn icon>
-       <v-icon large color="deep-purple accent-1">
+        <v-col md="4" class="px-8">
+     <v-icon large color="#B388FF">
               mdi-book
             </v-icon>
-    </v-btn>
-              <strong>Course</strong>
-            </v-col>
+         <strong>Course</strong>
+      </v-col>
+      <v-col
+      class="text-right px-8"
+        md="4"
+        offset-md="4"
+       
+      >
+        <div  >
+          <v-btn text   href="/course/classroomteacher">
+          <v-icon
+          dark
+          left
+         
+        >
+          mdi-arrow-right
+        </v-icon>view all</v-btn></div>
+      </v-col>
+           
       <v-slide-group
       v-model="model"
       class="pa-2"
-      active-class="amber lighten-1"
+     
       show-arrows
     >
       <v-slide-item
        v-for="card in items"
           :key="card.title"
-        v-slot="{ active, toggle }"
+        
         
       >
         
         
         <v-card
-    class="ma-6 rounded-xl"
-     min-width="390" 
-     @click="toggle"
-      :color="active ? undefined : 'white'"
+    class="ma-6 rounded-lg"
+     min-width="400" 
   >
     <v-img
     
-    class="white--text deep-purple lighten-2 align-end"
+    class="white--text deep-purple lighten-3 align-end"
       height="200px"
        :src="card.src"  
     >
-      <v-card-title v-text="card.coursename"></v-card-title>
+    <v-col class="text-right mb-16 pb-8 pr-0">
+    <v-menu
+            bottom
+            offset-x
+          >
+          <template v-slot:activator="{ on, attrs }" >
+   <v-btn 
+                dark
+                icon
+                v-bind="attrs"
+                v-on="on"
+              >
+              <v-icon >mdi-dots-vertical</v-icon>
+            </v-btn>
+            </template>
+             <v-list>
+              <v-list-item
+                v-for="(item, i) in create"
+                :key="i"
+              >
+                <v-list-item-title><v-icon >mdi-delete</v-icon>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+    </v-menu>
+     </v-col>
+      <nuxt-link to="/course/coursepageteacher" class="text-decoration-none white--text"  >
+     <v-card-title v-text="card.coursename"></v-card-title>
+    </nuxt-link>
     </v-img>
 
     <v-card-subtitle class="pb-0">
-      Course Year
+      
     </v-card-subtitle>
 
      <v-card-text class="text--primary" >
@@ -135,61 +174,7 @@
         
       </v-slide-item>
     </v-slide-group>
-        
-            <v-col cols="12"
-      class="px-8 text-left  "
-    >
-    <v-btn icon>
-       <v-icon large color="deep-purple accent-1">
-              mdi-book
-            </v-icon>
-    </v-btn>
-              <strong>Course</strong>
-            </v-col>
-         
-        
-          <v-col
-          v-for="card in items"
-          :key="card.title"
-          :cols="12"
-          :md="4"
-          :lg="4"
-          class="px-8"
-        >
-        
-          <v-card
-    class="mx-auto rounded-xl"
-    max-width="400"
-  >
-    <v-img
-    
-    class="white--text deep-purple lighten-2 align-end"
-      height="200px"
-       :src="card.src"  
-    >
-      <v-card-title v-text="card.coursename"></v-card-title>
-    </v-img>
 
-    <v-card-subtitle class="pb-0">
-      Course Year
-    </v-card-subtitle>
-
-     <v-card-text class="text--primary" >
-      <span
-      class="d-inline-block text-truncate"
-      style="max-width: 150px;"
-      v-text="card.coursedescription"
-    >
-      
-    </span>
-
-      <div></div>
-    </v-card-text>
-
-  </v-card>
-  
-        </v-col>
-           
         
       </v-row>
 
@@ -261,9 +246,14 @@ data:() => ({
         },
         
       ],
+      create: [
+        { title: 'Delete' },
+        
+      ],
        model: null,
- 
+      active: false,
 }),
+
 
   computed: mapGetters({
    user:'authentication/getauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
@@ -273,6 +263,7 @@ data:() => ({
 ...mapActions({
 signIn:'authentication/signIn'
 })
+
       
   
   }
@@ -290,4 +281,10 @@ signIn:'authentication/signIn'
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital@0;1&display=swap');
+.me2{
+ font-family: 'Noto Sans', sans-serif;
+  
+  
+}
 </style>

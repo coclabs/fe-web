@@ -57,7 +57,7 @@
           <template v-slot:activator="{ on, attrs }">
            
             <v-btn
-              color="#7776AC"
+              color="deep-purple accent-1"
               dark
               class="mb-2"
               v-bind="attrs"
@@ -83,11 +83,9 @@
     
  <v-row no-gutters >
       
-        <v-card style="border: 1px solid #212121; "
+        <v-card 
           class="pa-10"
-          outlined
-          tile
-          
+          flat
         >
      
          <template >
@@ -230,10 +228,9 @@ InVisibleAt
    
      
 <v-col >
-    <v-card style="border: 1px solid #212121; "
+    <v-card 
           class="pa-10"
-          outlined
-          tile
+         flat
           
         >
         <div>
@@ -300,7 +297,7 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchquestionnextpage"
-              color="#7776AC"
+              color="deep-purple accent-1" 
             ></v-pagination>
   
         </div>
@@ -535,7 +532,8 @@ InVisibleAt
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
-        color="#7776AC"
+        color="deep-purple accent-1" 
+        
       ></v-switch>
 
      
@@ -576,7 +574,6 @@ InVisibleAt
     :headers="headers2"
     :items="questions"
     :single-select="questionsingleSelect"
-
     item-key="questionid"
     show-select
      :search="search"
@@ -596,22 +593,14 @@ InVisibleAt
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-      
-
        </v-toolbar>
       <v-switch
         v-model="questionsingleSelect"
         label="Single select"
         class="pa-3"
-        color="#7776AC"
+        color="deep-purple accent-1" 
       ></v-switch>
-
-    
-
-     
     </template>
-   
-
 
   
   </v-data-table>
@@ -621,7 +610,7 @@ InVisibleAt
               class="my-4"
               :length="questionpage"
               @input="fetchquestionnextpage"
-              color="#7776AC"
+              color="deep-purple accent-1" 
             ></v-pagination>
   
 
@@ -640,14 +629,14 @@ InVisibleAt
               <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-               color="#7776AC"
+               color="amber darken-1"
                 text
                 @click="closeadddel"
               >
                 Cancel
               </v-btn>
               <v-btn
-               color="#7776AC"
+               color="deep-purple accent-1" 
                 text
                 @click="saveadddel"
               >
@@ -672,6 +661,7 @@ InVisibleAt
         mdi-pencil
       </v-icon>
       <v-icon
+      class="mr-2"
         small
         @click="deleteItem(item)"
       >
@@ -684,9 +674,27 @@ InVisibleAt
       >
         mdi-playlist-plus
       </v-icon>
+      <v-btn
+       color="amber darken-1"
+        small
+        dark
+        class="ms-8"
+      @click="models.base = true"
+      > assign
+       
+        <v-icon :color="models.base ? 'green' : 'red'" >
+          mdi-checkbox-marked-circle
+        </v-icon> 
+      </v-btn>
     </template>
+     
     <template v-slot:no-data>
-      NoData
+       <v-avatar size="200" tile>
+                    <v-img :src="require('~/assets/nodata.svg')"  >
+     
+     </v-img>
+                  </v-avatar>
+      
     </template>
     <!-- <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
@@ -699,7 +707,7 @@ InVisibleAt
   </v-data-table>
   <v-col></v-col>
      <v-btn
-              color="#7776AC"
+              color="amber darken-1"
               dark
               class="mb-3"
               @click="multipledelete"
@@ -711,7 +719,7 @@ InVisibleAt
               class="my-4"
               :length="assignmentpage"
               @input="fetchassignmentnextpage"
-              color="#7776AC"
+              color="deep-purple accent-1" 
             ></v-pagination>
             
             </v-container>
@@ -725,6 +733,7 @@ export default {
   components: { Navbarv1 },
     data(){
 return{
+ 
     isActive:false,
   dialogadddelquestion:false,
   dialogDelete:false,
@@ -748,7 +757,10 @@ return{
 {questiontopic:'asdasdasd',questiondescription:'asd',questiondifficulty:'b',questiondifficulty:'c',questionid:'8'}
 ]
  ,dialogEdit2:false,
- 
+  models: {
+        base: false,
+        conditional: false,
+      },
  assignment: {
        assignmentdescription: "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
         assignmentname: "",
@@ -766,6 +778,7 @@ assignments:[
 ]
 ,assignmentpage:0, editedIndex: -1
 ,page:1, search: '',qpage:1,
+
         headers: [
           {
             text: 'AssignmentName',
@@ -773,18 +786,12 @@ assignments:[
             
             value: 'assignmentname',
           },{
-text: 'AssignmentId',
-        
-            
-            value: 'assignmentid',
-
+           text: 'AssignmentId',
+           value: 'assignmentid',
           },
-{text: 'Actions', value: 'actions', sortable: false}
-       
-       
-            
           
-     
+           {text: 'Actions', value: 'actions', sortable: false},
+
 
         ]
         ,questionsingleSelect:false
@@ -917,19 +924,6 @@ if(this.assignments[9]!=null&&this.page==this.assignmentpage){
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       
 }
 
@@ -1031,7 +1025,13 @@ close () {
         this.$store.dispatch('question/fetchnextpage',this.qpage)
        .then((resp) => this.questions=resp.data)
        .catch(err => console.log(err))
-      }
+      },
+
+       onClickOutsideStandard () {
+        this.models.base = false
+      },
+
+       
       } 
       
       

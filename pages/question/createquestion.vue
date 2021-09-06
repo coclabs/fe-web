@@ -10,8 +10,8 @@
                <v-container class="pa-6 md-auto " style="background-color: #EDE7F6;"
                 >
                    
-         
-      <h2 class="meen pa-2 ">Add Question</h2>
+          <h2 class="pa-2">Create Question</h2>
+     
       <v-row >
       <v-col>
       <v-card
@@ -21,9 +21,7 @@
           
         >
         <!-- 1.1 -->
- <h2 class="pa-2 ">Create Question With Test</h2>
   
-      <h3 class="pa-2">Add Question</h3>
    <div class="pa-2 font-weight-bold"> Question Description (MarkDown Allowed)</div>
 
       <v-textarea class="me2 textfield pa-2  "
@@ -91,13 +89,12 @@
         
         <v-card 
           class="app-card  pa-2 rounded-xl"
-          height="790"
+          height="700"
        style="border: 2px solid #212121; "
           elevation="1"
         >
        
-        <h2 class="pa-2">  Preview</h2>
-        <h3 class="pa-2">Question Description</h3>
+        <h3 class="pa-2">Preview Question Description</h3>
           
           
   <v-responsive
@@ -140,7 +137,7 @@
 </v-row>
         
          
-      <h2 class="pa-2">Add Test</h2>
+      <h2 class="pa-2">Create Test</h2>
       
          
       <v-card class="pa-2 font-weight-bold rounded-xl"
@@ -167,13 +164,11 @@
   outlined color="#7776AC">Validate TestCase</v-btn>
 </v-tabs>
 
-  
-  
-  
-
-  
+  <div></div>
   </v-card>
-  <div class="pa-2"><v-btn color="#7776AC" dark :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''" @click="submit">Create Question With Test</v-btn> <div v-if="spanVisible"></div>
+  <div class="pa-2 "><v-btn color="deep-purple accent-1" 
+  dark :disabled="validateresultrealtest.code==500||validateresultexampletest.code==500||validateresultrealtest.failures[0]!=null||!valid||validateresultexampletest.failures[0]!=null||test.testcases==''||test.exampletestcases==''" @click="submit">
+  Create Question With Test</v-btn> <div v-if="spanVisible"></div>
 
   </div> 
 

@@ -275,30 +275,19 @@
         v-model="singleSelect"
         label="Single select"
         class="pa-3"
-        color="#7776AC"
+        color="deep-purple accent-1"
       ></v-switch>
-
-    
-
-     
     </template>
-   
-
-
-  
   </v-data-table>
-  
-
-  
 <v-pagination
               v-model="page"
               class="my-4"
               :length="questionpage"
               @input="fetchnextpage"
-              color="#7776AC"
+              color="deep-purple accent-1"
             ></v-pagination>
             <v-row class="d-flex justify-end ma-2">
-            <v-btn color="#7776AC"  dark @click="submit">Create Assignment</v-btn>
+            <v-btn color="deep-purple accent-1"  dark @click="submit">Create Assignment</v-btn>
             </v-row>
         </div>
     </v-card>

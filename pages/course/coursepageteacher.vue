@@ -6,29 +6,29 @@
         <v-col cols="12" md="8" sm="6"  lg="8" class="px-8 mx-auto ">
           <v-card
           max-height="250"
-           color="amber lighten-1"
+            style="border: 2px solid #B388FF; "
             class=" pa-2 rounded-xl hidden-sm-and-down"
-
+            
           >
            <v-list-item three-line>
       <v-list-item-content  class="ms-8 hidden-sm-and-down ">
          <v-list-item-title class="text-h4 mb-1">
-          Welcome Teacher 
+         Courseroom
         </v-list-item-title>
         <v-list-item-subtitle class="text-h6">
-                 firstname
+                 Python101
                  </v-list-item-subtitle>
         <div class="text-overline mb-2">
-          OVERLINE
+         
         </div>
       </v-list-item-content>
 
       <v-list-item-avatar
         tile
-        size="250"
+        size="240"
         class="mx-1"
       >
-       <v-img  :src="require('~/assets/Learning-animate.svg')"  ></v-img></v-list-item-avatar>
+       <v-img  :src="require('~/assets/nodata.svg')" ></v-img></v-list-item-avatar>
     </v-list-item>
           </v-card>
          </v-col>
@@ -64,50 +64,7 @@
               </v-list>
             </v-sheet>
           </v-col>
-
-          <v-col>
-            <v-sheet class="pa-4 amber accent-2 ">
-      
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search News"
-        single-line
-      ></v-text-field>
-    </v-sheet>
-    <v-card   class="mx-auto mt-12"
-   >
-    <v-card-text>
-     
-      <v-list three-line>
-      <v-list-item
-        v-for="(item, i) in searching"
-        :key="i"
-        ripple
-        @click="() => {}"
-      >
-        <v-img
-          :src="item.image"
-          class="mr-4"
-          max-width="64"
-          min-width="64"
-        ></v-img>
-
-        <v-list-item-content>
-          <span
-            class="text-uppercase font-weight-regular text-caption"
-            v-text="item.category"
-          ></span>
-
-          <div v-text="item.title"></div>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-    </v-card-text>
-    </v-card>
-          </v-col>
-        </v-row>
-        <v-col>
+             <v-col>
             <v-sheet
               min-height="70vh"
               rounded="lg"
@@ -115,6 +72,9 @@
               <!--  -->
             </v-sheet>
           </v-col>
+         
+        </v-row>
+       
       </v-container>
         </v-main>
     </v-app>
