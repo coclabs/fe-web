@@ -1,24 +1,16 @@
 <template>
-  
-    
-<v-app>
- 
+  <v-app>
     <Nuxt />
-       <v-overlay
-      :opacity="1"
-      :value="overlay"
-    >
+    <v-overlay :opacity="1" :value="overlay">
       <v-progress-circular indeterminate size="64">
         Loading...
       </v-progress-circular>
     </v-overlay>
-</v-app>
- <!-- <v-img :src="require('~/assets/115783931601b5c.jpg')" /> -->
-  
+  </v-app>
+  <!-- <v-img :src="require('~/assets/115783931601b5c.jpg')" /> -->
 </template>
 
 <style scpped>
-
 /* @import '~/assets/css/default.css'; */
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -69,41 +61,35 @@ html {
 }
 </style>
 <script>
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
-  components: {  },
-  
+  components: {},
+
   computed: mapGetters({
-   user:'authentication/finishauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
- 
+    user: "authentication/finishauthenticated",
+    isLoggedIn: "authentication/isLoggedIn",
+    datetime: "authentication/datetime",
   }),
-data(){
-return {overlay:true}
-},
+  data() {
+    return { overlay: true };
+  },
   mounted() {
     var token = this.$cookies.get("token");
-     var user = this.$cookies.get("user");
-    var datetime=this.$cookies.get("datetime")
-  
-   this.overlay=false;
-    this.$store.dispatch("authentication/settoken", token);
-      this.$store.dispatch("authentication/setuser",user);
-         this.$store.dispatch("authentication/setdatetime",datetime);
+    var user = this.$cookies.get("user");
+    var datetime = this.$cookies.get("datetime");
 
-         var objtoken={token}
-  this.$store
-        .dispatch("authentication/authenbytoken",  objtoken)
-         .then(resp=>(console.log(resp)))
-        .catch(err => console.log(err)); 
+    this.overlay = false;
+    this.$store.dispatch("authentication/settoken", token);
+    this.$store.dispatch("authentication/setuser", user);
+    this.$store.dispatch("authentication/setdatetime", datetime);
   },
- 
+
   methods: {
-    logout: function() {
+    logout: function () {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
-    }
+    },
   },
-   
 };
 </script>

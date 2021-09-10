@@ -1,68 +1,53 @@
 
 <template>
-<v-app>
- 
- </v-app>
-
+  <v-app> </v-app>
 </template>
 
 <script>
-import { mapGetters,mapActions } from 'vuex'
-import Navbarv1 from '../components/Navbarv1.vue';
-
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  components: { Navbarv1 },
+  components: {},
+  computed: mapGetters({
+    user: "authentication/getauthenticated",
+    isLoggedIn: "authentication/isLoggedIn",
+    datetime: "authentication/datetime",
+  }),
 
-
-beforeCreate(){
-
-var token
-     token = this.$cookies.get('token');
+  beforeCreate() {
+    var token;
+    token = this.$cookies.get("token");
     // If the user is not authenticated
     if (!token) {
-    
-        this.$router.push("authen/login")
+      this.$router.push("authen/login");
     }
-var role =this.$cookies.get('role')
+    var role = this.$cookies.get("role");
+    var id = this.$cookies.get("id");
 
-if(role=="Teacher"){
-    this.$router.push("/indexteacher")
-}else{
-    this.$router.push("/indexstudent")
-}
+    if (role == "Teacher") {
+      this.$router.push("" + id + "/indexteacher");
+    } else {
+      this.$router.push("" + id + "/indexstudent");
+    }
+  },
+  data() {
+    return {};
+  },
 
-
-
-}
-  ,
-data(){
-return {
- 
-}
-},
-  computed: mapGetters({
-   user:'authentication/getauthenticated',isLoggedIn:'authentication/isLoggedIn',datetime:'authentication/datetime'
- 
-  }),
   methods: {
-...mapActions({
-signIn:'authentication/signIn'
-})
-      
-  
-  }
+    ...mapActions({
+      signIn: "authentication/signIn",
+    }),
+  },
   // this.$store
   //       .dispatch("question/validatetestcase", data)
   //       .then(resp=>(
-        
+
   //         this.validateresultrealtest=JSON.parse(resp.data
-          
-          
+
   //         ))
-  }
+};
 </script>
 
 <style>
-
 </style>

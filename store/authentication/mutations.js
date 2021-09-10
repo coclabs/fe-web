@@ -25,6 +25,7 @@ state.token=token
 },
 stuser(state,user){
   state.user=user
+
 }  
 ,
 stdatetime(state,datetime){

@@ -728,7 +728,7 @@ InVisibleAt
 </template>
 
 <script>
-import Navbarv1 from '../../components/Navbarv1.vue'
+import Navbarv1 from '../../../components/Navbarv1.vue'
 export default {
   components: { Navbarv1 },
     data(){
