@@ -26,7 +26,7 @@ export default {
 
     if (role == "Teacher") {
       this.$router.push("" + id + "/indexteacher");
-    } else {
+    } else if (role == "Student") {
       this.$router.push("" + id + "/indexstudent");
     }
   },
