@@ -220,6 +220,12 @@
                           color="deep-purple accent-1"
                         ></v-switch>
                       </template>
+                      <template v-slot:no-data>
+                   <v-avatar size="200" tile>
+                    <v-img :src="require('~/assets/nodata.svg')"  >
+                  </v-img>
+                  </v-avatar>
+                  </template>
                     </v-data-table>
                     <v-pagination
                       v-model="page"

@@ -1,5 +1,5 @@
 <template>
-  <!-- navbarfor teacher -->
+  <!-- navbarfor student -->
   <div>
     <v-navigation-drawer
       app
@@ -15,14 +15,14 @@
       <v-divider class="mx-2 my-2"></v-divider>
 
       <v-list shaped nav dense>
-        <v-list-item-group v-model="selectedItem" color="deep-purple accent-1">
+        <v-list-item-group v-model="selectedItem" color="deep-purple accent-1" >
           <v-list-item
             v-for="item in items"
             :key="item.title"
             link
             router
             :to="item.route"
-             active-class="border"
+           active-class="border"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -65,7 +65,7 @@
               text
               v-bind="attrs"
               v-on="on"
-              href="/course/classroomteacher"
+              href="/course/classroomstudent"
             >
               Course
             </v-btn>
@@ -111,34 +111,14 @@ export default {
         {
           title: "Courseroom",
           icon: "mdi-post-outline",
-          route: "/" + this.$route.params.course + "/coursepageteacher",
+          route: "/" + this.$route.params.course + "/coursepagestudent",
         },
         {
-          title: "createquestion",
-          icon: "mdi-file-document-edit-outline",
-          route: "/" + this.$route.params.course + "/question/createquestion",
-        },
-        {
-          title: "showallquestion",
-          icon: "mdi-file-cabinet",
-          route: "/" + this.$route.params.course + "/question/showallquestion",
-        },
-        {
-          title: "createassignment",
-          icon: "mdi-file-document-edit-outline",
-          route: "/" + this.$route.params.course + "/question/createassignment",
-        },
-        {
-          title: "showallassignment",
+          title: "Assignment",
           icon: "mdi-bag-personal-outline",
-          route:
-            "/" + this.$route.params.course + "/question/showallassignment",
+          route: "/" + this.$route.params.course + "/assignmentstudent",
         },
-        {
-          title: "invite/remove students",
-          icon: "mdi-account-multiple-plus-outline",
-          route: "/" + this.$route.params.course + "/teacherselectstudent",
-        },
+       
       ],
       mini: true,
     };

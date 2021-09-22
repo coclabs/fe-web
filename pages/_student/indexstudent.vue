@@ -8,7 +8,7 @@
         <v-col md="8" sm="6" lg="8" class="px-16">
           <v-card
             max-height="250"
-            color="amber lighten-1"
+            color="amber lighten-2"
             class="pa-2 rounded-xl hidden-sm-and-down"
           >
             <v-list-item three-line>
@@ -34,7 +34,7 @@
           <v-card
             color=" rounded-xl"
             class="mx-auto"
-            style="border: 2px solid #b388ff"
+            style="border: 1px solid #b388ff"
           >
             <v-list-item three-line>
               <v-list-item-content>
@@ -65,7 +65,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col md="4" class="px-8">
+        <v-col md="4" class="px-16">
           <v-icon large color="#B388FF"> mdi-book </v-icon>
           <strong>Course</strong>
         </v-col>
@@ -87,7 +87,7 @@
           </div>
         </v-col>
 
-        <v-slide-group v-model="model" class="pa-2" show-arrows>
+        <v-slide-group v-model="model" class="pa-2 mx-8" show-arrows>
           <v-slide-item v-for="card in items" :key="card.title">
             <v-card class="ma-6 rounded-lg" min-width="400">
               <v-img
@@ -95,23 +95,7 @@
                 height="200px"
                 :src="card.imagesrc"
               >
-                <v-col class="text-right mb-16 pb-8 pr-0">
-                  <v-menu bottom offset-x>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn dark icon v-bind="attrs" v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
-                      </v-btn>
-                    </template>
-                    <v-list>
-                      <v-list-item v-for="(item, i) in create" :key="i">
-                        <v-list-item-title
-                          ><v-icon>mdi-delete</v-icon
-                          >{{ item.title }}</v-list-item-title
-                        >
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </v-col>
+                
                 <nuxt-link
                   :to="{
                     name: 'course-coursepagestudent',
@@ -138,39 +122,6 @@
             </v-card>
           </v-slide-item>
         </v-slide-group>
-
-        <v-col md="4" class="px-8">
-          <v-icon large color="#B388FF"> mdi-content-paste </v-icon>
-          <strong>Assignment</strong>
-        </v-col>
-
-        <v-col v-for="(item, i) in me2" :key="i" cols="12">
-          <div class="text--primary px-16">
-            <!-- Using the elevation prop -->
-            <v-hover>
-              <template v-slot:default="{ hover }">
-                <v-card :elevation="hover ? 24 : 6" class="mx-auto rounded-lg">
-                  <v-list subheader two-line>
-                    <v-list-item>
-                      <v-list-item-avatar>
-                        <v-icon class="amber" dark> mdi-folder </v-icon>
-                      </v-list-item-avatar>
-                      <v-list-item-content>
-                        <v-list-item-title
-                          v-text="item.assignmentname"
-                        ></v-list-item-title>
-
-                        <v-list-item-subtitle
-                          v-text="item.coursename"
-                        ></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-card>
-              </template>
-            </v-hover>
-          </div>
-        </v-col>
       </v-row>
     </v-main>
   </v-app>
@@ -206,24 +157,7 @@ export default {
       },
     ],
 
-    me2: [
-      {
-        assignmentname: "Homework 1",
-        coursename: "python101",
-      },
-      {
-        assignmentname: "Homework 2",
-        coursename: "python102",
-      },
-      {
-        assignmentname: "Homework 3",
-        coursename: "python103",
-      },
-      {
-        assignmentname: "Homework 4",
-        coursename: "python104",
-      },
-    ],
+   
     create: [{ title: "Delete" }],
     model: null,
     active: false,

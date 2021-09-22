@@ -25,7 +25,7 @@
           >
             <v-hover v-slot="{ hover }">
               <v-card
-                class="mx-auto rounded-lg"
+                class="mx-4 rounded-lg"
                 max-width="400"
                 :elevation="hover ? 5 : 2"
                 :class="{ 'on-hover': hover }"
@@ -35,23 +35,7 @@
                   height="200px"
                   :src="item.imagesrc"
                 >
-                  <v-col class="text-right mb-16 pb-8 pr-0">
-                    <v-menu bottom offset-x>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn dark icon v-bind="attrs" v-on="on">
-                          <v-icon>mdi-dots-vertical</v-icon>
-                        </v-btn>
-                      </template>
-                      <v-list>
-                        <v-list-item v-for="(item, i) in create" :key="i">
-                          <v-list-item-title
-                            ><v-icon>mdi-delete</v-icon
-                            >{{ item.title }}</v-list-item-title
-                          >
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-col>
+                 
                   <nuxt-link
                     :to="{
                       name: 'course-coursepagestudent',

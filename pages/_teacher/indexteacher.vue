@@ -8,7 +8,7 @@
         <v-col md="8" sm="6" lg="8" class="px-16">
           <v-card
             max-height="250"
-            color="amber lighten-1"
+            color="amber lighten-2"
             class="pa-2 rounded-xl hidden-sm-and-down"
           >
             <v-list-item three-line>
@@ -22,7 +22,7 @@
                 <div class="text-overline mb-2"></div>
               </v-list-item-content>
 
-              <v-list-item-avatar tile size="250" class="mx-1">
+              <v-list-item-avatar tile size="240" class="mx-1">
                 <v-img :src="require('~/assets/Learning-animate.svg')"></v-img
               ></v-list-item-avatar>
             </v-list-item>
@@ -33,7 +33,7 @@
           <v-card
             color=" rounded-xl"
             class="mx-auto"
-            style="border: 2px solid #b388ff"
+            style="border: 1px solid #b388ff"
           >
             <v-list-item three-line>
               <v-list-item-content>
@@ -64,7 +64,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col md="4" class="px-8">
+        <v-col md="4" class="px-16">
           <v-icon large color="#B388FF"> mdi-book </v-icon>
           <strong>Course</strong>
         </v-col>
@@ -76,7 +76,7 @@
           </div>
         </v-col>
 
-        <v-slide-group v-model="model" class="pa-2" show-arrows>
+        <v-slide-group v-model="model" class="pa-2 mx-8" show-arrows>
           <v-slide-item v-for="card in items" :key="card.title">
             <v-card class="ma-6 rounded-lg" min-width="400">
               <v-img

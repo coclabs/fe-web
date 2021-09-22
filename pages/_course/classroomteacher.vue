@@ -185,30 +185,7 @@ export default {
     dialog: false,
 
     items: [
-      {
-        imagesrc: require("~/assets/pythonclass.svg"),
-        coursename: "python101",
-        coursedescription:
-          "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming.",
-      },
-      {
-        imagesrc: require("~/assets/pythonclass2.svg"),
-        coursename: "python102",
-        coursedescription:
-          "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming.",
-      },
-      {
-        imagesrc: require("~/assets/pythonclass.svg"),
-        coursename: "python103",
-        coursedescription:
-          "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming.",
-      },
-      {
-        imagesrc: require("~/assets/pythonclass2.svg"),
-        coursename: "python104",
-        coursedescription:
-          "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming.",
-      },
+     
     ],
     create: [{ title: "Delete" }],
 
