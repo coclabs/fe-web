@@ -54,14 +54,7 @@
             </v-list-item>
 
             <v-card-actions class="mx-3 mb-1">
-              <v-btn
-                rounded
-                dark
-                color="deep-purple accent-1"
-                href="/playground/_assignmentid"
-              >
-                Play
-              </v-btn>
+              <v-btn rounded dark color="deep-purple accent-1"> Play </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -95,7 +88,6 @@
                 height="200px"
                 :src="card.imagesrc"
               >
-                
                 <nuxt-link
                   :to="{
                     name: 'course-coursepagestudent',
@@ -135,7 +127,9 @@ export default {
   components: { Navbarv2 },
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/2/getallcoursestudent"
+      "http://127.0.0.1:8000/" +
+        this.$route.params.student +
+        "/getallcoursestudent"
     );
   },
 
@@ -157,7 +151,6 @@ export default {
       },
     ],
 
-   
     create: [{ title: "Delete" }],
     model: null,
     active: false,

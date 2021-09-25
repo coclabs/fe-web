@@ -15,14 +15,14 @@
       <v-divider class="mx-2 my-2"></v-divider>
 
       <v-list shaped nav dense>
-        <v-list-item-group v-model="selectedItem" color="deep-purple accent-1" >
+        <v-list-item-group v-model="selectedItem" color="deep-purple accent-1">
           <v-list-item
             v-for="item in items"
             :key="item.title"
             link
             router
             :to="item.route"
-           active-class="border"
+            active-class="border"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -61,12 +61,7 @@
       <v-toolbar-items>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              text
-              v-bind="attrs"
-              v-on="on"
-              href="/course/classroomstudent"
-            >
+            <v-btn text v-bind="attrs" v-on="on" v-bind:href="s">
               Course
             </v-btn>
           </template>
@@ -89,6 +84,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  async fetch() {
+    this.s = "/" + this.$cookies.get("id") + "/classroomstudent";
+  },
   components: {},
 
   computed: mapGetters({
@@ -106,6 +104,7 @@ export default {
   },
   data() {
     return {
+      s: "",
       drawer: true,
       items: [
         {
@@ -118,7 +117,11 @@ export default {
           icon: "mdi-bag-personal-outline",
           route: "/" + this.$route.params.course + "/assignmentstudent",
         },
-       
+        {
+          title: "AssignmentSubmmited",
+          icon: "mdi-file-cabinet",
+          route: "/" + this.$route.params.course + "/assignmentsubmitted",
+        },
       ],
       mini: true,
     };
@@ -126,7 +129,7 @@ export default {
 };
 </script>
 <style>
-.border  {
-    border-left: 4px solid #B388FF
+.border {
+  border-left: 4px solid #b388ff;
 }
 </style>

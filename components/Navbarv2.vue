@@ -71,12 +71,7 @@
       <v-toolbar-items>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              text
-              v-bind="attrs"
-              v-on="on"
-              href="/course/classroomstudent"
-            >
+            <v-btn text v-bind="attrs" v-on="on" v-bind:href="s">
               Course
             </v-btn>
           </template>
@@ -99,6 +94,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  async fetch() {
+    this.s = "/" + this.$cookies.get("id") + "/classroomstudent";
+  },
   components: {},
 
   computed: mapGetters({

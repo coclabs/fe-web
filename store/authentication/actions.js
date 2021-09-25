@@ -160,6 +160,7 @@ async register({commit}, user){
       this.$cookies.remove('timedate')
       this.$cookies.remove('user')
       this.$cookies.remove('id')
+      this.$cookies.remove('courseid')
       commit('logout')
     
       

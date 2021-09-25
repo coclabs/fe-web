@@ -35,7 +35,6 @@
                   height="200px"
                   :src="item.imagesrc"
                 >
-                 
                   <nuxt-link
                     :to="{
                       name: 'course-coursepagestudent',
@@ -74,7 +73,9 @@ import Navbarv4 from "../../components/Navbarv4.vue";
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/2/getallcoursestudent"
+      "http://127.0.0.1:8000/" +
+        this.$route.params.student +
+        "/getallcoursestudent"
     );
   },
   data: () => ({

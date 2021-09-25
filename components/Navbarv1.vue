@@ -22,7 +22,7 @@
             link
             router
             :to="item.route"
-             active-class="border"
+            active-class="border"
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -111,33 +111,41 @@ export default {
         {
           title: "Courseroom",
           icon: "mdi-post-outline",
-          route: "/" + this.$route.params.course + "/coursepageteacher",
+          route: "/" + this.$cookies.get("courseid") + "/coursepageteacher",
         },
         {
           title: "createquestion",
           icon: "mdi-file-document-edit-outline",
-          route: "/" + this.$route.params.course + "/question/createquestion",
+          route:
+            "/" + this.$cookies.get("courseid") + "/question/createquestion",
         },
         {
           title: "showallquestion",
           icon: "mdi-file-cabinet",
-          route: "/" + this.$route.params.course + "/question/showallquestion",
+          route:
+            "/" + this.$cookies.get("courseid") + "/question/showallquestion",
         },
         {
           title: "createassignment",
           icon: "mdi-file-document-edit-outline",
-          route: "/" + this.$route.params.course + "/question/createassignment",
+          route:
+            "/" + this.$cookies.get("courseid") + "/question/createassignment",
         },
         {
           title: "showallassignment",
           icon: "mdi-bag-personal-outline",
           route:
-            "/" + this.$route.params.course + "/question/showallassignment",
+            "/" + this.$cookies.get("courseid") + "/question/showallassignment",
         },
         {
           title: "invite/remove students",
           icon: "mdi-account-multiple-plus-outline",
-          route: "/" + this.$route.params.course + "/teacherselectstudent",
+          route: "/" + this.$cookies.get("courseid") + "/teacherselectstudent",
+        },
+        {
+          title: "AssignmnetAnalytic",
+          icon: "mdi-post-outline",
+          route: "/" + this.$cookies.get("courseid") + "/allassignmentteacher",
         },
       ],
       mini: true,
@@ -146,7 +154,7 @@ export default {
 };
 </script>
 <style>
-.border  {
-    border-left: 4px solid #B388FF
+.border {
+  border-left: 4px solid #b388ff;
 }
 </style>

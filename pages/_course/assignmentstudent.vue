@@ -1,171 +1,161 @@
 <template>
   <v-app>
-     <Navbarv5 />
-     <v-main style="background-color: #efe5fd">
-      
-       <v-col cols="12" class="px-16 mt-6">
-         
-          <h2>Assignment</h2>
-        </v-col>
-        
-        <v-col v-for="(item, i) in me2" :key="i" cols="12"  >
-          <div class="text--primary px-16">
-            <!-- Using the elevation prop -->
-           
-            <v-hover>
-              <template v-slot:default="{ hover }">
-                 
-                <v-card :elevation="hover ? 24 : 6" class="mx-auto rounded-lg" style="border-left: 8px solid #B388FF" >
-                  <v-list subheader two-line >
-                    <v-list-item >
-                       
-                      <v-list-item-avatar>
-                           <v-btn
-        color="amber"
-       class="text-left ma-2 "
-        dark
-        cols="12"
-        fab
-        @click="dialog = true"
-      >
-                        <v-icon  > mdi-folder </v-icon> </v-btn>
-                      </v-list-item-avatar>
-                      <v-list-item-content> 
-                        <v-list-item-title
-                          v-text="item.assignmentname"
-                        ></v-list-item-title>
-                        
-                        <v-list-item-subtitle
-                          v-text="item.coursename"
-                        ></v-list-item-subtitle>
-                         <v-dialog
-        v-model="dialog"
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-        scrollable
-      >
-        <v-card tile >
-          <v-toolbar
-            flat
-            dark
-            color="deep-purple accent-1"
-          >
-            <v-btn
-              icon
-              dark
-              @click="dialog = false"
-            >
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-toolbar-title>Assignment</v-toolbar-title>
-            <v-spacer></v-spacer>
-          </v-toolbar>
-          <v-card-text>
-            
-            <v-list
-              two-line
-              subheader
-            >
-              
-              <v-list-item>
-                <v-list-item-content>
-                  <v-col  >
-                  <v-list-item-title ><h2 v-text="item.assignmentname"></h2> </v-list-item-title>
-                 </v-col >
-                  <v-col class="text-center px-16" md="4" offset-md="4"> <v-list-item-title  ><h4 >Point 50</h4> </v-list-item-title></v-col>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item class="px-8">
-                <v-list-item-content>
-                  <v-list-item-title>Description</v-list-item-title>
-                  <v-col class="px-0">
-                  <v-card class="pa-2 font-weight-bold rounded-xl"
-      style="border: 2px solid #212121; "
-      >               
-      
-<v-tabs   v-model="tab" color="#7776AC" >
-<v-tab>Preview</v-tab>
-<v-tab-item >
-     <v-responsive
-    class="overflow-y-auto"
-    max-height="400"
-  >
-    <div class=" me3 pa-6 text-left">
-      <v-card-text v-html="$md.render(assignment.assignmentdescription)" style="width:400px"> </v-card-text>
-    </div>
+    <Navbarv5 />
 
-    <v-responsive
-      height="200vh"
-      class="text-center pa-2"
-    >
-      <v-responsive min-height="50vh"></v-responsive>
-      <div class="text-center body-2 mb-12">
-       
-      </div>
+    <v-main style="background-color: #efe5fd">
+      <v-col cols="12" class="px-16 mt-6">
+        <h2>Assignment</h2>
+      </v-col>
 
-      <v-lazy
-        v-model="isActive"
-        :options="{
-          threshold: .5
-        }"
-        min-height="200"
-        transition="fade-transition"
-      >
-        <v-card
-          class="mx-auto"
-          max-width="336"
-        >
-          
-        </v-card>
-      </v-lazy>
-    </v-responsive>
-  </v-responsive>
-</v-tab-item >
-    
-      
-</v-tabs>
+      <v-col v-for="(item, i) in me2" :key="i" cols="12">
+        <div class="text--primary px-16">
+          <!-- Using the elevation prop -->
 
-</v-card>
-                  </v-col>
-                            
-                            <div class="text-center">
-                         <v-btn
-                         rounded
-                         color="amber darken-1"
-                          dark
-                            >
-                         Do Assignment
-                         </v-btn>
-                        </div>
-                            
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-           
-            
-            
-          </v-card-text>
-         
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card
+                :elevation="hover ? 24 : 6"
+                class="mx-auto rounded-lg"
+                style="border-left: 8px solid #b388ff"
+              >
+                <v-list subheader two-line>
+                  <v-list-item>
+                    <v-list-item-avatar>
+                      <v-btn
+                        color="amber"
+                        class="text-left ma-2"
+                        dark
+                        cols="12"
+                        fab
+                        @click="changehref(item)"
+                      >
+                        <v-icon> mdi-folder </v-icon>
+                      </v-btn>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        v-text="item.assignmentname"
+                      ></v-list-item-title>
 
+                      <v-list-item-subtitle v-text="n"></v-list-item-subtitle>
+                      <v-dialog
+                        v-model="dialog"
+                        fullscreen
+                        hide-overlay
+                        transition="dialog-bottom-transition"
+                        scrollable
+                      >
+                        <v-card tile>
+                          <v-toolbar flat dark color="deep-purple accent-1">
+                            <v-btn icon dark @click="dialog = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                            <v-toolbar-title>Assignment</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                          </v-toolbar>
+                          <v-card-text>
+                            <v-list two-line subheader>
+                              <v-list-item>
+                                <v-list-item-content>
+                                  <v-col>
+                                    <v-list-item-title
+                                      ><h2 v-text="assign.assignmentname"></h2>
+                                    </v-list-item-title>
+                                  </v-col>
+                                  <v-col
+                                    class="text-center px-16"
+                                    md="4"
+                                    offset-md="4"
+                                  >
+                                    <v-list-item-title
+                                      ><h4>
+                                        Point :{{ assign.maxpossiblescore }}
+                                      </h4>
+                                    </v-list-item-title></v-col
+                                  >
+                                </v-list-item-content>
+                              </v-list-item>
+                              <v-list-item class="px-8">
+                                <v-list-item-content>
+                                  <v-list-item-title
+                                    >Description</v-list-item-title
+                                  >
+                                  <v-col class="px-0">
+                                    <v-card
+                                      class="pa-2 font-weight-bold rounded-xl"
+                                      style="border: 2px solid #212121"
+                                    >
+                                      <v-tabs v-model="tab" color="#7776AC">
+                                        <v-tab>Preview</v-tab>
+                                        <v-tab-item>
+                                          <v-responsive
+                                            class="overflow-y-auto"
+                                            max-height="400"
+                                          >
+                                            <div class="me3 pa-6 text-left">
+                                              {{ assign.assignmentdescription }}
+                                            </div>
 
-          <div style="flex: 1 1 auto;"></div>
-        </v-card>
-      </v-dialog>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-card>
-                
-              </template>
-            </v-hover>
-             
-          </div>
-         
-        </v-col>
-       
-     </v-main>
-     </v-app>
+                                            <v-responsive
+                                              height="200vh"
+                                              class="text-center pa-2"
+                                            >
+                                              <v-responsive
+                                                min-height="50vh"
+                                              ></v-responsive>
+                                              <div
+                                                class="text-center body-2 mb-12"
+                                              ></div>
+
+                                              <v-lazy
+                                                v-model="isActive"
+                                                :options="{
+                                                  threshold: 0.5,
+                                                }"
+                                                min-height="200"
+                                                transition="fade-transition"
+                                              >
+                                                <v-card
+                                                  class="mx-auto"
+                                                  max-width="336"
+                                                >
+                                                </v-card>
+                                              </v-lazy>
+                                            </v-responsive>
+                                          </v-responsive>
+                                        </v-tab-item>
+                                      </v-tabs>
+                                    </v-card>
+                                  </v-col>
+
+                                  <div class="text-center">
+                                    <v-btn
+                                      rounded
+                                      color="amber darken-1"
+                                      dark
+                                      v-bind:href="s"
+                                    >
+                                      Do Assignment
+                                    </v-btn>
+                                  </div>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-list>
+                          </v-card-text>
+
+                          <div style="flex: 1 1 auto"></div>
+                        </v-card>
+                      </v-dialog>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </template>
+          </v-hover>
+        </div>
+      </v-col>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -175,25 +165,38 @@ export default {
     this.course = await this.$axios.$get(
       "http://127.0.0.1:8000/" + this.$route.params.course + "/course"
     );
+
+    this.me2 = await this.$axios.$get(
+      "http://127.0.0.1:8000/" +
+        this.$route.params.course +
+        "/read_course_assignment"
+    );
+
+    this.studentid = this.$route.params.student;
   },
   data: () => ({
+    assign: "",
+    aa: true,
+    studentid: 0,
+    s: "",
+    item: [],
     course: [],
     dialog: false,
-        dialog2: false,
-        dialog3: false,
+    dialog2: false,
+    dialog3: false,
     notifications: false,
-        sound: true,
-        widgets: false,
-        isActive: false,
-        tab:'',
-        assignment: {
-       assignmentdescription: "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
-        assignmentname: "",
-        question:[],
-        maxpossiblescore:50
-        ,
-      assignmentid:0,
-      },
+    sound: true,
+    widgets: false,
+    isActive: false,
+    tab: "",
+    assignment: {
+      assignmentdescription:
+        "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
+      assignmentname: "",
+      question: [],
+      maxpossiblescore: 50,
+      assignmentid: 0,
+    },
 
     items: [
       {
@@ -243,10 +246,8 @@ export default {
         assignmentname: "Homework 2",
         coursename: "python102",
       },
-     
     ],
     search: "",
-    
   }),
   components: { Navbarv5 },
   computed: {
@@ -273,5 +274,16 @@ export default {
       });
     },
   },
+  methods: {
+    changehref(item) {
+      this.dialog = true;
+      this.assign = item;
+      console.log(this.assign);
+
+      this.s =
+        "/" + this.$cookies.get("id") + "/" + item.assignmentid + "/playground";
+    },
+  },
+  mounted() {},
 };
 </script>

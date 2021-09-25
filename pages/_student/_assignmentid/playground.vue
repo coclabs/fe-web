@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Navbarv1 />
     <v-main style="background-color: #ede7f6">
       <v-container
         style="height:600px;width:2500pxbackground-color: #EDE7F6;"
@@ -85,13 +84,9 @@
                   </v-btn>
                 </template>
                 <v-card>
-                  <v-card-title class="text-h5">
-                    Use Google's location service?
-                  </v-card-title>
+                  <v-card-title class="text-h5"> Submit </v-card-title>
                   <v-card-text
-                    >Let Google help apps determine location. This means sending
-                    anonymous location data to Google, even when no apps are
-                    running.</v-card-text
+                    >If You Submit Your Answer Will Be Collected</v-card-text
                   >
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -118,13 +113,10 @@
                   </v-btn>
                 </template>
                 <v-card>
-                  <v-card-title class="text-h5">
-                    Use Google's location service?
-                  </v-card-title>
+                  <v-card-title class="text-h5"> End </v-card-title>
                   <v-card-text
-                    >Let Google help apps determine location. This means sending
-                    anonymous location data to Google, even when no apps are
-                    running.</v-card-text
+                    >If you End Your Assignment Will Be Marked As
+                    Done</v-card-text
                   >
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -176,7 +168,7 @@
 
 <script>
 import $ from "jquery";
-import Navbarv1 from "../../components/Navbarv1.vue";
+import Navbarv1 from "../../../components/Navbarv1.vue";
 export default {
   computed: {
     isDisabled() {
@@ -267,6 +259,7 @@ export default {
           },
         ],
       ],
+      keep: "",
       value: "recent",
       maxnum: 0,
       questionindex: 0,
@@ -304,6 +297,7 @@ export default {
     //create assignment to track time do
 
     this.question = this.questions[this.questionindex];
+    console.log(3);
   },
 
   methods: {
@@ -312,7 +306,7 @@ export default {
         .$post("http://127.0.0.1:8000/studentassignment", {
           assignmentid: this.$route.params.assignmentid,
           totalscore: 0,
-          studentid: 1,
+          studentid: this.$route.params.student,
           totalcorrect: 0,
           totalnotcorrect: 0,
         })
@@ -353,7 +347,15 @@ export default {
         totalcorrect: this.totalcorrect,
         totalnotcorrect: this.totalnotcorrect,
       });
-      this.$router.push("/indexstudent");
+
+      await this.$axios.post("http://127.0.0.1:8000/write_assignment_record", {
+        assignmentid: this.$route.params.assignmentid,
+        studentscore: this.totalscore,
+      });
+
+      this.$router.push(
+        "/" + this.$cookies.get("courseid") + "/assignmentsubmitted"
+      );
     },
     async submit() {
       let codee = $('textarea[name="description3"]').val();

@@ -4,34 +4,30 @@
     <v-main style="background-color: #efe5fd">
       <v-container class="my-6">
         <h2>invite and remove students</h2>
-         <v-row justify="center" class="py-3">
-        <v-col md="4" >
-         
+        <v-row justify="center" class="py-3">
+          <v-col md="4">
             <v-dialog v-model="dialog" persistent max-width="500">
-              <template
-                v-slot:activator="{ on, attrs }"
-                
-              >
-               <v-card
-            class="pa-2 rounded-lg"
-            outlined
-            tile
-           color="deep-purple accent-1"
-          >
-          <p class="text-center">
-      invite students</p>
-               <v-card-subtitle class="pa-2 text-center">
-                <v-btn
-                  color="black"
-                  dark
-                  v-bind="attrs"
-                  v-on="on"
-                  icon
-                  large
+              <template v-slot:activator="{ on, attrs }">
+                <v-card
+                  class="pa-2 rounded-lg"
+                  outlined
+                  tile
+                  color="deep-purple accent-1"
                 >
-                  <v-icon large>mdi-account-multiple-plus</v-icon>
-                </v-btn></v-card-subtitle>
-               </v-card>
+                  <p class="text-center">invite students</p>
+                  <v-card-subtitle class="pa-2 text-center">
+                    <v-btn
+                      color="black"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                      icon
+                      large
+                    >
+                      <v-icon large>mdi-account-multiple-plus</v-icon>
+                    </v-btn></v-card-subtitle
+                  >
+                </v-card>
               </template>
 
               <v-card class="rounded-lg">
@@ -124,36 +120,24 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-         
-        
-        </v-col>
-       
-         
-        <v-col md="4" >
+          </v-col>
+
+          <v-col md="4">
             <v-dialog v-model="dialog2" persistent max-width="500">
-              <template
-                v-slot:activator="{ on, attrs }"
-              >
-               <v-card
-            class="pa-2 rounded-lg "
-            outlined
-            tile
-           color="amber lighten-2"
-          >
-             <p class="text-center">
-      remove students</p>
-               <v-card-subtitle class="pa-2 text-center">
-                <v-btn
-                 color="black"
-                  v-bind="attrs"
-                  v-on="on"
-                  icon
-                  large
+              <template v-slot:activator="{ on, attrs }">
+                <v-card
+                  class="pa-2 rounded-lg"
+                  outlined
+                  tile
+                  color="amber lighten-2"
                 >
-                  <v-icon large>mdi-account-multiple-remove</v-icon>
-                </v-btn>
-               </v-card-subtitle>
-               </v-card>
+                  <p class="text-center">remove students</p>
+                  <v-card-subtitle class="pa-2 text-center">
+                    <v-btn color="black" v-bind="attrs" v-on="on" icon large>
+                      <v-icon large>mdi-account-multiple-remove</v-icon>
+                    </v-btn>
+                  </v-card-subtitle>
+                </v-card>
               </template>
 
               <v-card class="rounded-lg">
@@ -181,8 +165,8 @@
                 <v-col v-if="!allSelected" cols="12">
                   <v-text-field
                     color="#7776AC"
-                    ref="search"
-                    v-model="search2"
+                    ref="searchremove"
+                    v-model="searchremove"
                     full-width
                     hide-details
                     label="Search"
@@ -235,7 +219,7 @@
                     Cancel
                   </v-btn>
                   <v-btn
-                    :disabled="!selected.length"
+                    :disabled="!selected2.length"
                     :loading="loading"
                     color="deep-purple accent-1"
                     text
@@ -246,10 +230,8 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-        </v-col>
+          </v-col>
         </v-row>
-       
-       
       </v-container>
     </v-main>
   </v-app>
@@ -347,19 +329,17 @@ export default {
         avatar: srcs[2],
       },
     ],
-     
-     student: [],
+
+    student: [],
     loading: false,
     search: "",
-    search2:"",
+    searchremove: "",
     selected: [],
     selected2: [],
     isActive: false,
     dialog: false,
     dialog2: false,
-    
   }),
- 
 
   components: { Navbarv1 },
   computed: {
@@ -386,42 +366,39 @@ export default {
 
       return selections;
     },
-     allSelectedremove () {
-        return this.selected2.length === this.itemsremove.length
-      },
-      categoriesremove () {
-        const searchremove = this.search2.toLowerCase()
+    allSelectedremove() {
+      return this.selected2.length === this.itemsremove.length;
+    },
+    categoriesremove() {
+      const searchremove = this.searchremove.toLowerCase();
 
-        if (!searchremove) return this.itemsremove
+      if (!searchremove) return this.itemsremove;
 
-        return this.itemsremove.filter(item => {
-          const textremove = this.itemsremove.text.toLowerCase()
+      return this.itemsremove.filter((item) => {
+        const textremove = item.text.toLowerCase();
 
-          return textremove.indexOf(searchremove) > -1
-        })
-      },
-      selectionsremove () {
-        const selectionsremove = []
+        return textremove.indexOf(searchremove) > -1;
+      });
+    },
+    selectionsremove() {
+      const selectionsremove = [];
 
-        for (const selectionremove of this.selected2) {
-          selectionsremove.push(selectionremove)
-        }
+      for (const selectionremove of this.selected2) {
+        selectionsremove.push(selectionremove);
+      }
 
-        return selectionsremove
-      },
-    
-   },
-  
+      return selectionsremove;
+    },
+  },
 
   watch: {
     selected() {
       this.search = "";
     },
-    selectedremove() {
-      this.search2 = "";
+    selected2() {
+      this.searchremove = "";
     },
   },
-   
 
   methods: {
     async fetchnew() {
@@ -452,21 +429,11 @@ export default {
 
       setTimeout(() => {
         this.search = "";
+        this.searchremove = "";
         this.selected = [];
         this.loading = false;
       }, 2000);
     },
   },
-  methods: {
-      next () {
-        this.loading = true;
-        
-        setTimeout(() => {
-          this.search = "";
-          this.selected2 = [];
-          this.loading = false;
-        }, 2000);
-      },
-    },
 };
 </script>
