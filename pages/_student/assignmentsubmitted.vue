@@ -5,39 +5,142 @@
       <div>
         <br />
 
-        <div class="headline font-weight-black">Assignment Submitted</div>
+        <div class="headline font-weight-black mx-6 ">Assignment Submitted</div>
+        <div class="mx-6 my-6">
         <v-data-table
           :headers="headers"
           :items="studentassignment"
           :page.sync="page"
           :items-per-page="itemsPerPage"
           hide-default-footer
-          class="elevation-1"
+          class="elevation-1 rounded-lg"
           @page-count="pageCount = $event"
         >
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small class="mr-2" @click="viewdata(item)">
-              mdi-magnify
-            </v-icon>
+            <v-chip
+        color="amber darken-1"
+        dark
+        @click="viewdata(item)"
+      >
+      Result
+           
+            </v-chip>
+             
           </template>
+           <template v-slot:[`item.Assignment.assignmentid`]="{ item }">
+           
+       <v-chip
+        color="amber darken-1"
+        dark
+        
+      >
+     
+           
+      {{item.Assignment.assignmentid}}
+           
+            </v-chip>
+            
+          </template>
+          
+          
         </v-data-table>
-
+        </div>
         <div class="text-center pt-2">
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          <v-pagination v-model="page" :length="pageCount" color="deep-purple accent-1"></v-pagination>
         </div>
       </div>
+       
       <v-dialog v-model="dialog">
-        <v-container>
-          <v-card height="1000">
+        
+          <v-card min-height="500">
+             <v-toolbar
+            flat
+            dark
+            color="deep-purple accent-1"
+          >
+            <v-btn
+              icon
+              dark
+              @click="dialog = false"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Assignment result</v-toolbar-title>
+            <v-spacer></v-spacer>
+          </v-toolbar>
             <ul>
-              <li
-                v-for="studentassignment in studentassignmentquestion"
-                :key="studentassignment.studentassignmentquestionid"
-              ></li>
+            <div class="py-2"></div>
+    <v-col v-for="studentassignment in studentassignmentquestion"
+      :key="studentassignment.studentassignmentquestionid" cols="12"  >
+          <div class="text--primary px-16">
+            <!-- Using the elevation prop -->
+           
+            <v-hover>
+              <template v-slot:default="{ hover }">
+                 
+                <v-card :elevation="hover ? 24 : 6" class="mx-auto rounded-lg" style="border-left: 8px solid #B388FF"  >
+                  <v-list subheader three-line >
+                    <v-list-item >
+                       
+                      <v-list-item-avatar>
+                           
+                        <v-icon   color="amber"
+       class="text-left ma-2 "
+       large
+        cols="12"
+        fab > mdi-medal-outline </v-icon> 
+                      </v-list-item-avatar>
+                      <v-list-item-content> 
+                        <v-list-item-title
+                          v-text="studentassignment.questionnumber"
+                        ></v-list-item-title>
+                         <v-list-item-title class="py-2"
+                          
+                        >Answer: {{ studentassignment.studentanswer}}</v-list-item-title>
+                        
+                        <v-list-item-subtitle
+                          v-text="studentassignment.createdat"
+                        ></v-list-item-subtitle>
+                        
+                         
+                      </v-list-item-content>
+          <div class="px-2">            
+      <v-chip
+        color="teal accent-2"
+      >
+         totalcorrect: {{ studentassignment.totalcorrect}}
+      </v-chip></div>
+       <div class="px-2">
+       <v-chip
+        color="amber darken-1"
+        dark
+      >
+         totalnotcorrect: {{ studentassignment.totalnotcorrect}}
+      </v-chip></div>
+       <v-chip
+        color="deep-purple accent-1"
+        dark
+      >
+         score: {{ studentassignment.studentscore}}
+      </v-chip>
+   
+                    </v-list-item>
+                  </v-list>
+                </v-card>
+                
+              </template>
+            </v-hover>
+             
+          </div>
+         
+        </v-col>
             </ul>
           </v-card>
-        </v-container>
+       
       </v-dialog>
+       
+  
+       
     </v-main>
   </v-app>
 </template>
@@ -66,6 +169,8 @@ export default {
       studentassignment: {},
       page: 1,
       pageCount: 0,
+      interval: {},
+        value: 0,
 
       headers: [
         { text: "AssignmentId", value: "Assignment.assignmentid" },
@@ -87,8 +192,22 @@ export default {
         // { text: "Mean", value: "protein" },
         // { text: "Attemps", value: "attempt" },
       ],
+      me2: [
+      {
+        assignmentname: "Homework 1",
+        coursename: "python101",
+      },
+      {
+        assignmentname: "Homework 2",
+        coursename: "python102",
+      },
+     
+    ],
     };
   },
+  beforeDestroy () {
+      clearInterval(this.interval)
+    },
   methods: {
     async viewdata(item) {
       this.selected = Object.assign({}, item);
@@ -103,7 +222,10 @@ export default {
       // this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
+   
   },
+   
+   
 };
 </script>
 

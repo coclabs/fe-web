@@ -130,7 +130,7 @@
        
          
         <v-col md="4" >
-            <v-dialog v-model="dialog" persistent max-width="500">
+            <v-dialog v-model="dialog2" persistent max-width="500">
               <template
                 v-slot:activator="{ on, attrs }"
               >
@@ -157,12 +157,12 @@
               </template>
 
               <v-card class="rounded-lg">
-                <v-card-title class="text-h6"> Invite students </v-card-title>
+                <v-card-title class="text-h6"> remove students </v-card-title>
 
                 <v-row align="center" justify="start" class="mx-auto my-auto">
                   <v-col
-                    v-for="(selection, i) in selections"
-                    :key="selection.firstname"
+                    v-for="(selection, i) in selectionsremove"
+                    :key="selection.text"
                     class="shrink"
                   >
                     <v-chip
@@ -173,7 +173,7 @@
                       <v-avatar left>
                         <v-img :src="selection.avatar"> </v-img>
                       </v-avatar>
-                      {{ selection.firstname }}
+                      {{ selection.text }}
                     </v-chip>
                   </v-col>
                 </v-row>
@@ -182,7 +182,7 @@
                   <v-text-field
                     color="#7776AC"
                     ref="search"
-                    v-model="search"
+                    v-model="search2"
                     full-width
                     hide-details
                     label="Search"
@@ -196,19 +196,19 @@
                   <v-list subheader>
                     <v-subheader>Search result</v-subheader>
 
-                    <template v-for="item in categories">
+                    <template v-for="item in categoriesremove">
                       <v-list-item
-                        v-if="!selected.includes(item)"
-                        :key="item.firstname"
+                        v-if="!selected2.includes(item)"
+                        :key="item.text"
                         :disabled="loading"
-                        @click="selected.push(item)"
+                        @click="selected2.push(item)"
                       >
                         <v-list-item-avatar>
                           <v-img :disabled="loading" :src="item.avatar">
                           </v-img>
                         </v-list-item-avatar>
                         <v-list-item-title
-                          v-text="item.firstname"
+                          v-text="item.text"
                         ></v-list-item-title>
                         <v-list-item-icon>
                           <v-icon> mdi-message-outline </v-icon>
@@ -231,7 +231,7 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="amber darken-1" text @click="dialog = false">
+                  <v-btn color="amber darken-1" text @click="dialog2 = false">
                     Cancel
                   </v-btn>
                   <v-btn
@@ -241,7 +241,7 @@
                     text
                     @click="addstudent"
                   >
-                    invite
+                    remove
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -310,16 +310,57 @@ export default {
         avatar: srcs[2],
       },
     ],
-    
-    
+    itemsremove: [
+      {
+        text: "Natu",
+
+        avatar: srcs[1],
+      },
+      {
+        text: "Nightday",
+
+        avatar: srcs[2],
+      },
+      {
+        text: "Jatlarr",
+
+        avatar: srcs[3],
+      },
+      {
+        text: "Portland",
+
+        avatar: srcs[4],
+      },
+      {
+        text: "Biking",
+
+        avatar: srcs[5],
+      },
+      {
+        text: "Bebe",
+
+        avatar: srcs[1],
+      },
+      {
+        text: "Bibi",
+
+        avatar: srcs[2],
+      },
+    ],
      
-    student: [],
+     student: [],
     loading: false,
     search: "",
+    search2:"",
     selected: [],
+    selected2: [],
     isActive: false,
     dialog: false,
+    dialog2: false,
+    
   }),
+ 
+
   components: { Navbarv1 },
   computed: {
     allSelected() {
@@ -345,13 +386,42 @@ export default {
 
       return selections;
     },
-  },
+     allSelectedremove () {
+        return this.selected2.length === this.itemsremove.length
+      },
+      categoriesremove () {
+        const searchremove = this.search2.toLowerCase()
+
+        if (!searchremove) return this.itemsremove
+
+        return this.itemsremove.filter(item => {
+          const textremove = this.itemsremove.text.toLowerCase()
+
+          return textremove.indexOf(searchremove) > -1
+        })
+      },
+      selectionsremove () {
+        const selectionsremove = []
+
+        for (const selectionremove of this.selected2) {
+          selectionsremove.push(selectionremove)
+        }
+
+        return selectionsremove
+      },
+    
+   },
+  
 
   watch: {
     selected() {
       this.search = "";
     },
+    selectedremove() {
+      this.search2 = "";
+    },
   },
+   
 
   methods: {
     async fetchnew() {
@@ -387,5 +457,16 @@ export default {
       }, 2000);
     },
   },
+  methods: {
+      next () {
+        this.loading = true;
+        
+        setTimeout(() => {
+          this.search = "";
+          this.selected2 = [];
+          this.loading = false;
+        }, 2000);
+      },
+    },
 };
 </script>
