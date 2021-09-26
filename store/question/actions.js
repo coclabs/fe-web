@@ -6,8 +6,8 @@ import { CompatSource } from 'webpack-sources'
 export default {
 
 
-  
-  
+
+
   async createquestionwithtest({commit},questiontest){
 var question=questiontest[0]
 var test=questiontest[1]
@@ -15,7 +15,7 @@ var questioninit=questiontest[2]
 console.log(question.questioninit +"h")
     return new Promise((resolve, reject) => {
 
-     axios({url: 'http://127.0.0.1:8000/createquestionwithtest',data:{
+     axios({url: process.env.baseUrl + '/createquestionwithtest',data:{
        'questionid':0,
        'questiontopic':question.questiontopic,
        'questiondescription':question.questiondescription,
@@ -29,35 +29,35 @@ console.log(question.questioninit +"h")
      }, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        }})     
+        }})
       .then(resp => {
         console.log(resp)
         resolve(resp)
       })
       .catch(err => {
-   
+
       console.log("asd"+err.message)
-       
+
         reject(err)
       })
-    })  
+    })
   }
    ,
   async fetchnextpage({commit},page){
     return new Promise((resolve, reject) => {
 
-     axios({url: 'http://127.0.0.1:8000/showtenquestionspost/', data:{page}, method: 'POST', headers: {
+     axios({url: process.env.baseUrl + '/showtenquestionspost/', data:{page}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
       .then(resp => {
-      
+
         resolve(resp)
       })
       .catch(err => {
-        
+
       console.log("asd"+err.message)
-       
+
         reject(err)
       })
     })
@@ -66,46 +66,46 @@ console.log(question.questioninit +"h")
   async deleteonequestion({commit},questionid){
     return new Promise((resolve, reject) => {
 
-     axios({url: 'http://127.0.0.1:8000/deleteonequestion/', data:{questionid}, method: 'POST', headers: {
+     axios({url: process.env.baseUrl + '/deleteonequestion/', data:{questionid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
       .then(resp => {
-      
+
         resolve(resp)
       })
       .catch(err => {
-        
+
       console.log("asd"+err.message)
-       
+
         reject(err)
       })
     })
   },
-  
+
   async multipledeletequestion({commit},question){
-   
-    
+
+
     var questionid=[];
     var i;
     for (i = 0; i < question.length; i++) {
       questionid.push(question[i].questionid)
     }
-    
+
     return new Promise((resolve, reject) => {
 
-     axios({url: 'http://127.0.0.1:8000/multipledeletequestion/', data:{questionid}, method: 'POST', headers: {
+     axios({url: process.env.baseUrl + '/multipledeletequestion/', data:{questionid}, method: 'POST', headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }})
       .then(resp => {
-      
+
         resolve(resp)
       })
       .catch(err => {
-        
+
       console.log("asd"+err.message)
-       
+
         reject(err)
       })
     })
@@ -119,7 +119,7 @@ console.log(question.questioninit +"h")
   var test=questiontest[1]
   var questioninit=questiontest[2]
 
-  
+
 if (test.exampletestcases==""){
   test.exampletestcases=question.tests[0].exampletestcases
 }
@@ -133,8 +133,8 @@ if (test.testsolution==""){
   test.testsolution=question.tests[0].testsolution
 }
       return new Promise((resolve, reject) => {
-  
-       axios({url: 'http://127.0.0.1:8000/updatequestion',data:{
+
+       axios({url: process.env.baseUrl + '/updatequestion',data:{
          'questionid':question.questionid,
          'questiontopic':question.questiontopic,
          'questiondescription':question.questiondescription,
@@ -148,20 +148,20 @@ if (test.testsolution==""){
        }, method: 'POST', headers: {
           'Access-Control-Allow-Origin' : '*',
           'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          }})     
+          }})
         .then(resp => {
           console.log(resp)
           resolve(resp)
         })
         .catch(err => {
-     
+
         console.log("asd"+err.message)
-         
+
           reject(err)
         })
-      })  
+      })
     },   async validatetestcase({commit},data){
-    
+
       var code={
        language:"python",version:"3.9.2",value:data[0]
       }
@@ -170,25 +170,25 @@ if (test.testsolution==""){
       }
 
               return new Promise((resolve, reject) => {
-          
-               axios({url: 'http://127.0.0.1:8000/gogo',data:{
+
+               axios({url: process.env.baseUrl + '/gogo',data:{
                code,context
-             
-               }, method: 'POST'})     
+
+               }, method: 'POST'})
                 .then(resp => {
                   console.log(resp)
                   resolve(resp)
                 })
                 .catch(err => {
-             
-              
+
+
                   reject(err)
                 })
-              })  
-            } 
+              })
+            }
 
 }
-  
-  
-  
+
+
+
 

@@ -162,7 +162,7 @@ import Navbarv3 from "../../components/Navbarv3.vue";
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/1/getallcourseteacher"
+      process.env.baseURL + "/1/getallcourseteacher"
     );
     console.log(this.items + "check");
   },
@@ -223,7 +223,7 @@ export default {
   methods: {
     async fetchnew() {
       this.items = await this.$axios.$get(
-        "http://127.0.0.1:8000/1/getallcourseteacher"
+        process.env.baseUrl + "/1/getallcourseteacher"
       );
     },
 
@@ -239,7 +239,7 @@ export default {
         alert("Please Fill All Data");
       } else {
         await this.$axios.post(
-          "http://127.0.0.1:8000/createcourseteacher",
+          process.env.baseUrl + "/createcourseteacher",
           this.course
         );
         this.dialog = false;

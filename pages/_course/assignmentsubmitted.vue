@@ -137,7 +137,7 @@ export default {
 
     if (this.role == "Student") {
       this.studentassignment = await this.$axios.$get(
-        "http://127.0.0.1:8000/" +
+        process.env.baseUrl +
           this.$cookies.get("id") +
           "/studentassignment"
       );
@@ -145,7 +145,7 @@ export default {
 
     if (this.role == "Teacher") {
       this.studentassignment = await this.$axios.$get(
-        "http://127.0.0.1:8000/" +
+        process.env.baseUrl +
           this.$route.params.course +
           "/studentassignment"
       );
@@ -207,14 +207,14 @@ export default {
 
       if (this.role == "Student") {
         this.studentassignmentquestion = await this.$axios.$get(
-          "http://127.0.0.1:8000/" +
+          process.env.baseUrl +
             this.$cookies.get("id") +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid
         );
       } else {
         this.studentassignmentquestion = await this.$axios.$get(
-          "http://127.0.0.1:8000/" +
+          process.env.baseUrl +
             this.$route.params.course +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid

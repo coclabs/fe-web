@@ -330,10 +330,10 @@ export default {
   },
   async fetch() {
     const questions = await this.$axios.$get(
-      "http://127.0.0.1:8000/showtenquestions/1"
+      process.env.baseUrl + "/showtenquestions/1"
     );
     const questionpage = await this.$axios.$get(
-      "http://127.0.0.1:8000/questionpage/"
+      process.env.baseUrl + "/questionpage/"
     );
     this.questions = questions;
     this.questionpage = questionpage;

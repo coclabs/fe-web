@@ -24,6 +24,7 @@
     "vuejs-ace-editor": "^1.0.1"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/vuetify": "^1.11.3",
     "fibers": "^5.0.0",
     "pug": "^3.0.2",

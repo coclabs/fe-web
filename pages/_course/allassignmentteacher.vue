@@ -88,7 +88,7 @@ export default {
 
   async fetch() {
     this.studentassignment = await this.$axios.$get(
-      "http://127.0.0.1:8000/read_all_student_assignment_record"
+      process.env.baseUrl + "/read_all_student_assignment_record"
     );
 
     for (let i = 0; i < this.studentassignment.length; i++) {
@@ -154,12 +154,12 @@ export default {
       console.log(this.selected);
 
       this.student = await this.$axios.$get(
-        "http://127.0.0.1:8000/read_record_student?assignmentid=" +
+        process.env.baseUrl + "/read_record_student?assignmentid=" +
           this.selected.assignmentid
       );
 
       // this.studentassignmentquestion = await this.$axios.$get(
-      //   "http://127.0.0.1:8000/2/studentassignmentquestion?studentassignmentid=" +
+      //   process.env.baseUrl + "/2/studentassignmentquestion?studentassignmentid=" +
       //     this.selected.StudentAssignment.studentassigmentid
       // );
 

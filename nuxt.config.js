@@ -54,6 +54,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/vuetify',
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -69,4 +70,9 @@ export default {
       }
     }
   },
+
+  // Environmental variable
+  env: {
+    baseUrl: process.env.NODE_ENV === 'PROD' ? process.env.PROD_BASE_URL : process.env.DEV_BASE_URL
+  }
 }

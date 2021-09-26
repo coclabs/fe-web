@@ -171,9 +171,9 @@ import $ from "jquery";
 import Navbarv1 from "../../../components/Navbarv1.vue";
 export default {
   async fetch() {
-    // this.question= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyquestionid/'+this.$route.params.questionid)
+    // this.question= await this.$axios.$get(process.env.baseUrl + '/getquestionbyquestionid/'+this.$route.params.questionid)
     this.questions = await this.$axios.$get(
-      "http://127.0.0.1:8000/getquestionbyassignmentid/" +
+      process.env.baseUrl + "/getquestionbyassignmentid/" +
         this.$route.params.assignmentid
     );
 
@@ -304,7 +304,7 @@ export default {
   methods: {
     postassigment() {
       this.$axios
-        .$post("http://127.0.0.1:8000/studentassignment", {
+        .$post(process.env.baseUrl + "/studentassignment", {
           assignmentid: this.$route.params.assignmentid,
           totalscore: 0,
           studentid: this.$route.params.student,
@@ -342,14 +342,14 @@ export default {
       console.log(this.assignment.studentassigmentid);
       console.log(this.totalscore);
 
-      await this.$axios.$put("http://127.0.0.1:8000/studentassignment", {
+      await this.$axios.$put(process.env.baseUrl + "/studentassignment", {
         studentassignmentid: this.assignment.studentassigmentid,
         totalscore: this.totalscore,
         totalcorrect: this.totalcorrect,
         totalnotcorrect: this.totalnotcorrect,
       });
 
-      await this.$axios.post("http://127.0.0.1:8000/write_assignment_record", {
+      await this.$axios.post(process.env.baseUrl + "/write_assignment_record", {
         assignmentid: this.$route.params.assignmentid,
         studentscore: this.totalscore,
       });
@@ -374,7 +374,7 @@ export default {
       };
 
       let validateresulttest = JSON.parse(
-        await this.$axios.$post("http://127.0.0.1:8000/gogo", {
+        await this.$axios.$post(process.env.baseUrl + "/gogo", {
           code,
           context,
         })
@@ -416,7 +416,7 @@ export default {
         }
 
         await this.$axios.$post(
-          "http://127.0.0.1:8000/studentassignmentquestion",
+          process.env.baseUrl + "/studentassignmentquestion",
           {
             questionnumber: num,
             studentscore: validateresulttest.total,
@@ -456,7 +456,7 @@ export default {
     //     };
 
     //     let validateresulttest = JSON.parse(
-    //       await this.$axios.$post("http://127.0.0.1:8000/gogo", {
+    //       await this.$axios.$post(process.env.baseUrl + "/gogo", {
     //         code,
     //         context,
     //       })
@@ -493,7 +493,7 @@ export default {
     //       }
     //     }
     //   }
-    // await this.$axios.$post("http://127.0.0.1:8000/studentassignment", {
+    // await this.$axios.$post(process.env.baseUrl + "/studentassignment", {
     //   assignmentid: this.$route.params.assignmentid,
     //   totalscore: 2,
     //   studentid: 1,
@@ -504,7 +504,7 @@ export default {
     // this.$router.push("/1/assignmentsubmitted");
 
     // if (this.validateresulttest.code == 500) {
-    //   await this.$axios.$post("http://127.0.0.1:8000/studentassignment", {
+    //   await this.$axios.$post(process.env.baseUrl + "/studentassignment", {
     //     assignmentid: this.$route.params.assignmentid,
     //     totalscore: 2,
     //     studentid: 1,

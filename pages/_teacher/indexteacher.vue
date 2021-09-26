@@ -141,7 +141,7 @@ export default {
   components: { Navbarv3 },
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/1/getallcourseteacher"
+      process.env.baseUrl + "/1/getallcourseteacher"
     );
   },
 

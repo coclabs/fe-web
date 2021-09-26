@@ -73,7 +73,7 @@ import Navbarv4 from "../../components/Navbarv4.vue";
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/" +
+      process.env.baseUrl +
         this.$route.params.student +
         "/getallcoursestudent"
     );

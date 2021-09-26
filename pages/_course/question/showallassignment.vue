@@ -556,7 +556,7 @@
           </template>
           <!-- <template v-slot:expanded-item="{ headers, item }">
       <td :colspan="headers.length">
-       TestSolution : {{item.tests}} 
+       TestSolution : {{item.tests}}
       </td>
     </template> -->
         </v-data-table>
@@ -747,7 +747,7 @@ export default {
       this.editedAssignment = Object.assign({}, item);
 
       await this.$axios.$post(
-        "http://127.0.0.1:8000/toggle_course_assignment",
+        process.env.baseUrl + "/toggle_course_assignment",
         {
           courseid: this.$route.params.course,
           assignmentid: this.editedAssignment.assignmentid,
@@ -755,7 +755,7 @@ export default {
       );
 
       const status = await this.$axios.$get(
-        "http://127.0.0.1:8000/" +
+        process.env.baseUrl +
           this.$route.params.course +
           "/read_course_assignment_status?page=" +
           this.page
@@ -928,7 +928,7 @@ export default {
         .catch((err) => console.log(err));
 
       const status = await this.$axios.$get(
-        "http://127.0.0.1:8000/" +
+        process.env.baseUrl +
           this.$route.params.course +
           "/read_course_assignment_status?page=" +
           this.page
@@ -952,25 +952,25 @@ export default {
 
   async fetch() {
     const assignments = await this.$axios.$get(
-      "http://127.0.0.1:8000/showtenassignment/1"
+      process.env.baseUrl + "/showtenassignment/1"
     );
     const assignmentpage = await this.$axios.$get(
-      "http://127.0.0.1:8000/assignmentpage/"
+      process.env.baseUrl + "/assignmentpage/"
     );
     this.assignments = assignments;
     this.assignmentpage = assignmentpage;
 
     const questions = await this.$axios.$get(
-      "http://127.0.0.1:8000/showtenquestions/1"
+      process.env.baseUrl + "/showtenquestions/1"
     );
     const questionpage = await this.$axios.$get(
-      "http://127.0.0.1:8000/questionpage/"
+      process.env.baseUrl + "/questionpage/"
     );
     this.questions = questions;
     this.questionpage = questionpage;
 
     const status = await this.$axios.$get(
-      "http://127.0.0.1:8000/" +
+      process.env.baseUrl +
         this.$route.params.course +
         "/read_course_assignment_status?page=1"
     );

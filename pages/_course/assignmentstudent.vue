@@ -163,11 +163,11 @@ import Navbarv5 from "../../components/Navbarv5.vue";
 export default {
   async fetch() {
     this.course = await this.$axios.$get(
-      "http://127.0.0.1:8000/" + this.$route.params.course + "/course"
+      process.env.baseUrl + this.$route.params.course + "/course"
     );
 
     this.me2 = await this.$axios.$get(
-      "http://127.0.0.1:8000/" +
+      process.env.baseUrl +
         this.$route.params.course +
         "/read_course_assignment"
     );

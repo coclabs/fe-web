@@ -249,7 +249,7 @@ const srcs = {
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/" +
+      process.env.baseUrl +
         this.$route.params.course +
         "/studentnotinthiscourse"
     );
@@ -403,14 +403,14 @@ export default {
   methods: {
     async fetchnew() {
       this.items = await this.$axios.$get(
-        "http://127.0.0.1:8000/" +
+        process.env.baseUrl +
           this.$route.params.course +
           "/studentnotinthiscourse"
       );
     },
     async addstudent() {
       for (let i = 0; i < this.selected.length; i++) {
-        await this.$axios.$post("http://127.0.0.1:8000/studentenrollcourse", {
+        await this.$axios.$post(process.env.baseUrl + "/studentenrollcourse", {
           studentid: this.selected[i].studentid,
           courseid: this.$route.params.course,
         });
