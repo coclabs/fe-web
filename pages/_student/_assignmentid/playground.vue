@@ -173,7 +173,8 @@ export default {
   async fetch() {
     // this.question= await this.$axios.$get(process.env.baseUrl + '/getquestionbyquestionid/'+this.$route.params.questionid)
     this.questions = await this.$axios.$get(
-      process.env.baseUrl + "/getquestionbyassignmentid/" +
+      process.env.baseUrl +
+        "/getquestionbyassignmentid/" +
         this.$route.params.assignmentid
     );
 
@@ -182,7 +183,7 @@ export default {
     console.log(this.questions + "track1");
 
     this.question = this.questions[this.questionindex];
-    console.log(this.question + "track2");
+    console.log(this.questions);
   },
   computed: {
     isDisabled() {
@@ -279,25 +280,7 @@ export default {
       questionindex: 0,
       question:
         //mock
-        [
-          {
-            questiondifficulty: "asd",
-            questiontopic: "asd",
-            questionid: 320,
-            questioninit: "asd",
-            questiondescription:
-              " ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16 ",
-          },
-          {
-            testframework: "",
-            exampletestcases: "asd",
-            testsolution: "asdasd",
-            question_id: 320,
-            testlanquage: "",
-            testcases: "asd",
-            testid: 322,
-          },
-        ],
+        [],
     };
   },
 

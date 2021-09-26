@@ -592,87 +592,7 @@ export default {
       questionpage: 1,
       editedAssignment: [],
       editedquestion: [],
-      questions: [
-        // mock
-
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "1",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "2",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "3",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "4",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "5",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "6",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "7",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "8",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "6",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "7",
-        },
-        {
-          questiontopic: "asdasdasd",
-          questiondescription: "asd",
-          questiondifficulty: "b",
-          questiondifficulty: "c",
-          questionid: "8",
-        },
-      ],
+      questions: [],
       dialogEdit2: false,
       models: {
         base: false,
@@ -691,13 +611,7 @@ export default {
         assignmentid: 0,
       },
       respdata: [],
-      assignments: [
-        { assignmentname: "a", assignmentdescription: "b", assignmentid: 1 },
-        { assignmentname: "a", assignmentdescription: "b", assignmentid: 2 },
-        { assignmentname: "a", assignmentdescription: "b", assignmentid: 4 },
-        { assignmentname: "a", assignmentdescription: "b", assignmentid: 5 },
-        { assignmentname: "a", assignmentdescription: "b", assignmentid: 6 },
-      ],
+      assignments: [],
       assignmentpage: 0,
       editedIndex: -1,
       page: 1,
@@ -755,7 +669,8 @@ export default {
       );
 
       const status = await this.$axios.$get(
-        process.env.baseUrl + "/" +
+        process.env.baseUrl +
+          "/" +
           this.$route.params.course +
           "/read_course_assignment_status?page=" +
           this.page
@@ -928,7 +843,8 @@ export default {
         .catch((err) => console.log(err));
 
       const status = await this.$axios.$get(
-        process.env.baseUrl + "/" +
+        process.env.baseUrl +
+          "/" +
           this.$route.params.course +
           "/read_course_assignment_status?page=" +
           this.page
@@ -970,7 +886,8 @@ export default {
     this.questionpage = questionpage;
 
     const status = await this.$axios.$get(
-      process.env.baseUrl + "/" +
+      process.env.baseUrl +
+        "/" +
         this.$route.params.course +
         "/read_course_assignment_status?page=1"
     );

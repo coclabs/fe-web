@@ -167,7 +167,8 @@ export default {
     );
 
     this.me2 = await this.$axios.$get(
-      process.env.baseUrl + "/" +
+      process.env.baseUrl +
+        "/" +
         this.$route.params.course +
         "/read_course_assignment"
     );
@@ -189,14 +190,7 @@ export default {
     widgets: false,
     isActive: false,
     tab: "",
-    assignment: {
-      assignmentdescription:
-        "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
-      assignmentname: "",
-      question: [],
-      maxpossiblescore: 50,
-      assignmentid: 0,
-    },
+    assignment: {},
 
     items: [
       {
