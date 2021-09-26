@@ -75,6 +75,6 @@ export default {
 
   // Environmental variable
   env: {
-    baseUrl: 'https://api.pdm-dev.me/'
+    baseUrl: 'https://api.pdm-dev.me'
   }
 }
