@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -73,6 +75,6 @@ export default {
 
   // Environmental variable
   env: {
-    baseUrl: process.env.NODE_ENV === 'PROD' ? process.env.PROD_BASE_URL : process.env.DEV_BASE_URL
+    baseUrl: 'https://api.pdm-dev.me'
   }
 }
