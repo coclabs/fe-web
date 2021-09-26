@@ -127,7 +127,7 @@ export default {
   components: { Navbarv2 },
   async fetch() {
     this.items = await this.$axios.$get(
-      process.env.baseUrl +
+      process.env.baseUrl + "/" +
         this.$route.params.student +
         "/getallcoursestudent"
     );

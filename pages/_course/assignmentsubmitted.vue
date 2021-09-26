@@ -137,7 +137,7 @@ export default {
 
     if (this.role == "Student") {
       this.studentassignment = await this.$axios.$get(
-        process.env.baseUrl +
+        process.env.baseUrl + "/" +
           this.$cookies.get("id") +
           "/studentassignment"
       );
@@ -207,7 +207,7 @@ export default {
 
       if (this.role == "Student") {
         this.studentassignmentquestion = await this.$axios.$get(
-          process.env.baseUrl +
+          process.env.baseUrl + "/" +
             this.$cookies.get("id") +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid

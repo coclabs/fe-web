@@ -95,7 +95,7 @@ export default {
   async fetch() {
     this.$cookies.set("courseid", this.$route.params.course);
     this.course = await this.$axios.$get(
-      process.env.baseUrl +  this.$route.params.course + "/course"
+      process.env.baseUrl + "/" + this.$route.params.course + "/course"
     );
   },
   data: () => ({
