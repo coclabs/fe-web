@@ -29,6 +29,7 @@ jobs:
             git checkout develop                                &&
             git pull                                            &&
             yarn install                                        &&
+            yarn build                                          &&
             systemctl start coc-web.service
       - name: notify discord
         uses: sarisia/actions-status-discord@v1.8.5

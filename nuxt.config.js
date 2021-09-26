@@ -1,4 +1,3 @@
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -15,8 +14,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  
- 
+
+
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', body: true },
 
@@ -39,46 +38,35 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    // Load a Node.js module directly (here it's a Sass file)
+
+    // CSS file in the project
+    '@/assets/css/main.css',
+    // SCSS file in the project
+
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-
-  
-  ],
+  plugins: [],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // Simple usage
     '@nuxtjs/vuetify',
-
-    // With options
-    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
-  ]
-  ,
-  css: [
-    // Load a Node.js module directly (here it's a Sass file)
-    
-    // CSS file in the project
-    '@/assets/css/main.css',
-    // SCSS file in the project
-    
   ],
 
-  
-
-  axios: {
-  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
-,
+    hotMiddleware: {
+      client: {
+        autoConnect: false
+      }
+    }
+  },
 }
-
