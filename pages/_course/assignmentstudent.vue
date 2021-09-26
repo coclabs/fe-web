@@ -231,16 +231,7 @@ export default {
         keyword: "Social",
       },
     ],
-    me2: [
-      {
-        assignmentname: "Homework 1",
-        coursename: "python101",
-      },
-      {
-        assignmentname: "Homework 2",
-        coursename: "python102",
-      },
-    ],
+    me2: [],
     search: "",
   }),
   components: { Navbarv5 },
