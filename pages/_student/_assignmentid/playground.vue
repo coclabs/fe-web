@@ -170,6 +170,20 @@
 import $ from "jquery";
 import Navbarv1 from "../../../components/Navbarv1.vue";
 export default {
+  async fetch() {
+    // this.question= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyquestionid/'+this.$route.params.questionid)
+    this.questions = await this.$axios.$get(
+      "http://127.0.0.1:8000/getquestionbyassignmentid/" +
+        this.$route.params.assignmentid
+    );
+
+    //create assignment to track time do
+    //use in production
+    console.log(this.questions + "track1");
+
+    this.question = this.questions[this.questionindex];
+    console.log(this.question + "track2");
+  },
   computed: {
     isDisabled() {
       // you can  check your form is filled or not here.
@@ -285,19 +299,6 @@ export default {
           },
         ],
     };
-  },
-
-  async fetch() {
-    // this.question= await this.$axios.$get('http://127.0.0.1:8000/getquestionbyquestionid/'+this.$route.params.questionid)
-    this.questions = await this.$axios.$get(
-      "http://127.0.0.1:8000/getquestionbyassignmentid/" +
-        this.$route.params.assignmentid
-    );
-
-    //create assignment to track time do
-
-    this.question = this.questions[this.questionindex];
-    console.log(3);
   },
 
   methods: {

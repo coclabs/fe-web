@@ -160,6 +160,12 @@
 <script>
 import Navbarv3 from "../../components/Navbarv3.vue";
 export default {
+  async fetch() {
+    this.items = await this.$axios.$get(
+      "http://127.0.0.1:8000/1/getallcourseteacher"
+    );
+    console.log(this.items + "check");
+  },
   data: () => ({
     imageselected: {},
     course: {
@@ -184,9 +190,7 @@ export default {
     drawer: null,
     dialog: false,
 
-    items: [
-     
-    ],
+    items: [],
     create: [{ title: "Delete" }],
 
     search: "",
@@ -242,11 +246,6 @@ export default {
         this.fetchnew();
       }
     },
-  },
-  async fetch() {
-    this.items = await this.$axios.$get(
-      "http://127.0.0.1:8000/1/getallcourseteacher"
-    );
   },
 };
 </script>
