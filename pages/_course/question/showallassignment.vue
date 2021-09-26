@@ -970,7 +970,7 @@ export default {
     this.questionpage = questionpage;
 
     const status = await this.$axios.$get(
-      process.env.baseUrl + "/"
+      process.env.baseUrl + "/" +
         this.$route.params.course +
         "/read_course_assignment_status?page=1"
     );
