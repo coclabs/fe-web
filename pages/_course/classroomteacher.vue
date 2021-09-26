@@ -162,7 +162,7 @@ import Navbarv3 from "../../components/Navbarv3.vue";
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      process.env.baseURL + "/1/getallcourseteacher"
+      process.env.baseUrl + "/1/getallcourseteacher"
     );
     console.log(this.items + "check");
   },
