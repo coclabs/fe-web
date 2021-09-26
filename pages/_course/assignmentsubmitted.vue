@@ -145,7 +145,7 @@ export default {
 
     if (this.role == "Teacher") {
       this.studentassignment = await this.$axios.$get(
-        process.env.baseUrl + "/"
+        process.env.baseUrl + "/" +
           this.$route.params.course +
           "/studentassignment"
       );
@@ -214,7 +214,7 @@ export default {
         );
       } else {
         this.studentassignmentquestion = await this.$axios.$get(
-          process.env.baseUrl + "/"
+          process.env.baseUrl + "/" +
             this.$route.params.course +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid
