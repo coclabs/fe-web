@@ -24,7 +24,7 @@
               </v-list-item-content>
 
               <v-list-item-avatar tile size="250" class="mx-1">
-                <v-img :src="require('~/assets/Learningkidanimate.svg')"></v-img
+                <v-img :src="require('~/assets/learningkidanimate.svg')"></v-img
               ></v-list-item-avatar>
             </v-list-item>
           </v-card>
