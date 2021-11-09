@@ -19,6 +19,7 @@
     "jquery": "^3.5.1",
     "nuxt": "^2.15.4",
     "nuxt-highlightjs": "^1.0.1",
+    
     "popper.js": "^1.16.1",
     "vue-highlightable-input": "^1.0.9",
     "vuejs-ace-editor": "^1.0.1"

@@ -1,28 +1,28 @@
-require('dotenv').config()
+require("dotenv").config();
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'peddeal',
+    title: "peddeal",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en"
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
 
-
-    script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', body: true },
+  script: [
+    {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
+      body: true
+    },
 
     {
-      src:"http://code.jquery.com/jquery-1.7.1.min.js",
+      src: "http://code.jquery.com/jquery-1.7.1.min.js",
       type: "text/javascript"
     },
     {
@@ -35,17 +35,14 @@ export default {
         "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js",
       type: "text/javascript"
     }
-  ]
-  ,
-
+  ],
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // Load a Node.js module directly (here it's a Sass file)
 
     // CSS file in the project
-    '@/assets/css/main.css',
+    "@/assets/css/main.css"
     // SCSS file in the project
-
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -54,14 +51,14 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxtjs/vuetify',
-    '@nuxtjs/dotenv',
-  ],
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/dotenv"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',  'cookie-universal-nuxt',   '@ncviewer/ace-editor-module',  '@nuxtjs/markdownit'
+    "@nuxtjs/axios",
+    "cookie-universal-nuxt",
+    "@ncviewer/ace-editor-module",
+    "@nuxtjs/markdownit"
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -75,6 +72,6 @@ export default {
 
   // Environmental variable
   env: {
-    baseUrl: 'https://api.pdm-dev.me'
+    baseUrl: "https://api.pdm-dev.me"
   }
-}
+};

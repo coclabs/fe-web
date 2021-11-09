@@ -44,9 +44,17 @@
 
                 <v-list-item link color="grey lighten-4">
                   <v-list-item-content>
-                    <v-list-item-title
-                      ><v-icon color="amber"> mdi-message-text</v-icon> Chat
-                    </v-list-item-title>
+                    <nuxt-link
+                      :to="{
+                        name: 'course-coursechat',
+                        params: { course: this.$route.params.course },
+                      }"
+                      class="text-decoration-none"
+                    >
+                      <v-list-item-title
+                        ><v-icon color="amber"> mdi-message-text</v-icon> Chat
+                      </v-list-item-title>
+                    </nuxt-link>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -93,6 +101,7 @@
 import Navbarv1 from "../../components/Navbarv1.vue";
 export default {
   async fetch() {
+    // this.courseid = this.$route.params.course;
     this.$cookies.set("courseid", this.$route.params.course);
     this.course = await this.$axios.$get(
       process.env.baseUrl + "/" + this.$route.params.course + "/course"

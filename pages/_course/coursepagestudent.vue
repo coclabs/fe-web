@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Navbarv5 />
-    <v-main style="background-color: #efe5fd">
+    <v-main class="mx-2" style="background-color: #efe5fd">
       <v-col cols="12" md="8" sm="6" lg="8" class="px-8 mx-auto">
         <v-card
           max-height="250"
@@ -45,9 +45,17 @@
 
                 <v-list-item link color="grey lighten-4">
                   <v-list-item-content>
-                    <v-list-item-title
-                      ><v-icon color="amber"> mdi-message-text</v-icon> Chat
-                    </v-list-item-title>
+                    <nuxt-link
+                      :to="{
+                        name: 'course-coursechat',
+                        params: { course: this.$route.params.course },
+                      }"
+                      class="text-decoration-none"
+                    >
+                      <v-list-item-title
+                        ><v-icon color="amber"> mdi-message-text</v-icon> Chat
+                      </v-list-item-title>
+                    </nuxt-link>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>

@@ -83,6 +83,22 @@ export default {
     this.$store.dispatch("authentication/setuser", user);
     this.$store.dispatch("authentication/setdatetime", datetime);
   },
+  beforeCreate() {
+    var token;
+    token = this.$cookies.get("token");
+    // If the user is not authenticated
+    if (!token) {
+      this.$router.push("/authen/login");
+    }
+    var role = this.$cookies.get("role");
+    var id = this.$cookies.get("id");
+
+    // if (role == "Teacher") {
+    //   this.$router.push("" + id + "/indexteacher");
+    // } else if (role == "Student") {
+    //   this.$router.push("" + id + "/indexstudent");
+    // }
+  },
 
   methods: {
     logout: function () {

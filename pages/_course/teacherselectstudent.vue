@@ -249,7 +249,8 @@ const srcs = {
 export default {
   async fetch() {
     this.items = await this.$axios.$get(
-      process.env.baseUrl + "/" +
+      process.env.baseUrl +
+        "/" +
         this.$route.params.course +
         "/studentnotinthiscourse"
     );
@@ -403,7 +404,8 @@ export default {
   methods: {
     async fetchnew() {
       this.items = await this.$axios.$get(
-        process.env.baseUrl + "/" +
+        process.env.baseUrl +
+          "/" +
           this.$route.params.course +
           "/studentnotinthiscourse"
       );
