@@ -9,8 +9,7 @@
 
         <v-text-field v-model="message"></v-text-field>
         <v-btn @click="sendMessage()">Send</v-btn>
-        <div v-if="role == 'Teacher'"><Navbarv1 /></div>
-        <div v-if="role == 'Student'"><Navbarv5 /></div>
+
         <ul id="example-2">
           <div v-for="(item, index) in items" :key="index">
             <div v-if="item.id == 1" style="color: red">
@@ -69,7 +68,7 @@ export default {
   },
   mounted() {
     var ws = new WebSocket(
-      `ws://localhost:8000/ws/` +
+      `ws://api.pdm-dev.me/ws/` +
         this.courseid +
         `/` +
         this.id +
