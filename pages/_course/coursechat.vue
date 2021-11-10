@@ -67,8 +67,16 @@ export default {
     this.role = this.$cookies.get("role");
   },
   mounted() {
+    if (window.location.protocol == "https:") {
+      var ws_scheme = "wss://";
+    } else {
+      var ws_scheme = "ws://";
+    }
+
     var ws = new WebSocket(
-      `ws://api.pdm-dev.me/ws/` +
+      ws_scheme +
+        "localhost:8000" +
+        "/ws/" +
         this.courseid +
         `/` +
         this.id +
