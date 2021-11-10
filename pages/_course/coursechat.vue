@@ -68,7 +68,7 @@ export default {
   },
   mounted() {
     if (window.location.protocol == "https:") {
-      var ws_scheme = "wss://";
+      var ws_scheme = "ws://";
     } else {
       var ws_scheme = "ws://";
     }
