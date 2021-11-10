@@ -74,8 +74,7 @@ export default {
     }
 
     var ws = new WebSocket(
-      ws_scheme +
-        location.host +
+      "wss://api-pdm.dev.me" +
         "/ws/" +
         this.courseid +
         `/` +
