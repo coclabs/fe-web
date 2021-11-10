@@ -74,7 +74,7 @@ export default {
     }
 
     var ws = new WebSocket(
-      "wss://api-pdm-dev.me" +
+      "ws://localhost:8000" +
         "/ws/" +
         this.courseid +
         `/` +
