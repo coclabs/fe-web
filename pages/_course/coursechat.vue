@@ -75,7 +75,7 @@ export default {
 
     var ws = new WebSocket(
       ws_scheme +
-        "localhost:8000" +
+        location.host +
         "/ws/" +
         this.courseid +
         `/` +
