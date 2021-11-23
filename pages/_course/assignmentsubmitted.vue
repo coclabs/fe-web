@@ -146,9 +146,17 @@ export default {
     if (this.role == "Teacher") {
       this.studentassignment = await this.$axios.$get(
         process.env.baseUrl + "/" +
-          this.$route.params.course +
+          this.$route.query.studentid +
           "/studentassignment"
       );
+      console.log(this.studentassignment);
+      for (let i = 0; i < this.studentassignment.length; i++) {
+      
+       const d= new Date(this.studentassignment[i].StudentAssignment.created_at);
+        const d2= new Date(this.studentassignment[i].StudentAssignment.update_at);
+       this.studentassignment[i].StudentAssignment.created_at= d.toLocaleString();
+       this.studentassignment[i].StudentAssignment.update_at= d2.toLocaleString();
+    }
     }
   },
 
@@ -215,7 +223,7 @@ export default {
       } else {
         this.studentassignmentquestion = await this.$axios.$get(
           process.env.baseUrl + "/" +
-            this.$route.params.course +
+            this.$route.query.studentid +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid
         );

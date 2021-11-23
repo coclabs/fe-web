@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Navbarv1 />
-    <v-navigation-drawer app clipped right width="300">
+       <v-navigation-drawer app  right width="300">
       <v-col class="mt-3" cols="12">
         <strong>Points</strong>
       </v-col>

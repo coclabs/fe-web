@@ -1,84 +1,63 @@
 
 <template>
-  <v-app style="background-color: #efe5fd">
+  <v-app style="background-color: #EFE5FD">
     <Navbarv3 />
-
-    <v-main>
-      <v-row wrap class="my-2 mx-2">
-        <v-col md="8" sm="6" lg="8" class="px-16">
+   
+    <v-main class="mx-2 " style="background-color: #EFE5FD">
+      <v-row >
+        <v-col cols="12" sm="8">
           <v-card
-            max-height="250"
-            color="amber lighten-2"
-            class="pa-2 rounded-xl hidden-sm-and-down"
+            class="mx-4 rounded-xl pa-4"
+    style="border: 1px solid #b388ff"
+     color="" flat
           >
+          <v-row>
+            <v-col cols="12" sm="8">
             <v-list-item three-line>
-              <v-list-item-content class="ms-8 hidden-sm-and-down">
-                <v-list-item-title class="text-h4 text-center">
+              <v-list-item-content >
+                <v-list-item-title class="text-h4 mb-1">
                   Welcome Teacher
                 </v-list-item-title>
-                <v-list-item-subtitle class="text-h6 text-center">
-                  firstname: {{ user.firstname }} lastname: {{ user.lastname }}
-                </v-list-item-subtitle>
-                <div class="text-overline mb-2"></div>
+                  <v-list-item-subtitle>Welcome back {{ user.firstname }} {{ user.lastname }}. We are glad here.<br>
+          Inspire the best work in people.enabling them to acheive 
+        </v-list-item-subtitle>
+        <v-list-item-subtitle> thier goals.
+        </v-list-item-subtitle>
               </v-list-item-content>
-
-              <v-list-item-avatar tile size="240" class="mx-1">
-                <v-img :src="require('~/assets/learning-animate.svg')"></v-img
-              ></v-list-item-avatar>
-            </v-list-item>
+              </v-list-item>
+              <v-card-actions>
+      <v-btn
+      class="px-3"
+        color="amber lighten-1"
+        
+       rounded
+      >
+        View Details
+      </v-btn>
+    </v-card-actions>
+            </v-col>
+              <v-col cols="12" sm="4">
+      <v-avatar size="250" tile class="mt-n16 hidden-sm-and-down">
+      <v-img :src="require('~/assets/learning-animate.svg')" ></v-img>
+      </v-avatar>
+    </v-col>
+          </v-row>
           </v-card>
-        </v-col>
+        
 
-        <v-col cols="12" md="4">
-          <v-card
-            color=" rounded-xl"
-            class="mx-auto"
-            style="border: 1px solid #b388ff"
-          >
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="text-overline mb-4"></div>
-                <v-list-item-title class="text-h5 mx-3">
-                  Play Ground
-                </v-list-item-title>
-                <v-list-item-subtitle class="mx-3"
-                  >Play and learning coding python
-                  language</v-list-item-subtitle
-                >
-              </v-list-item-content>
-
-              <v-list-item-avatar tile size="160">
-                <v-img :src="require('~/assets/pythonclass2.svg')"></v-img
-              ></v-list-item-avatar>
-            </v-list-item>
-
-            <v-card-actions class="mx-3 mb-1">
-              <v-btn
-                rounded
-                dark
-                color="deep-purple accent-1"
-                href="/playground/_assignmentid"
-              >
-                Play
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col md="4" class="px-16">
-          <v-icon large color="#B388FF"> mdi-book </v-icon>
-          <strong>Course</strong>
-        </v-col>
-        <v-col class="text-right px-8" md="4" offset-md="4">
-          <div>
-            <v-btn text href="/course/classroomteacher">
+       
+        <v-toolbar flat color="rgba(0,0,0,0)" dense class="my-1">
+    <v-toolbar-title href="/classroomstudent">Course</v-toolbar-title>
+     <v-icon  color="#B388FF"> mdi-book </v-icon>
+    <v-spacer></v-spacer>
+    <span  ><v-btn text class="grey--text" href="/course/classroomteacher">
               <v-icon dark left> mdi-arrow-right </v-icon>view all</v-btn
-            >
-          </div>
-        </v-col>
-
-        <v-slide-group v-model="model" class="pa-2 mx-8" show-arrows>
+            ></span>
+  </v-toolbar>
+       <v-row class="mt-n5">
+        <v-slide-group v-model="model"  md="8" sm="6" lg="8" show-arrows>
           <v-slide-item v-for="card in items" :key="card.title">
-            <v-card class="ma-6 rounded-lg" min-width="400">
+            <v-card class="ma-6 rounded-xl" min-width="365" >
               <v-img
                 class="white--text deep-purple lighten-3 align-end"
                 height="200px"
@@ -128,6 +107,61 @@
             </v-card>
           </v-slide-item>
         </v-slide-group>
+       </v-row>
+        </v-col>
+         <v-col cols="12" md="4">
+           <v-card
+    class=" rounded-xl pa-4"
+    
+    color="#FFFFFF" flat
+  >
+          <v-card
+            color=" rounded-xl "
+            class="mx-auto"
+            style="border: 1px solid #b388ff"
+          >
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="text-overline mb-4"></div>
+                <v-list-item-title class="text-h5 mx-3">
+                  Play Ground
+                </v-list-item-title>
+                <v-list-item-subtitle class="mx-3"
+                  >Play and learning coding python
+                  language</v-list-item-subtitle
+                >
+              </v-list-item-content>
+
+              <v-list-item-avatar tile size="160">
+                <v-img :src="require('~/assets/pythonclass2.svg')"></v-img
+              ></v-list-item-avatar>
+            </v-list-item>
+
+            <v-card-actions class="mx-3 mb-1">
+              <v-btn
+                rounded
+                dark
+                color="deep-purple accent-1"
+                href="/playground/_assignmentid"
+              >
+                Play
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+           
+          <div class="mt-4">
+           <v-card color="white" class="rounded-xl mx-4 pa-10" flat>
+    <div class="text-center">
+      <span>Enjoy<strong> your</strong> course teach and learn fun</span>
+     <v-avatar size="180" tile >
+      <v-img :src="require('~/assets/team.svg')" ></v-img>
+      </v-avatar>
+    </div>
+    
+ </v-card>
+          </div>
+           </v-card>
+        </v-col>
       </v-row>
     </v-main>
   </v-app>

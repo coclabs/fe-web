@@ -1,39 +1,148 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #EFE5FD">
     <div v-if="role == 'Teacher'"><Navbarv1 /></div>
     <div v-if="role == 'Student'"><Navbarv5 /></div>
-    <v-main style="background-color: #ede7f6">
-      <div>
-        <h1>WebSocket Chat : Room {{ courseid }}</h1>
-        <h2></h2>
+      <v-navigation-drawer
+      v-model="drawer"
+      app right
+    >
+      
 
-        <v-text-field v-model="message"></v-text-field>
-        <v-btn @click="sendMessage()">Send</v-btn>
+      <v-divider></v-divider>
+
+      <v-list two-line v-for="(item, index) in items" :key="index">
+        <template >
+        <v-list-item v-if="item.id == 1"
+        >
+         <v-list-item-avatar >
+                      <v-avatar
+              color="#b388ff"
+              class="white--text"
+            >
+             T
+            </v-avatar>
+                    </v-list-item-avatar>
+          
+          <v-list-item-content>
+            <v-list-item-title>
+              <div>Teacher Online :</div>
+             <div v-if="item.message[0]!=null"> {{ item.message[0].firstname}}</div>
+              
+            </v-list-item-title>
+            
+          </v-list-item-content>
+        </v-list-item>
+        </template>
+        <template >
+         <v-list-item v-if="item.id == 2"
+        >
+           <v-list-item-avatar >
+                      <v-avatar
+              color="amber lighten-2"
+              class="white--text"
+            >
+             S
+            </v-avatar>
+                    </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title>
+              
+              <div>Student Online :</div>
+                 <div v-if="item.message[0]!=null"> {{ item.message[0].firstname}}</div>
+             
+            
+            </v-list-item-title>
+            
+          </v-list-item-content>
+        </v-list-item>
+        </template>
+        
+      </v-list>
+
+    </v-navigation-drawer>
+    
+    <v-main style="background-color: #EFE5FD">
+      <div>
 
         <ul id="example-2">
-          <div v-for="(item, index) in items" :key="index">
-            <div v-if="item.id == 1" style="color: red">
-              Teacher Online :{{ item.message }}
-            </div>
-            <div v-if="item.id == 2" style="color: blue">
-              Student Online :{{ item.message }}
-            </div>
+         
+           <v-card>
+              <v-subheader class="text-h5"><v-icon color="amber"> mdi-message-text</v-icon>Group Chat : Room {{ courseid }}</v-subheader>
 
-            <v-card style="background-color: white">
-              <div v-if="item.id == 5" style="text-decoration: underline">
-                <h4>{{ item.message }}</h4>
-              </div>
-            </v-card>
+              <v-list two-line v-for="(item, index) in items" :key="index">
+                <template >
+                  <v-card color="#ede7f6">
+                  <v-list-item
+                   v-if="item.id == 5"
+                    
+                  >
+                    <v-list-item-avatar >
+                      <v-avatar
+              color="grey darken-1"
+              class="white--text"
+            >
+             T
+            </v-avatar>
+                    </v-list-item-avatar>
 
-            <v-card style="background-color: black">
-              <div
-                v-if="item.id == 6"
-                style="text-decoration: underline; color: white"
-              >
-                <h4>{{ item.message }}</h4>
-              </div>
+                    <v-list-item-content>
+                      <v-list-item-title></v-list-item-title>
+
+                      <v-list-item-subtitle >
+                        {{ item.message }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                  </v-card>
+                  
+                </template>
+                <template >
+                  <v-card color="#FFECB3">
+                  <v-list-item
+                    v-if="item.id == 6"
+                    
+                  >
+                    <v-list-item-avatar>
+                       <v-avatar
+              color="grey darken-1"
+              class="white--text"
+            >
+             S
+            </v-avatar>
+                    </v-list-item-avatar>
+
+                    <v-list-item-content>
+                      <v-list-item-title></v-list-item-title>
+
+                      <v-list-item-subtitle>
+                        {{ item.message }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                  </v-card>
+                </template>
+               
+              </v-list>
+              
+         <v-footer
+      app
+      color="transparent"
+      height="72"
+      inset
+    >
+      <v-text-field
+       v-model="message"
+        background-color="grey lighten-1"
+        dense
+        flat
+        hide-details
+        rounded
+        solo
+      ></v-text-field> <v-btn @click="sendMessage()">Send</v-btn>
+    </v-footer>
             </v-card>
-          </div>
+           
         </ul>
       </div>
     </v-main>
@@ -67,15 +176,8 @@ export default {
     this.role = this.$cookies.get("role");
   },
   mounted() {
-    if (window.location.protocol == "https:") {
-      var ws_scheme = "wss://";
-    } else {
-      var ws_scheme = "ws://";
-    }
-
     var ws = new WebSocket(
-      "ws://localhost:8000" +
-        "/ws/" +
+      `ws://localhost:8000/ws/` +
         this.courseid +
         `/` +
         this.id +

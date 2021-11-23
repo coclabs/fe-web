@@ -1,14 +1,13 @@
 <template>
   <v-app>
     <Navbarv3 />
-    <v-main style="background-color: #efe5fd">
+    <v-main style="background-color: #EFE5FD">
       <v-container>
         <v-row class="d-flex justify-end ma-2">
           <v-dialog v-model="dialog" persistent max-width="700">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="amber darken-1"
-                dark
+                color="amber lighten-1"
                 v-bind="attrs"
                 v-on="on"
                 class="rounded-xl"
@@ -49,10 +48,11 @@
                   label="Course Objective"
                 ></v-textarea>
                 <v-select
+                 color="#7776AC"
                   :items="items2"
                   label="Class Image"
                   v-model="imageselected"
-                  max-width="500"
+                  max-width="400"
                 >
                   <template v-slot:selection="{ item }">
                     <img :src="item.image" />{{ item.name }}
@@ -66,7 +66,7 @@
               <v-card-text></v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="amber darken-1" text @click="dialog = false">
+                <v-btn color="amber lighten-1" text @click="dialog = false">
                   Cancel
                 </v-btn>
                 <v-btn color="deep-purple accent-1" text @click="createcourse">
@@ -97,7 +97,7 @@
           >
             <v-hover v-slot="{ hover }">
               <v-card
-                class="mx-4 rounded-lg"
+                class="mx-4 rounded-xl"
                 max-width="400"
                 :elevation="hover ? 5 : 2"
                 :class="{ 'on-hover': hover }"

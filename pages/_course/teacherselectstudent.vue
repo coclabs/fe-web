@@ -129,7 +129,7 @@
                   class="pa-2 rounded-lg"
                   outlined
                   tile
-                  color="amber lighten-2"
+                  color="amber lighten-1"
                 >
                   <p class="text-center">remove students</p>
                   <v-card-subtitle class="pa-2 text-center">

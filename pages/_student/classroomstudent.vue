@@ -25,7 +25,7 @@
           >
             <v-hover v-slot="{ hover }">
               <v-card
-                class="mx-4 rounded-lg"
+                class="mx-4 rounded-xl"
                 max-width="400"
                 :elevation="hover ? 5 : 2"
                 :class="{ 'on-hover': hover }"

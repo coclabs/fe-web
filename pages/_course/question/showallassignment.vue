@@ -544,7 +544,7 @@
               assign
 
               <v-icon :color="a[assignments.indexOf(item)] ? 'green' : 'red'">
-                mdi-checkbox-marked-circle
+               mdi-circle
               </v-icon>
             </v-btn>
           </template>

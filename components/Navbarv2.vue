@@ -48,46 +48,108 @@
       </v-list>
       
     </v-navigation-drawer> -->
-    <v-app-bar
-      clipped-left
-      clipped-right
-      app
-      flat
-      fixed
-      color="deep-purple accent-1"
+     <v-navigation-drawer
+     dark app flat
+     v-model="drawer"
+      class="deep-purple accent-1" width="100" 
+      
     >
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on" href="/">
-            <v-toolbar-title class="text-uppercase black--text">
-              <span class="font-weight-light">Call Of</span>
-              <span>Code</span></v-toolbar-title
-            >
-          </v-btn>
-        </template>
-        <span>Dashboard</span>
-      </v-tooltip>
-      <v-divider class="mx-4" vertical inset></v-divider>
-      <v-toolbar-items>
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn text v-bind="attrs" v-on="on" v-bind:href="s">
-              Course
-            </v-btn>
-          </template>
-          <span>Course</span>
-        </v-tooltip>
-      </v-toolbar-items>
-      <v-spacer></v-spacer>
+        <div class="text-center mt-5">
+           <v-btn fab color="white" x-large href="/" >
+             <v-list-item-avatar class="mx-5" size="60">
+         <v-img :src="require('~/assets/logococ-3.jpg')" ></v-img>
+        </v-list-item-avatar>
+               
+           </v-btn>
+              
+        </div>
+    
 
-      <span class="font-weight-light">Session Expires:{{ datetime }}</span>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-divider vertical></v-divider>
-        <v-btn text color="#C6B9FF" @click="logout">
-          <span>Sign Out</span>
-          <v-icon right>mdi-logout</v-icon>
+                        <v-list flat class="mt-5" >
+        <v-list-item-group v-model="selectedItem" color="black" >
+          
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+            router
+            :to="item.route"
+            active-class="border"
+            class="ml-2 my-3"
+          :ripple="false"
+          
+          >
+          <b></b>
+                        <b></b>
+                         <v-tooltip right>
+             <template v-slot:activator="{ on, attrs }">
+            <v-list-item-icon v-bind="attrs"
+          v-on="on">
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            </template>
+             <span>{{ item.title }}</span>
+          </v-tooltip>
+          </v-list-item>
+             
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    
+      <v-app-bar
+       color="rgba(0,0,0,0)"  app flat absolute
+    >
+    <v-app-bar-nav-icon class="brown-text d-lg-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+            <span class="font-weight-light d-md-none">Session Expires:{{ datetime }}</span>
+       <v-btn
+            icon
+            small
+            class="ma-2"
+          >
+            <v-icon>
+             mdi-bell-outline
+            </v-icon>
+          </v-btn>
+          <v-menu offset-y
+    left
+    nudge-bottom="14"
+    min-width="230"
+    content-class="user-profile-menu-content"
+  >
+   <template v-slot:activator="{ on, attrs }">
+        <v-btn  rounded dark v-bind="attrs"
+          v-on="on" color="deep-purple accent-1">
+          <span>user name</span>
+           <v-avatar size="30" class="ml-2">
+                 <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
+              </v-avatar>
+              <v-icon>mdi-menu-down</v-icon>
         </v-btn>
-      </v-toolbar-items>
+        </template>
+   <v-list>
+   <v-list-item link>
+        <v-list-item-icon class="me-2">
+          <v-icon size="22"  >
+           mdi-account
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Profile</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item link>
+        <v-list-item-icon class="me-2">
+          <v-icon size="22" @click="logout">
+            mdi-logout
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Log-out</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+   </v-list>
+          </v-menu>
     </v-app-bar>
   </div>
 </template>
@@ -113,12 +175,78 @@ export default {
   },
   data() {
     return {
+      selectedItem: 0,
       drawer: true,
       items: [
-        { title: " Dashboard", icon: "mdi-home-city", route: "/authen/login" },
+        // { title: " Dashboard", icon: "mdi-home-city", route: "/authen/login" },
+         {
+          title: "Dashboard",
+          icon: "mdi-post-outline",
+          route:  "/" + this.$route.params.student +"/indexstudent",
+        },
+        {
+          title: "Courseroom",
+          icon: "mdi-account-group",
+          route:  "/" + this.$route.params.student + "/classroomstudent",
+        },
       ],
       mini: true,
     };
   },
 };
 </script>
+<style>
+.border  {
+    background:  #EFE5FD;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+      text-decoration: none;  
+}
+.border b:nth-child(1)
+{
+    
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 83%;
+    background:  #EFE5FD;
+  
+    display: none; 
+}
+.border b:nth-child(1)::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 20px;
+    background: #B388FF;
+}
+.border b:nth-child(2)
+{
+    position: absolute;
+    bottom: -20px;
+    height: 20px;
+    width: 83%;
+    background:  #EFE5FD;
+    display: none;
+}
+.border b:nth-child(2)::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    background: #B388FF;
+}
+.border b:nth-child(1),
+.border b:nth-child(2)
+{
+    display: block;
+}
+</style>

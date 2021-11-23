@@ -93,7 +93,11 @@ export default {
 
     for (let i = 0; i < this.studentassignment.length; i++) {
       this.studentassignment[i]["mean"] =
-        this.studentassignment[i].allscore / this.studentassignment[i].attempt;
+       ( this.studentassignment[i].allscore / this.studentassignment[i].attempt).toFixed(2);
+       const d= new Date(this.studentassignment[i].firstdonetime);
+        const d2= new Date(this.studentassignment[i].lastdonetime);
+       this.studentassignment[i].firstdonetime= d.toLocaleString();
+       this.studentassignment[i].lastdonetime= d2.toLocaleString();
     }
   },
 
@@ -146,7 +150,7 @@ export default {
     viewdata2(item) {
       this.selected2 = Object.assign({}, item);
       this.$router.push(
-        "/" + this.selected2.studentid + "/assignmentsubmitted"
+        "/" + this.$cookies.get("courseid")+ "/assignmentsubmitted?studentid="+this.selected2.studentid
       );
     },
     async viewdata(item) {

@@ -42,14 +42,14 @@
 
                 <v-divider class="my-2"></v-divider>
 
-                <v-list-item link color="grey lighten-4">
+                <v-list-item link >
                   <v-list-item-content>
                     <nuxt-link
                       :to="{
                         name: 'course-coursechat',
                         params: { course: this.$route.params.course },
                       }"
-                      class="text-decoration-none"
+                      class="text-decoration-none black--text"
                     >
                       <v-list-item-title
                         ><v-icon color="amber"> mdi-message-text</v-icon> Chat
