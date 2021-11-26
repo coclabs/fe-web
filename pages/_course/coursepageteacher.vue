@@ -35,7 +35,7 @@
                 <v-list-item v-for="n in 1" :key="n" link>
                   <v-list-item-content>
                     <v-list-item-title
-                      ><v-icon color="amber"> mdi-book </v-icon>Post
+                      ><v-icon color="amber darken-1"> mdi-book </v-icon>Post
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -52,7 +52,7 @@
                       class="text-decoration-none black--text"
                     >
                       <v-list-item-title
-                        ><v-icon color="amber"> mdi-message-text</v-icon> Chat
+                        ><v-icon color="amber darken-1"> mdi-message-text</v-icon> Chat
                       </v-list-item-title>
                     </nuxt-link>
                   </v-list-item-content>

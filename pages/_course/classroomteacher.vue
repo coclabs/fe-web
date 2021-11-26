@@ -7,7 +7,7 @@
           <v-dialog v-model="dialog" persistent max-width="700">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                color="amber lighten-1"
+                color="amber accent-3"
                 v-bind="attrs"
                 v-on="on"
                 class="rounded-xl"

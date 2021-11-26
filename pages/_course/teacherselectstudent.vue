@@ -85,7 +85,7 @@
                           v-text="item.firstname"
                         ></v-list-item-title>
                         <v-list-item-icon>
-                          <v-icon> mdi-message-outline </v-icon>
+                          <v-icon>  </v-icon>
                         </v-list-item-icon>
                       </v-list-item>
                     </template>
@@ -129,7 +129,7 @@
                   class="pa-2 rounded-lg"
                   outlined
                   tile
-                  color="amber lighten-1"
+                  color="amber accent-3"
                 >
                   <p class="text-center">remove students</p>
                   <v-card-subtitle class="pa-2 text-center">
@@ -195,7 +195,7 @@
                           v-text="item.text"
                         ></v-list-item-title>
                         <v-list-item-icon>
-                          <v-icon> mdi-message-outline </v-icon>
+                          <v-icon>  </v-icon>
                         </v-list-item-icon>
                       </v-list-item>
                     </template>

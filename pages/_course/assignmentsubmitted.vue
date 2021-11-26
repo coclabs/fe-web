@@ -27,6 +27,21 @@
                 {{ item.Assignment.assignmentid }}
               </v-chip>
             </template>
+             <!-- <template v-slot:[`item.StudentAssignment.totalscore`]="{ item }">
+              <v-chip color="deep-purple accent-1" dark>
+                {{ item.StudentAssignment.totalscore }}
+              </v-chip>
+            </template>
+            <template v-slot:[`item.StudentAssignment.totalnotcorrect`]="{ item }">
+              <v-chip color="red accent-2" dark>
+                {{ item.StudentAssignment.totalnotcorrect }}
+              </v-chip>
+            </template>
+             <template v-slot:[`item.StudentAssignment.totalcorrect`]="{ item }">
+              <v-chip color="teal accent-2" >
+                {{ item.StudentAssignment.totalcorrect }}
+              </v-chip>
+            </template> -->
           </v-data-table>
         </div>
         <div class="text-center pt-2">
@@ -68,7 +83,7 @@
                         <v-list-item>
                           <v-list-item-avatar>
                             <v-icon
-                              color="amber"
+                              color="amber darken-1"
                               class="text-left ma-2"
                               large
                               cols="12"
@@ -150,13 +165,14 @@ export default {
           "/studentassignment"
       );
       console.log(this.studentassignment);
-      for (let i = 0; i < this.studentassignment.length; i++) {
+     
+    }
+     for (let i = 0; i < this.studentassignment.length; i++) {
       
        const d= new Date(this.studentassignment[i].StudentAssignment.created_at);
         const d2= new Date(this.studentassignment[i].StudentAssignment.update_at);
        this.studentassignment[i].StudentAssignment.created_at= d.toLocaleString();
        this.studentassignment[i].StudentAssignment.update_at= d2.toLocaleString();
-    }
     }
   },
 

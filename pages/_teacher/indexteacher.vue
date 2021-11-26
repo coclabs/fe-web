@@ -28,7 +28,7 @@
               <v-card-actions>
       <v-btn
       class="px-3"
-        color="amber lighten-1"
+        color="amber accent-3"
         
        rounded
       >

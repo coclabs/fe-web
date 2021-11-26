@@ -1,20 +1,16 @@
 <template>
   <v-app>
+    <Navbarv6 />
     <v-main style="background-color: #ede7f6">
-      <v-container
-        style="height:600px;width:2500pxbackground-color: #EDE7F6;"
-        v-if="question != null"
-      >
-        <v-row no-gutters>
+     
+        <v-row no-gutters  v-if="question != null">
           <v-col>
-            <v-card class="pa-2" outlined tile height="600px">
-              <h1>Question{{ questionindex + 1 }}</h1>
+            <v-card class="pa-2" outlined tile height="800px">
+              <v-subheader  class="text-h5 black--text">Question{{ questionindex + 1 }}</v-subheader>
 
-              <h3>
-                <div
-                  v-html="$md.render(question.Question.questiondescription)"
-                ></div>
-              </h3>
+              <v-card-title class="body-1 "  v-html="$md.render(question.Question.questiondescription)">
+                
+              </v-card-title>
             </v-card>
           </v-col>
           <v-col order="12">
@@ -22,7 +18,7 @@
               class="pa-2"
               outlined
               tile
-              height="600px"
+              height="800px"
               style="background-color: black"
             >
               <h2 style="color: white">Test Result</h2>
@@ -58,23 +54,36 @@
             </v-card>
           </v-col>
           <v-col order="1">
-            <v-card class="pa-2" outlined tile height="600px" width="600px">
+            <v-card class="pa-2" outlined tile height="800px" width="600px">
               <div
                 id="description3"
                 style="
-                  height: 550px;
+                  height: 580px;
                   width: 100%;
                   border: solid 1px rgba(0, 0, 0, 0.3);
                 "
               ></div>
               <textarea name="description3" style="display: none" />
+               <v-footer
+      app
+      color="transparent"
+      inset
+      padless
+      height="200"
+       dark
+    >
+    <v-row
+      justify="center"
+      no-gutters
+    >
               <v-btn style="margin-left: 300px" @click="validateexampletest"
+              
                 >Run</v-btn
               >
               <v-dialog v-model="dialog" persistent max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    color="primary"
+                    color="deep-purple accent-1"
                     dark
                     v-bind="attrs"
                     v-on="on"
@@ -90,10 +99,10 @@
                   >
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="returnmockdata">
+                    <v-btn color="amber darken-1" text @click="returnmockdata">
                       Disagree
                     </v-btn>
-                    <v-btn color="green darken-1" text @click="submit">
+                    <v-btn color="teal accent-2" text @click="submit">
                       Agree
                     </v-btn>
                   </v-card-actions>
@@ -102,7 +111,7 @@
               <v-dialog v-model="dialog2" persistent max-width="290">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    color="yellow"
+                    color="amber darken-1"
                     dark
                     v-bind="attrs"
                     v-on="on"
@@ -120,18 +129,27 @@
                   >
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="returnmockdata">
+                    <v-btn color="amber darken-1" text @click="returnmockdata">
                       Disagree
                     </v-btn>
-                    <v-btn color="green darken-1" text @click="end">
+                    <v-btn color="teal accent-2" text @click="end">
                       Agree
                     </v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
+    </v-row>
+               </v-footer>
             </v-card>
           </v-col>
         </v-row>
+        <v-footer
+      app
+      color="transparent"
+      inset
+      padless
+       dark
+    >
         <v-bottom-navigation v-model="value">
           <v-btn @click="back" :disabled="questionindex == 0"> Back </v-btn>
 
@@ -144,8 +162,9 @@
             Next
           </v-btn>
         </v-bottom-navigation>
-      </v-container>
-      <v-container v-if="question == null">
+        </v-footer>
+      
+      <v-row v-if="question == null">
         <h1 style="color: red">
           NO Question Please Add Question To Assignment
         </h1>
@@ -158,7 +177,7 @@
           "
         ></div>
         <textarea name="description3" style="display: none" />
-      </v-container>
+      </v-row>
     </v-main>
   </v-app>
 </template>
@@ -168,7 +187,7 @@
 
 <script>
 import $ from "jquery";
-import Navbarv1 from "../../../components/Navbarv1.vue";
+import Navbarv6 from "../../../components/Navbarv6.vue";
 export default {
   async fetch() {
     // this.question= await this.$axios.$get(process.env.baseUrl + '/getquestionbyquestionid/'+this.$route.params.questionid)
@@ -192,7 +211,7 @@ export default {
       return this.now == this.questions.length - 1;
     },
   },
-  components: { Navbarv1 },
+  components: { Navbarv6 },
   data() {
     return {
       totalcorrect: 0,

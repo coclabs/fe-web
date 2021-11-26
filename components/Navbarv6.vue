@@ -1,31 +1,73 @@
 <template>
-  <!-- navbarfor teacher -->
+  <!-- navbar for student -->
   <div>
+    <!-- <v-navigation-drawer  app 
     
-    <v-navigation-drawer
-         dark app 
-      class="deep-purple accent-1" width="100" 
       v-model="drawer"
-           
+      :mini-variant.sync="mini"
+      permanent
+      clipped
+      fixed
+      style="border-bottom: 1px solid rgba(0,0,0,.12)!important"
+      color="white"
+      class="hidden-sm-and-down "
+      
     >
-       <div class="text-center mt-5">
-           <v-btn  text color="white" x-small href="/" class="mt-5" >
-                <v-img
-          :src="require('~/assets/logococ-3.jpg')"
-          max-height="60px"
-          max-width="60px"
-          alt="logo"
-          contain
-          eager
-          class="app-logo me-1"
-        ></v-img> 
+      
+
+      <v-divider class="mx-2 my-2"></v-divider>
+      
+
+      <v-list shaped nav
+        dense  >
+        <v-list-item-group
+        v-model="selectedItem"
+          color="deep-purple accent-1"
+      >
+        
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link router :to="item.route"
+        >
+          <v-list-item-icon >
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title style="color:red lighten-5">{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        </v-list-item-group>
+          <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+      </v-list>
+      
+    </v-navigation-drawer> -->
+     <!-- <v-navigation-drawer
+     dark app flat
+     v-model="drawer"
+      class="deep-purple accent-1" width="100" 
+      
+    >
+        <div class="text-center mt-5">
+           <v-btn fab color="white" x-large href="/" >
+             <v-list-item-avatar class="mx-5" size="60">
+         <v-img :src="require('~/assets/logococ-3.jpg')" ></v-img>
+        </v-list-item-avatar>
+               
            </v-btn>
               
         </div>
     
 
-           <v-list flat class="mt-5" >
+                        <v-list flat class="mt-5" >
         <v-list-item-group v-model="selectedItem" color="black" >
+          
           <v-list-item
             v-for="item in items"
             :key="item.title"
@@ -35,8 +77,9 @@
             active-class="border"
             class="ml-2 my-3"
           :ripple="false"
+          
           >
-                    <b></b>
+          <b></b>
                         <b></b>
                          <v-tooltip right>
              <template v-slot:activator="{ on, attrs }">
@@ -44,37 +87,34 @@
           v-on="on">
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
-
-                        </template>
-              <span>{{ item.title }}</span>
-            </v-tooltip>
+            </template>
+             <span>{{ item.title }}</span>
+          </v-tooltip>
           </v-list-item>
+             
         </v-list-item-group>
-            
       </v-list>
-       
-    </v-navigation-drawer>
-    <v-app-bar
-         color="rgba(0,0,0,0)"  app flat absolute
+    </v-navigation-drawer> -->
+    
+      <v-app-bar
+       color="rgba(0,0,0,0)"  app flat absolute
     >
-         <v-app-bar-nav-icon class="brown-text d-lg-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
-    <v-toolbar-items>
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              text
-              v-bind="attrs"
-              v-on="on"
-              href="/course/classroomteacher"
-            >
-              Course
-            </v-btn>
-          </template>
-          <span>Course</span>
-        </v-tooltip>
-      </v-toolbar-items>
+    
+    <v-app-bar-nav-icon class="brown-text d-lg-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    
+        <v-btn max-height="60px"
+          max-width="60px" text v-bind="attrs" v-on="on" href="/">
+        <v-img
+          :src="require('~/assets/logococ-3.jpg')"
+          max-height="60px"
+          max-width="60px"
+          alt="logo"
+          contain
+          eager
+          class="app-logo me-1"
+        ></v-img> </v-btn>
       <v-spacer></v-spacer>
-
+            <span class="font-weight-light d-md-none">Session Expires:{{ datetime }}</span>
        <v-btn
             icon
             small
@@ -84,7 +124,7 @@
              mdi-bell-outline
             </v-icon>
           </v-btn>
-            <v-menu offset-y
+          <v-menu offset-y
     left
     nudge-bottom="14"
     min-width="230"
@@ -123,12 +163,15 @@
       </v-list-item>
    </v-list>
           </v-menu>
-        </v-app-bar>
+    </v-app-bar>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  async fetch() {
+    this.s = "/" + this.$cookies.get("id") + "/classroomstudent";
+  },
   components: {},
 
   computed: mapGetters({
@@ -136,7 +179,6 @@ export default {
     isLoggedIn: "authentication/isLoggedIn",
     datetime: "authentication/datetime",
   }),
-
   methods: {
     logout() {
       this.$store
@@ -149,59 +191,29 @@ export default {
       selectedItem: 0,
       drawer: true,
       items: [
+        // { title: " Dashboard", icon: "mdi-home-city", route: "/authen/login" },
+         {
+          title: "Dashboard",
+          icon: "mdi-post-outline",
+          route:  "/" + this.$route.params.student +"/indexstudent",
+        },
         {
           title: "Courseroom",
-                  icon: "mdi-account-group",
-          route: "/" + this.$cookies.get("courseid") + "/coursepageteacher",
-        },
-        {
-          title: "createquestion",
-          icon: "mdi-file-document-edit-outline",
-          route:
-            "/" + this.$cookies.get("courseid") + "/question/createquestion",
-        },
-        {
-          title: "showallquestion",
-          icon: "mdi-file-cabinet",
-          route:
-            "/" + this.$cookies.get("courseid") + "/question/showallquestion",
-        },
-        {
-          title: "createassignment",
-          icon: "mdi-file-document-edit-outline",
-          route:
-            "/" + this.$cookies.get("courseid") + "/question/createassignment",
-        },
-        {
-          title: "showallassignment",
-          icon: "mdi-bag-personal-outline",
-          route:
-            "/" + this.$cookies.get("courseid") + "/question/showallassignment",
-        },
-        {
-          title: "invite/remove students",
-          icon: "mdi-account-multiple-plus-outline",
-          route: "/" + this.$cookies.get("courseid") + "/teacherselectstudent",
-        },
-        {
-          title: "AssignmnetAnalytic",
-          icon: "mdi-post-outline",
-          route: "/" + this.$cookies.get("courseid") + "/allassignmentteacher",
+          icon: "mdi-account-group",
+          route:  "/" + this.$route.params.student + "/classroomstudent",
         },
       ],
-           
+      mini: true,
     };
   },
 };
 </script>
 <style>
 .border  {
-   
-    background: #EFE5FD;
+    background:  #EFE5FD;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-      text-decoration: none;
-    
+      text-decoration: none;  
 }
 .border b:nth-child(1)
 {
@@ -210,7 +222,7 @@ export default {
     top: -20px;
     height: 20px;
     width: 83%;
-    background: #EFE5FD;
+    background:  #EFE5FD;
   
     display: none; 
 }
@@ -231,7 +243,7 @@ export default {
     bottom: -20px;
     height: 20px;
     width: 83%;
-    background: #EFE5FD;
+    background:  #EFE5FD;
     display: none;
 }
 .border b:nth-child(2)::before
@@ -251,4 +263,3 @@ export default {
     display: block;
 }
 </style>
-

@@ -18,7 +18,7 @@
             @page-count="pageCount = $event"
           >
             <template v-slot:[`item.actions`]="{ item }">
-              <v-chip color="amber darker1 " dark @click="viewdata(item)">
+              <v-chip color="amber darken-1" dark @click="viewdata(item)">
                 View Detail</v-chip
               >
             </template>
@@ -30,7 +30,7 @@
           </v-data-table>
         </div>
         <div class="text-center pt-2">
-          <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          <v-pagination color="deep-purple accent-1" v-model="page" :length="pageCount"></v-pagination>
         </div>
       </div>
 
@@ -55,7 +55,7 @@
               @page-count="pageCount = $event"
             >
               <template v-slot:[`item.actions`]="{ item }">
-                <v-chip color="amber darker1 " dark @click="viewdata2(item)">
+                <v-chip color="amber darken-1 " dark @click="viewdata2(item)">
                   Record</v-chip
                 >
               </template>

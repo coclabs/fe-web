@@ -22,10 +22,8 @@
                   <v-list-item>
                     <v-list-item-avatar>
                       <v-btn
-                        color="amber"
-                        class="text-left ma-2"
+                        color="amber darken-1"
                         dark
-                        cols="12"
                         fab
                         @click="changehref(item)"
                       >

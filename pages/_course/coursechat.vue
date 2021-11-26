@@ -18,9 +18,7 @@
                       <v-avatar
               color="#b388ff"
               class="white--text"
-            >
-             T
-            </v-avatar>
+            >T</v-avatar>
                     </v-list-item-avatar>
           
           <v-list-item-content>
@@ -38,11 +36,9 @@
         >
            <v-list-item-avatar >
                       <v-avatar
-              color="amber lighten-2"
-              class="white--text"
-            >
-             S
-            </v-avatar>
+              color="amber darken-1"
+              class="white--text "
+            >S</v-avatar>
                     </v-list-item-avatar>
 
           <v-list-item-content>
@@ -68,7 +64,7 @@
         <ul id="example-2">
          
            <v-card>
-              <v-subheader class="text-h5"><v-icon color="amber"> mdi-message-text</v-icon>Group Chat : Room {{ courseid }}</v-subheader>
+              <v-subheader class="text-h5"><v-icon color="amber darken-1"> mdi-message-text</v-icon>Group Chat : Room {{ courseid }}</v-subheader>
 
               <v-list two-line v-for="(item, index) in items" :key="index">
                 <template >
@@ -81,16 +77,14 @@
                       <v-avatar
               color="grey darken-1"
               class="white--text"
-            >
-             T
-            </v-avatar>
+            >T</v-avatar>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                      <v-list-item-title></v-list-item-title>
+                      <v-list-item-title>{{ item.message }}</v-list-item-title>
 
                       <v-list-item-subtitle >
-                        {{ item.message }}
+                       
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -107,9 +101,7 @@
                        <v-avatar
               color="grey darken-1"
               class="white--text"
-            >
-             S
-            </v-avatar>
+            >S</v-avatar>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
@@ -139,7 +131,7 @@
         hide-details
         rounded
         solo
-      ></v-text-field> <v-btn @click="sendMessage()">Send</v-btn>
+      ></v-text-field> <v-btn  color="amber accent-3 " rounded @click="sendMessage()">Send</v-btn>
     </v-footer>
             </v-card>
            

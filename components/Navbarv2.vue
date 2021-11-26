@@ -55,11 +55,16 @@
       
     >
         <div class="text-center mt-5">
-           <v-btn fab color="white" x-large href="/" >
-             <v-list-item-avatar class="mx-5" size="60">
-         <v-img :src="require('~/assets/logococ-3.jpg')" ></v-img>
-        </v-list-item-avatar>
-               
+           <v-btn  text color="white" x-small href="/" class="mt-5" >
+                <v-img
+          :src="require('~/assets/logococ-3.jpg')"
+          max-height="60px"
+          max-width="60px"
+          alt="logo"
+          contain
+          eager
+          class="app-logo me-1"
+        ></v-img> 
            </v-btn>
               
         </div>
@@ -138,9 +143,9 @@
           <v-list-item-title>Profile</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item link>
+      <v-list-item link  @click="logout">
         <v-list-item-icon class="me-2">
-          <v-icon size="22" @click="logout">
+          <v-icon >
             mdi-logout
           </v-icon>
         </v-list-item-icon>
