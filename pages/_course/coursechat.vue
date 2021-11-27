@@ -1,107 +1,80 @@
 <template>
-  <v-app style="background-color: #EFE5FD">
+  <v-app style="background-color: #efe5fd">
     <div v-if="role == 'Teacher'"><Navbarv1 /></div>
     <div v-if="role == 'Student'"><Navbarv5 /></div>
-      <v-navigation-drawer
-      v-model="drawer"
-      app right
-    >
-      
-
+    <v-navigation-drawer v-model="drawer" app right>
       <v-divider></v-divider>
 
       <v-list two-line v-for="(item, index) in items" :key="index">
-        <template >
-        <v-list-item v-if="item.id == 1"
-        >
-         <v-list-item-avatar >
-                      <v-avatar
-              color="#b388ff"
-              class="white--text"
-            >T</v-avatar>
-                    </v-list-item-avatar>
-          
-          <v-list-item-content>
-            <v-list-item-title>
-              <div>Teacher Online :</div>
-             <div v-if="item.message[0]!=null"> {{ item.message[0].firstname}}</div>
-              
-            </v-list-item-title>
-            
-          </v-list-item-content>
-        </v-list-item>
-        </template>
-        <template >
-         <v-list-item v-if="item.id == 2"
-        >
-           <v-list-item-avatar >
-                      <v-avatar
-              color="amber darken-1"
-              class="white--text "
-            >S</v-avatar>
-                    </v-list-item-avatar>
+        <template>
+          <v-list-item v-if="item.id == 1">
+            <v-list-item-avatar>
+              <v-avatar color="#b388ff" class="white--text">T</v-avatar>
+            </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title>
-              
-              <div>Student Online :</div>
-                 <div v-if="item.message[0]!=null"> {{ item.message[0].firstname}}</div>
-             
-            
-            </v-list-item-title>
-            
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>
+                <div>Teacher Online :</div>
+                <div v-if="item.message[0] != null">
+                  {{ item.message[0].firstname }}
+                </div>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </template>
-        
+        <template>
+          <v-list-item v-if="item.id == 2">
+            <v-list-item-avatar>
+              <v-avatar color="amber darken-1" class="white--text">S</v-avatar>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title>
+                <div>Student Online :</div>
+                <div v-if="item.message[0] != null">
+                  {{ item.message[0].firstname }}
+                </div>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
       </v-list>
-
     </v-navigation-drawer>
-    
-    <v-main style="background-color: #EFE5FD">
+
+    <v-main style="background-color: #efe5fd">
       <div>
-
         <ul id="example-2">
-         
-           <v-card>
-              <v-subheader class="text-h5"><v-icon color="amber darken-1"> mdi-message-text</v-icon>Group Chat : Room {{ courseid }}</v-subheader>
+          <v-card>
+            <v-subheader class="text-h5"
+              ><v-icon color="amber darken-1"> mdi-message-text</v-icon>Group
+              Chat : Room {{ courseid }}</v-subheader
+            >
 
-              <v-list two-line v-for="(item, index) in items" :key="index">
-                <template >
-                  <v-card color="#ede7f6">
-                  <v-list-item
-                   v-if="item.id == 5"
-                    
-                  >
-                    <v-list-item-avatar >
-                      <v-avatar
-              color="grey darken-1"
-              class="white--text"
-            >T</v-avatar>
+            <v-list two-line v-for="(item, index) in items" :key="index">
+              <template>
+                <v-card color="#ede7f6">
+                  <v-list-item v-if="item.id == 5">
+                    <v-list-item-avatar>
+                      <v-avatar color="grey darken-1" class="white--text"
+                        >T</v-avatar
+                      >
                     </v-list-item-avatar>
 
                     <v-list-item-content>
                       <v-list-item-title>{{ item.message }}</v-list-item-title>
 
-                      <v-list-item-subtitle >
-                       
-                      </v-list-item-subtitle>
+                      <v-list-item-subtitle> </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                  </v-card>
-                  
-                </template>
-                <template >
-                  <v-card color="#FFECB3">
-                  <v-list-item
-                    v-if="item.id == 6"
-                    
-                  >
+                </v-card>
+              </template>
+              <template>
+                <v-card color="#FFECB3">
+                  <v-list-item v-if="item.id == 6">
                     <v-list-item-avatar>
-                       <v-avatar
-              color="grey darken-1"
-              class="white--text"
-            >S</v-avatar>
+                      <v-avatar color="grey darken-1" class="white--text"
+                        >S</v-avatar
+                      >
                     </v-list-item-avatar>
 
                     <v-list-item-content>
@@ -112,29 +85,25 @@
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                  </v-card>
-                </template>
-               
-              </v-list>
-              
-         <v-footer
-      app
-      color="transparent"
-      height="72"
-      inset
-    >
-      <v-text-field
-       v-model="message"
-        background-color="grey lighten-1"
-        dense
-        flat
-        hide-details
-        rounded
-        solo
-      ></v-text-field> <v-btn  color="amber accent-3 " rounded @click="sendMessage()">Send</v-btn>
-    </v-footer>
-            </v-card>
-           
+                </v-card>
+              </template>
+            </v-list>
+
+            <v-footer app color="transparent" height="72" inset>
+              <v-text-field
+                v-model="message"
+                background-color="grey lighten-1"
+                dense
+                flat
+                hide-details
+                rounded
+                solo
+              ></v-text-field>
+              <v-btn color="amber accent-3 " rounded @click="sendMessage()"
+                >Send</v-btn
+              >
+            </v-footer>
+          </v-card>
         </ul>
       </div>
     </v-main>
@@ -168,8 +137,16 @@ export default {
     this.role = this.$cookies.get("role");
   },
   mounted() {
+    var token;
+    token = this.$cookies.get("token");
+    // If the user is not authenticated
+    if (!token) {
+      this.$router.push("/authen/login");
+    }
+
     var ws = new WebSocket(
-      `ws://localhost:8000/ws/` +
+      `wss://api.pdm-dev.me/ws/` +
+        //  `ws://localhost:8000/ws/` +
         this.courseid +
         `/` +
         this.id +
