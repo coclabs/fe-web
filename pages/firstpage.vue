@@ -1,80 +1,82 @@
 <template>
-    <v-app  >
-        <div>
-    <!-- -----------------------------------------------
+  <v-app>
+    <div>
+      <!-- -----------------------------------------------
           Start Header
     ----------------------------------------------- -->
-    <v-app-bar app absolute class="app-header" flat elevate-on-scroll  color="rgba(0,0,0,0)">
-      
+      <v-app-bar
+        app
+        absolute
+        class="app-header"
+        flat
+        elevate-on-scroll
+        color="rgba(0,0,0,0)"
+      >
         <!-- Logo -->
-        
-         <v-img
+
+        <v-img
           :src="require('~/assets/logococ-3.jpg')"
           max-height="50px"
           max-width="50px"
           alt="logo"
           contain
           eager
-          class="app-logo me-1 ms-16 "
-        ></v-img> 
-        <v-toolbar-title >
-              <h4 class="app-title text--primary">
-            Call Of Code
-          </h4></v-toolbar-title>
+          class="app-logo me-1 ms-16"
+        ></v-img>
+        <v-toolbar-title>
+          <h4 class="app-title text--primary">Call Of Code</h4></v-toolbar-title
+        >
         <v-spacer></v-spacer>
         <div>
-        <v-btn text>
-          home
-        </v-btn>
+          <v-btn text href="/"> home </v-btn>
         </div>
 
-         <v-btn
-                color="amber darker-1"
-                nuxt
-                target="_blank"
-                href="/"
-                elevation="0"
-                rounded
-                class="me-8"
-              >
-                Log in
-              </v-btn>
+        <v-btn
+          color="amber darker-1"
+          nuxt
+          target="_blank"
+          href="/authen/login"
+          elevation="0"
+          rounded
+          class="me-8"
+        >
+          Log in
+        </v-btn>
         <!-- Desktop view Navigation -->
-      
-      
-    </v-app-bar>
-    <!-- -----------------------------------------------
+      </v-app-bar>
+      <!-- -----------------------------------------------
           End Header
     ----------------------------------------------- -->
-  </div>
-       <div >
-        <v-container class="banner-wrapper" >
-      <!-- -----------------------------------------------
+    </div>
+    <div>
+      <v-container class="banner-wrapper">
+        <!-- -----------------------------------------------
             Start Banner
         ----------------------------------------------- -->
-      <v-row justify="center">
-        <v-col cols="12" md="7" lg="6" class="d-flex align-center ">
-          <div class="text-center text-md-left">
-            <h1 class="banner-title font-weight-bold black--text">
-              Call Of Code
-            </h1>
-            <h4 class="banner-subtitle black--text font-weight-regular">
-              A system that help teachers to add classrooms and independently manage homework and exercise
-            </h4>
-            <div class="mt-16 pt-2">
-              <v-btn
-                color="amber darker-1"
-                class="mr-0 mr-md-8 mb-5 mb-md-0 btn-custom-md"
-                nuxt
-                large
-                target="_blank"
-                href="/"
-                elevation="0"
-                rounded
-              >
-                Get Started
-              </v-btn>
-              <!-- <v-btn
+        <v-row justify="center">
+          <v-col cols="12" md="7" lg="6" class="d-flex align-center">
+            <div class="text-center text-md-left">
+              <h1 class="banner-title font-weight-bold black--text">
+                Call Of Code
+              </h1>
+              <h4 class="banner-subtitle black--text font-weight-regular">
+                A system that help teachers to add classrooms and independently
+                manage homework and exercise
+              </h4>
+              <div class="mt-16 pt-2">
+                <v-btn
+                  color="amber darker-1"
+                  class="mr-0 mr-md-8 mb-5 mb-md-0 btn-custom-md"
+                  nuxt
+                  large
+                  target="_blank"
+                  href="/"
+                  elevation="0"
+                  rounded
+                >
+                  Get Started
+                </v-btn>
+                <!-- <v-btn
                 nuxt
                 large
                 to="/coming-soon"
@@ -86,76 +88,69 @@
               >
                 Upgrade to Pro
               </v-btn> -->
-            </div>
-          </div>
-        </v-col>
-        <v-col cols="12" md="5" lg="6" class="hidden-sm-and-down">
-          
-         <v-img :src="require('~/assets/cocp1.svg')" ></v-img
-              >
-          
-        </v-col>
-      </v-row>
-
-</v-container>
-       </div>
-      <!-- -----------------------------------------------
-            End Banner
-        ----------------------------------------------- -->
-       
-      <div class="banner2-component" style="background-color: #efe5fd">
-        <!-- -----------------------------------------------
-            Start Banner2
-        ----------------------------------------------- -->
-        <v-row justify="center">
-          <v-col cols="12" md="8" class="d-flex align-center">
-            <div class="text-center">
-              <h2 class="banner2-title font-weight-light">
-                We are Call Of Code, Welcome
-                <span class="font-weight-bold">
-                  Teacher & Student
-                </span>
-                Connecting
-              </h2>
-
-              <div class="mt-16 pt-2">
-                <v-btn
-                  nuxt
-                  large
-                  to="/"
-                  class="btn-custom-lg btn-arrow"
-                  depressed
-                  color="amber darker-1"
-                  elevation="0"
-                  rounded
-                >
-                  <span>Check Your Course</span>
-                  <i class="mdi mdi-arrow-right"></i>
-                </v-btn>
               </div>
             </div>
           </v-col>
+          <v-col cols="12" md="5" lg="6" class="hidden-sm-and-down">
+            <v-img :src="require('~/assets/cocp1.svg')"></v-img>
+          </v-col>
         </v-row>
+      </v-container>
+    </div>
+    <!-- -----------------------------------------------
+            End Banner
+        ----------------------------------------------- -->
 
-        <!-- -----------------------------------------------
+    <div class="banner2-component" style="background-color: #efe5fd">
+      <!-- -----------------------------------------------
+            Start Banner2
+        ----------------------------------------------- -->
+      <v-row justify="center">
+        <v-col cols="12" md="8" class="d-flex align-center">
+          <div class="text-center">
+            <h2 class="banner2-title font-weight-light">
+              We are Call Of Code, Welcome
+              <span class="font-weight-bold"> Teacher & Student </span>
+              Connecting
+            </h2>
+
+            <div class="mt-16 pt-2">
+              <v-btn
+                nuxt
+                large
+                to="/"
+                class="btn-custom-lg btn-arrow"
+                depressed
+                color="amber darker-1"
+                elevation="0"
+                rounded
+              >
+                <span>Check Your Course</span>
+                <i class="mdi mdi-arrow-right"></i>
+              </v-btn>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+
+      <!-- -----------------------------------------------
             End Banner2
         ----------------------------------------------- -->
-      </div>
-    
-         <div class="feature1-component mini-spacer">
-          <v-container >
-        
+    </div>
+
+    <div class="feature1-component mini-spacer">
+      <v-container>
         <!-- -----------------------------------------------
             Start Feature 1
         ----------------------------------------------- -->
-       
-        <v-row justify="center" class="mt-13"  >
+
+        <v-row justify="center" class="mt-13">
           <v-col cols="12" md="6">
             <v-card elevation="0">
               <v-card-text>
                 <v-avatar size="300" tile>
-                <v-img :src="require('~/assets/team.svg')"> </v-img>
-              </v-avatar>
+                  <v-img :src="require('~/assets/team.svg')"> </v-img>
+                </v-avatar>
                 <!-- <h5 class="font-weight-medium font-18">Instant Solutions</h5>
                 <p class="mt-10 mb-8">
                   You can relay on our amazing features list and also our
@@ -181,12 +176,14 @@
           <v-col cols="12" md="6">
             <v-card elevation="0">
               <v-card-text>
-               <h1 class="banner-title1 font-weight-bold black--text">
-              Learn Computing science on the go
-            </h1>
-                
+                <h1 class="banner-title1 font-weight-bold black--text">
+                  Learn Computing science on the go
+                </h1>
+
                 <p class="mt-10 mb-8">
-                 Even if you don’t have a lot of time, you can always learn using the app. It's easy to use, and it's a fun way to launch your programming journey
+                  Even if you don’t have a lot of time, you can always learn
+                  using the app. It's easy to use, and it's a fun way to launch
+                  your programming journey
                 </p>
                 <a
                   href="#"
@@ -204,19 +201,18 @@
             </v-card>
           </v-col>
         </v-row>
-       
-          </v-container>
-         </div>
-    
-    </v-app>
+      </v-container>
+    </div>
+  </v-app>
 </template>
 <script>
 export default {
-    name: "Banner",
+  layout: "empty",
+  name: "Banner",
   data() {
     return {};
-  }
-}
+  },
+};
 </script>
 <style lang="scss">
 .banner-title {
@@ -228,7 +224,7 @@ export default {
   font-size: 21px;
 }
 .banner-wrapper {
-  background:  #FFFF;
+  background: #ffff;
   padding: 20px 0 20px;
   min-height: 600px;
   display: flex;
@@ -253,7 +249,7 @@ export default {
   .icon-round {
     font-size: 45px;
     width: 80px;
-    color: #B388FF;
+    color: #b388ff;
     line-height: 80px;
     text-align: center;
     display: inline-block;
@@ -261,7 +257,7 @@ export default {
     border-radius: 100%;
   }
 }
-  .linking {
+.linking {
   i {
     margin-left: 10px;
     transition: 0.2s ease-in;

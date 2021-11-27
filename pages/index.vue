@@ -19,7 +19,7 @@ export default {
     token = this.$cookies.get("token");
     // If the user is not authenticated
     if (!token) {
-      this.$router.push("authen/login");
+      this.$router.push("/firstpage");
     }
     var role = this.$cookies.get("role");
     var id = this.$cookies.get("id");
