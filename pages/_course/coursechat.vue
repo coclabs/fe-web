@@ -145,8 +145,8 @@ export default {
     }
 
     var ws = new WebSocket(
-      // `wss://api.pdm-dev.me/ws/` +
-      `ws://localhost:8000/ws/` +
+      `wss://api.pdm-dev.me/ws/` +
+        // `ws://localhost:8000/ws/` +
         this.courseid +
         `/` +
         this.id +
