@@ -32,8 +32,9 @@
                 v-for="item in validateresultexampletest.successes"
                 :key="item.index"
               >
-                Test: {{ item.description }} <br />
-                <h3 style="color: green">{{ item.case }} Pass</h3>
+                <h3 style="color: green">
+                  Test: {{ item.description }} <br />{{ item.case }} Pass
+                </h3>
               </li>
             </ul>
             <ul>
@@ -42,7 +43,7 @@
                 :key="item.index"
               >
                 <h3 style="color: red">
-                  Test: {{ item.description }} <br />
+                  Test : {{ item.description }} <br />
                   {{ item.case }} Fail<br />
                   Reason: <br />
                   {{ item.reason }}
