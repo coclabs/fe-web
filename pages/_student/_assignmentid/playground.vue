@@ -2,154 +2,148 @@
   <v-app>
     <Navbarv6 />
     <v-main style="background-color: #ede7f6">
-     
-        <v-row no-gutters  v-if="question != null">
-          <v-col>
-            <v-card class="pa-2" outlined tile height="800px">
-              <v-subheader  class="text-h5 black--text">Question{{ questionindex + 1 }}</v-subheader>
-
-              <v-card-title class="body-1 "  v-html="$md.render(question.Question.questiondescription)">
-                
-              </v-card-title>
-            </v-card>
-          </v-col>
-          <v-col order="12">
-            <v-card
-              class="pa-2"
-              outlined
-              tile
-              height="800px"
-              style="background-color: black"
+      <v-row no-gutters v-if="question != null">
+        <v-col>
+          <v-card class="pa-2" outlined tile height="800px">
+            <v-subheader class="text-h5 black--text"
+              >Question{{ questionindex + 1 }}</v-subheader
             >
-              <h2 style="color: white">Test Result</h2>
 
-              <h3 style="color: orange">Example Test Cases</h3>
-              <ul>
-                <li
-                  v-for="item in validateresultexampletest.successes"
-                  :key="item.index"
-                >
-                  <h3 style="color: green">{{ item.case }} Pass</h3>
-                </li>
-              </ul>
-              <ul>
-                <li
-                  v-for="item in validateresultexampletest.failures"
-                  :key="item.index"
-                >
-                  <h3 style="color: red">
-                    {{ item.case }} Fail<br />
-                    Reason: <br />
-                    {{ item.reason }}
-                  </h3>
-                </li>
-              </ul>
+            <v-card-title
+              class="body-1"
+              v-html="$md.render(question.Question.questiondescription)"
+            >
+            </v-card-title>
+          </v-card>
+        </v-col>
+        <v-col order="12">
+          <v-card
+            class="pa-2"
+            outlined
+            tile
+            height="800px"
+            style="background-color: black"
+          >
+            <h2 style="color: white">Test Result</h2>
 
-              <div
-                style="color: red"
-                v-if="validateresultexampletest.code == 500"
+            <h3 style="color: orange">Example Test Cases</h3>
+            <ul>
+              <li
+                v-for="item in validateresultexampletest.successes"
+                :key="item.index"
               >
-                Error :{{ validateresultexampletest.reason }}
-              </div>
-            </v-card>
-          </v-col>
-          <v-col order="1">
-            <v-card class="pa-2" outlined tile height="800px" width="600px">
-              <div
-                id="description3"
-                style="
-                  height: 580px;
-                  width: 100%;
-                  border: solid 1px rgba(0, 0, 0, 0.3);
-                "
-              ></div>
-              <textarea name="description3" style="display: none" />
-               <v-footer
-      app
-      color="transparent"
-      inset
-      padless
-      height="200"
-       dark
-    >
-    <v-row
-      justify="center"
-      no-gutters
-    >
-              <v-btn style="margin-left: 300px" @click="validateexampletest"
-              
-                >Run</v-btn
+                <h3 style="color: green">{{ item.case }} Pass</h3>
+              </li>
+            </ul>
+            <ul>
+              <li
+                v-for="item in validateresultexampletest.failures"
+                :key="item.index"
               >
-              <v-dialog v-model="dialog" persistent max-width="290">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="deep-purple accent-1"
-                    dark
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="mockdata"
-                  >
-                    Submit
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title class="text-h5"> Submit </v-card-title>
-                  <v-card-text
-                    >If You Submit Your Answer Will Be Collected</v-card-text
-                  >
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="amber darken-1" text @click="returnmockdata">
-                      Disagree
+                <h3 style="color: red">
+                  {{ item.case }} Fail<br />
+                  Reason: <br />
+                  {{ item.reason }}
+                </h3>
+              </li>
+            </ul>
+
+            <div
+              style="color: red"
+              v-if="validateresultexampletest.code == 500"
+            >
+              Error :{{ validateresultexampletest.reason }}
+            </div>
+          </v-card>
+        </v-col>
+        <v-col order="1">
+          <v-card class="pa-2" outlined tile height="800px" width="600px">
+            <div
+              id="description3"
+              style="
+                height: 580px;
+                width: 100%;
+                border: solid 1px rgba(0, 0, 0, 0.3);
+              "
+            ></div>
+            <textarea name="description3" style="display: none" />
+            <v-footer app color="transparent" inset padless height="200" dark>
+              <v-row justify="center" no-gutters>
+                <v-btn style="margin-left: 300px" @click="validateexampletest"
+                  >Run</v-btn
+                >
+                <v-dialog v-model="dialog" persistent max-width="290">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      color="deep-purple accent-1"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                      @click="mockdata"
+                    >
+                      Submit
                     </v-btn>
-                    <v-btn color="teal accent-2" text @click="submit">
-                      Agree
+                  </template>
+                  <v-card>
+                    <v-card-title class="text-h5"> Submit </v-card-title>
+                    <v-card-text
+                      >If You Submit Your Answer Will Be Collected</v-card-text
+                    >
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="amber darken-1"
+                        text
+                        @click="returnmockdata"
+                      >
+                        Disagree
+                      </v-btn>
+                      <v-btn color="teal accent-2" text @click="submit">
+                        Agree
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+                <v-dialog v-model="dialog2" persistent max-width="290">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      color="amber darken-1"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                      @click="mockdata"
+                      :disabled="!isDisabled"
+                    >
+                      End
                     </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-              <v-dialog v-model="dialog2" persistent max-width="290">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="amber darken-1"
-                    dark
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="mockdata"
-                    :disabled="!isDisabled"
-                  >
-                    End
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title class="text-h5"> End </v-card-title>
-                  <v-card-text
-                    >If you End Your Assignment Will Be Marked As
-                    Done</v-card-text
-                  >
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="amber darken-1" text @click="returnmockdata">
-                      Disagree
-                    </v-btn>
-                    <v-btn color="teal accent-2" text @click="end">
-                      Agree
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-    </v-row>
-               </v-footer>
-            </v-card>
-          </v-col>
-        </v-row>
-        <v-footer
-      app
-      color="transparent"
-      inset
-      padless
-       dark
-    >
+                  </template>
+                  <v-card>
+                    <v-card-title class="text-h5"> End </v-card-title>
+                    <v-card-text
+                      >If you End Your Assignment Will Be Marked As
+                      Done</v-card-text
+                    >
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="amber darken-1"
+                        text
+                        @click="returnmockdata"
+                      >
+                        Disagree
+                      </v-btn>
+                      <v-btn color="teal accent-2" text @click="end">
+                        Agree
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+            </v-footer>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-footer app color="transparent" inset padless dark>
         <v-bottom-navigation v-model="value">
           <v-btn @click="back" :disabled="questionindex == 0"> Back </v-btn>
 
@@ -162,8 +156,8 @@
             Next
           </v-btn>
         </v-bottom-navigation>
-        </v-footer>
-      
+      </v-footer>
+
       <v-row v-if="question == null">
         <h1 style="color: red">
           NO Question Please Add Question To Assignment
@@ -304,9 +298,11 @@ export default {
   },
 
   methods: {
+    // write here
     postassigment() {
       this.$axios
         .$post(process.env.baseUrl + "/studentassignment", {
+          courseid: this.$cookies.get("courseid"),
           assignmentid: this.$route.params.assignmentid,
           totalscore: 0,
           studentid: this.$route.params.student,
@@ -341,10 +337,12 @@ export default {
       this.ace.setValue(a, -1);
     },
     async end() {
+      var courseid = this.$cookies.get("courseid");
       console.log(this.assignment.studentassigmentid);
       console.log(this.totalscore);
 
       await this.$axios.$put(process.env.baseUrl + "/studentassignment", {
+        courseid,
         studentassignmentid: this.assignment.studentassigmentid,
         totalscore: this.totalscore,
         totalcorrect: this.totalcorrect,
@@ -352,6 +350,7 @@ export default {
       });
 
       await this.$axios.post(process.env.baseUrl + "/write_assignment_record", {
+        courseid,
         assignmentid: this.$route.params.assignmentid,
         studentscore: this.totalscore,
       });

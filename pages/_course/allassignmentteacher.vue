@@ -30,7 +30,11 @@
           </v-data-table>
         </div>
         <div class="text-center pt-2">
-          <v-pagination color="deep-purple accent-1" v-model="page" :length="pageCount"></v-pagination>
+          <v-pagination
+            color="deep-purple accent-1"
+            v-model="page"
+            :length="pageCount"
+          ></v-pagination>
         </div>
       </div>
 
@@ -87,17 +91,26 @@ export default {
   components: { Navbarv1 },
 
   async fetch() {
+    var courseid = this.$cookies.get("courseid");
     this.studentassignment = await this.$axios.$get(
-      process.env.baseUrl + "/read_all_student_assignment_record"
+      process.env.baseUrl +
+        "/" +
+        courseid +
+        "/read_all_student_assignment_record"
     );
-
+    // this.studentassignment = await this.$axios.$get(
+    //   "http://127.0.0.1:8000/" +
+    //     courseid +
+    //     "/read_all_student_assignment_record"
+    // );
     for (let i = 0; i < this.studentassignment.length; i++) {
-      this.studentassignment[i]["mean"] =
-       ( this.studentassignment[i].allscore / this.studentassignment[i].attempt).toFixed(2);
-       const d= new Date(this.studentassignment[i].firstdonetime);
-        const d2= new Date(this.studentassignment[i].lastdonetime);
-       this.studentassignment[i].firstdonetime= d.toLocaleString();
-       this.studentassignment[i].lastdonetime= d2.toLocaleString();
+      this.studentassignment[i]["mean"] = (
+        this.studentassignment[i].allscore / this.studentassignment[i].attempt
+      ).toFixed(2);
+      const d = new Date(this.studentassignment[i].firstdonetime);
+      const d2 = new Date(this.studentassignment[i].lastdonetime);
+      this.studentassignment[i].firstdonetime = d.toLocaleString();
+      this.studentassignment[i].lastdonetime = d2.toLocaleString();
     }
   },
 
@@ -150,7 +163,10 @@ export default {
     viewdata2(item) {
       this.selected2 = Object.assign({}, item);
       this.$router.push(
-        "/" + this.$cookies.get("courseid")+ "/assignmentsubmitted?studentid="+this.selected2.studentid
+        "/" +
+          this.$cookies.get("courseid") +
+          "/assignmentsubmitted?studentid=" +
+          this.selected2.studentid
       );
     },
     async viewdata(item) {
@@ -158,7 +174,8 @@ export default {
       console.log(this.selected);
 
       this.student = await this.$axios.$get(
-        process.env.baseUrl + "/read_record_student?assignmentid=" +
+        process.env.baseUrl +
+          "/read_record_student?assignmentid=" +
           this.selected.assignmentid
       );
 

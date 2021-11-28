@@ -227,16 +227,16 @@ export default {
       user: {},
       drawer: true,
       items: [
-        // { title: " Dashboard", icon: "mdi-home-city", route: "/indexstudent" },
+        // { title: " Dashboard", icon: "mdi-home-city", route: "/authen/login" },
         {
           title: "Dashboard",
           icon: "mdi-post-outline",
-          route: "/2/indexstudent",
+          route: "/" + this.$route.params.student + "/indexstudent",
         },
         {
           title: "Courseroom",
           icon: "mdi-account-group",
-          route: "/2/classroomstudent",
+          route: "/" + this.$route.params.student + "/classroomstudent",
         },
       ],
       mini: true,

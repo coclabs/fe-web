@@ -27,7 +27,7 @@
                 {{ item.Assignment.assignmentid }}
               </v-chip>
             </template>
-             <!-- <template v-slot:[`item.StudentAssignment.totalscore`]="{ item }">
+            <!-- <template v-slot:[`item.StudentAssignment.totalscore`]="{ item }">
               <v-chip color="deep-purple accent-1" dark>
                 {{ item.StudentAssignment.totalscore }}
               </v-chip>
@@ -149,10 +149,13 @@ export default {
 
   async fetch() {
     this.role = this.$cookies.get("role");
-
+    var courseid = this.$cookies.get("courseid");
     if (this.role == "Student") {
       this.studentassignment = await this.$axios.$get(
-        process.env.baseUrl + "/" +
+        process.env.baseUrl +
+          "/" +
+          courseid +
+          "/" +
           this.$cookies.get("id") +
           "/studentassignment"
       );
@@ -160,19 +163,26 @@ export default {
 
     if (this.role == "Teacher") {
       this.studentassignment = await this.$axios.$get(
-        process.env.baseUrl + "/" +
+        process.env.baseUrl +
+          "/" +
+          courseid +
+          "/" +
           this.$route.query.studentid +
           "/studentassignment"
       );
       console.log(this.studentassignment);
-     
     }
-     for (let i = 0; i < this.studentassignment.length; i++) {
-      
-       const d= new Date(this.studentassignment[i].StudentAssignment.created_at);
-        const d2= new Date(this.studentassignment[i].StudentAssignment.update_at);
-       this.studentassignment[i].StudentAssignment.created_at= d.toLocaleString();
-       this.studentassignment[i].StudentAssignment.update_at= d2.toLocaleString();
+    for (let i = 0; i < this.studentassignment.length; i++) {
+      const d = new Date(
+        this.studentassignment[i].StudentAssignment.created_at
+      );
+      const d2 = new Date(
+        this.studentassignment[i].StudentAssignment.update_at
+      );
+      this.studentassignment[i].StudentAssignment.created_at =
+        d.toLocaleString();
+      this.studentassignment[i].StudentAssignment.update_at =
+        d2.toLocaleString();
     }
   },
 
@@ -231,14 +241,16 @@ export default {
 
       if (this.role == "Student") {
         this.studentassignmentquestion = await this.$axios.$get(
-          process.env.baseUrl + "/" +
+          process.env.baseUrl +
+            "/" +
             this.$cookies.get("id") +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid
         );
       } else {
         this.studentassignmentquestion = await this.$axios.$get(
-          process.env.baseUrl + "/" +
+          process.env.baseUrl +
+            "/" +
             this.$route.query.studentid +
             "/studentassignmentquestion?studentassignmentid=" +
             this.selected.StudentAssignment.studentassigmentid
