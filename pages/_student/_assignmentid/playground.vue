@@ -331,10 +331,9 @@ export default {
         $('textarea[name="description3"]').val(),
         this.question.Test.exampletestcases,
       ];
-      await this.$store
-        .dispatch("question/validatetestcase", data)
-        .then((resp) => console.log(resp.data));
-      // this.validateresultexampletest = JSON.parse(resp.data)
+      await this.$store.dispatch("question/validatetestcase", data);
+      this.validateresultexampletest = JSON.parse(resp.data);
+
       this.ace.setValue(a, -1);
     },
     async end() {
