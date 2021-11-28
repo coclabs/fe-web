@@ -72,7 +72,7 @@ export default {
 
   // Environmental variable
   env: {
-    baseUrl: "https://api.pdm-dev.me"
-    // baseUrl: "http://127.0.0.1:8000"
+    // baseUrl: "https://api.pdm-dev.me"
+    baseUrl: "http://127.0.0.1:8000"
   }
 };

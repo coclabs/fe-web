@@ -54,7 +54,7 @@
               style="color: red"
               v-if="validateresultexampletest.code == 500"
             >
-              Test: {{ item.description }} <br />
+              Test: {{ validateresultexampletest.description }} <br />
               Error :{{ validateresultexampletest.reason }}
             </div>
           </v-card>
