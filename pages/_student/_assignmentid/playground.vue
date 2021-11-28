@@ -333,10 +333,8 @@ export default {
       ];
       await this.$store
         .dispatch("question/validatetestcase", data)
-        .then(
-          (resp) => (this.validateresultexampletest = JSON.parse(resp.data))
-        );
-
+        .then((resp) => console.log(resp.data));
+      // this.validateresultexampletest = JSON.parse(resp.data)
       this.ace.setValue(a, -1);
     },
     async end() {
