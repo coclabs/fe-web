@@ -65,7 +65,7 @@ export default {
       fontSize: 20,
     });
     editor.setValue(
-      "assert_equal(actual=hello(100), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(90), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(85), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(80), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(20), expected='F', pass_score=5,description='Test Getting F condition')",
+      "assert_equal(actual=hello(100), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(91), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(85), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(80), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(20), expected='F', pass_score=5,description='Test Getting F condition')",
       -1
     );
     this.answer = editor.getValue();
