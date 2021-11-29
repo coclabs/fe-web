@@ -1,142 +1,102 @@
 <template>
-<div>
-
-     <div id="description3" style="height: 350px ; width: 100%; border: solid 1px rgba(0,0,0,.3);"    > </div>
-<textarea name="description3"   style="display:none;"  />
-
-</div>
+  <div>
+    <div
+      id="description3"
+      style="height: 350px; width: 100%; border: solid 1px rgba(0, 0, 0, 0.3)"
+    ></div>
+    <textarea name="description3" style="display: none" />
+  </div>
 </template> 
 
 <script>
-
-import $ from 'jquery'
-    export default {
- props: {
-   someData: Object
- },
-        data(){
-return {answer:'',code:'',first:0,editor:{},someData:null
-
-,
-
-}
-        },
-    
-        
-         watch:{
-      someData(newVal){
-        
-
-const editor = ace.edit('description3');
-const textarea = $('textarea[name="description3"]');
-
-editor.getSession().on("change", function () {
-    textarea.val(editor.getSession().getValue());
-});
-;
-
-editor.setOptions({
-                theme: 'ace/theme/monokai',
-                mode: 'ace/mode/python',
-                printMargin: false,
-                vScrollBarAlwaysVisible: true,
-                scrollPastEnd: 1,
-                fontSize: 20,
-            });
-             editor.setValue(
-this.someData.tests[0].exampletestcases, -1);
-this.answer=editor.getValue();
-  
-      }
+import $ from "jquery";
+export default {
+  props: {
+    someData: Object,
   },
-        
-        
+  data() {
+    return { answer: "", code: "", first: 0, editor: {}, someData: null };
+  },
 
-        methods:{
-           
-            check(){
-                  
+  watch: {
+    someData(newVal) {
+      const editor = ace.edit("description3");
+      const textarea = $('textarea[name="description3"]');
 
-             this.answer=$('textarea[name="description3"]').val()
-            
-            },
-             ChangeExampleTestCase(){
-       this.$emit('ChangeExampleTestCase', this.answer)
-    }
+      editor.getSession().on("change", function () {
+        textarea.val(editor.getSession().getValue());
+      });
+      editor.setOptions({
+        theme: "ace/theme/monokai",
+        mode: "ace/mode/python",
+        printMargin: false,
+        vScrollBarAlwaysVisible: true,
+        scrollPastEnd: 1,
+        fontSize: 20,
+      });
+      editor.setValue(this.someData.tests[0].exampletestcases, -1);
+      this.answer = editor.getValue();
+    },
+  },
 
-        },
-         mounted(){
-          
- const editor = ace.edit('description3');
-const textarea = $('textarea[name="description3"]');
+  methods: {
+    check() {
+      this.answer = $('textarea[name="description3"]').val();
+    },
+    ChangeExampleTestCase() {
+      this.$emit("ChangeExampleTestCase", this.answer);
+    },
+  },
+  mounted() {
+    const editor = ace.edit("description3");
+    const textarea = $('textarea[name="description3"]');
 
-editor.getSession().on("change", function () {
-    textarea.val(editor.getSession().getValue());
-});
-this.editor=editor;
- 
-;
+    editor.getSession().on("change", function () {
+      textarea.val(editor.getSession().getValue());
+    });
+    this.editor = editor;
 
+    editor.setOptions({
+      theme: "ace/theme/monokai",
+      mode: "ace/mode/python",
+      printMargin: false,
+      vScrollBarAlwaysVisible: true,
+      scrollPastEnd: 1,
+      fontSize: 20,
+    });
+    editor.setValue(
+      "assert_equal(actual=hello(100), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(90), expected='A', pass_score=5,description='Test Getting A condition')\nassert_equal(actual=hello(85), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(80), expected='B', pass_score=5,description='Test Getting B condition')\nassert_equal(actual=hello(20), expected='F', pass_score=5,description='Test Getting F condition'))",
+      -1
+    );
+    this.answer = editor.getValue();
+  },
 
-  editor.setOptions({
-                theme: 'ace/theme/monokai',
-                mode: 'ace/mode/python',
-                printMargin: false,
-                vScrollBarAlwaysVisible: true,
-                scrollPastEnd: 1,
-                fontSize: 20,
-            });
-             editor.setValue(
-"assert_equal(actual=hello(0), expected='F', pass_score=0)", -1);
-this.answer=editor.getValue();
+  created() {
+    // aceEditor.setTheme("ace/theme/clouds");
 
-        },
-        
-         created(){
-             
+    setInterval(() => {
+      this.check();
+      this.ChangeExampleTestCase();
+      if (this.first == 0 && this.someData != null) {
+        const editor = ace.edit("description3");
+        const textarea = $('textarea[name="description3"]');
 
-
-// aceEditor.setTheme("ace/theme/clouds");
-
-
-             setInterval(() => {
-                 this.check()
-	this.ChangeExampleTestCase()
-   if(this.first==0&&this.someData!=null){
-             const editor = ace.edit('description3');
-const textarea = $('textarea[name="description3"]');
-
-editor.getSession().on("change", function () {
-    textarea.val(editor.getSession().getValue());
-});
-;
-
-editor.setOptions({
-                theme: 'ace/theme/monokai',
-                mode: 'ace/mode/python',
-                printMargin: false,
-                vScrollBarAlwaysVisible: true,
-                scrollPastEnd: 1,
-                fontSize: 20,
-            });
-             editor.setValue(
-this.someData.tests[0].exampletestcases, -1);
-this.code=editor.getValue();
-  this.first+=1
-  
-           }
-	}, 100)
-         }
-
-          ,
-          
-
-
-
-
-        }
-    
-        
-        
-    
+        editor.getSession().on("change", function () {
+          textarea.val(editor.getSession().getValue());
+        });
+        editor.setOptions({
+          theme: "ace/theme/monokai",
+          mode: "ace/mode/python",
+          printMargin: false,
+          vScrollBarAlwaysVisible: true,
+          scrollPastEnd: 1,
+          fontSize: 20,
+        });
+        editor.setValue(this.someData.tests[0].exampletestcases, -1);
+        this.code = editor.getValue();
+        this.first += 1;
+      }
+    }, 100);
+  },
+};
 </script>

@@ -300,7 +300,7 @@ export default {
       activetab: 1,
       question: {
         questiondescription:
-          "  ## Add a list of numbers and return its sum. \n ### Example:\n #### Input [ 3 , 4 , 2 , 7 ]\n #### Result 16            ",
+          "  ## Make  Grade Average Progarm \n ### If Grade is More Than 80 you get B \n If More Than 91 you get A \n If not in range you get F \n   #### Input 100 \n #### Result A            ",
         questiontopic: "IF-Else",
         questiondifficulty: "Beginner",
         questioninit: "",
